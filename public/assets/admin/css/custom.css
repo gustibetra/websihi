@@ -1,0 +1,164 @@
+
+/* ============================================
+   News Wire Component Styles
+   ============================================ */
+
+/* Hide select elements before Choices.js initialization */
+.choices-init-hide {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Show after Choices.js initialized - Choices.js creates wrapper */
+.choices-init-hide.choices-initialized {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: revert !important;
+    margin: revert !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    border: revert !important;
+}
+
+/* Ensure Choices.js wrapper container is visible */
+.choices-init-hide + .choices {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+.choices-init-hide.choices-initialized + .choices,
+.choices-init-hide.choices-initialized ~ .choices {
+    opacity: 1;
+}
+
+/* Row actions - show on hover */
+tbody tr:hover .row-actions {
+    opacity: 1 !important;
+}
+
+.row-actions {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.row-actions a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.row-actions a:hover {
+    color: var(--bs-primary) !important;
+}
+
+.row-actions .list-inline-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.row-actions .list-inline-item a:hover i {
+    color: var(--bs-primary);
+}
+
+/* Per Page Select - Make smaller */
+.per-page-select {
+    padding: 0.2rem 1.75rem 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    height: calc(1.5em + 0.4rem + 2px);
+}
+
+/* Choices.js wrapper for per page select */
+#perPageFilter + .choices,
+#perPageFilter.choices-initialized + .choices {
+    min-width: 60px;
+}
+
+#perPageFilter + .choices .choices__inner,
+#perPageFilter.choices-initialized + .choices .choices__inner {
+    padding: 0.2rem 1.75rem 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    min-height: calc(1.5em + 0.4rem + 2px);
+    height: calc(1.5em + 0.4rem + 2px);
+}
+
+#perPageFilter + .choices .choices__button,
+#perPageFilter.choices-initialized + .choices .choices__button {
+    width: 1rem;
+    height: 1rem;
+    right: 0.5rem;
+}
+
+#perPageFilter + .choices .choices__arrow,
+#perPageFilter.choices-initialized + .choices .choices__arrow {
+    width: 0.5rem;
+    height: 0.5rem;
+    right: 0.5rem;
+}
+
+/* Fix untuk menghilangkan scrollbar yang tidak perlu */
+/* Kurangi margin bottom pada filter dan table untuk menghemat space */
+.news-wire-component .row.mb-4:first-of-type {
+    margin-bottom: 1rem !important; /* Dari 1.5rem (24px) menjadi 1rem (16px) */
+}
+
+.news-wire-component .table-responsive.table-card.mb-4 {
+    margin-bottom: 0.5rem !important; /* Dari 1.5rem (24px) menjadi 0.5rem (8px) - Hemat 16px */
+}
+
+/* Pastikan container tidak memiliki margin bottom yang tidak perlu */
+.news-wire-component {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Kurangi margin bottom pada pagination wrap */
+.news-wire-component .pagination-wrap {
+    margin-bottom: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+/* Optimasi card body padding jika ada */
+.news-wire-component ~ .card-body,
+.news-wire-component .card-body {
+    padding-bottom: 0.75rem;
+}
+
+/* Table SM - Hanya rows yang kecil, header tetap normal */
+/* Override table-sm untuk header agar tetap dengan ukuran normal */
+.table-sm thead th {
+    padding: 0.75rem 0.75rem !important; /* Padding normal untuk header */
+    font-size: 0.875rem !important; /* Font size normal */
+    font-weight: 600 !important;
+    vertical-align: middle !important;
+    line-height: 1.5 !important;
+}
+
+.table-sm thead td {
+    padding: 0.75rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    vertical-align: middle !important;
+}
+
+/* Pastikan header row memiliki height yang cukup */
+.table-sm thead tr {
+    height: auto !important;
+    min-height: auto !important;
+}
+
+/* Tbody tetap menggunakan table-sm (kecil) - tidak perlu override */
+
+/* Fix: Pastikan area konten tidak tertutup topbar (tinggi topbar 70px) */
+.page-content {
+    padding-top: calc(70px + 1.5rem) !important;
+}
