@@ -11,6 +11,18 @@
         min-height: 320px;
         border: 0;
     }
+    .social-embed-wrapper iframe, .social-embed-wrapper blockquote {
+        width: 100% !important;
+        height: 100% !important;
+        border: none;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+    .social-embed-wrapper {
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 </style>
 @endpush
 
@@ -1734,6 +1746,63 @@
                     </div>
                 </div>
             </div>
+        @elseif($section->key1 === 'social_media')
+            <!-- ==================== SOCIAL MEDIA SECTION ==================== -->
+            @if($socialMedia)
+                @php
+                    $activeSocials = [];
+                    if (($socialMedia->data2 ?? '0') === '1' && ($socialMedia->text1 ?? '')) $activeSocials[] = ['type' => 'instagram', 'title' => 'Instagram', 'icon' => 'instagram', 'color' => '#E1306C', 'url' => $socialMedia->data1, 'embed' => $socialMedia->text1];
+                    if (($socialMedia->data4 ?? '0') === '1' && ($socialMedia->text2 ?? '')) $activeSocials[] = ['type' => 'youtube', 'title' => 'YouTube', 'icon' => 'youtube', 'color' => '#FF0000', 'url' => $socialMedia->data3, 'embed' => $socialMedia->text2];
+                    if (($socialMedia->data6 ?? '0') === '1' && ($socialMedia->text3 ?? '')) $activeSocials[] = ['type' => 'facebook', 'title' => 'Facebook', 'icon' => 'facebook', 'color' => '#1877F2', 'url' => $socialMedia->data5, 'embed' => $socialMedia->text3];
+                    if (($socialMedia->data8 ?? '0') === '1' && ($socialMedia->text4 ?? '')) $activeSocials[] = ['type' => 'tiktok', 'title' => 'TikTok', 'icon' => 'music', 'color' => '#000000', 'url' => $socialMedia->data7, 'embed' => $socialMedia->text4];
+                    
+                    $count = count($activeSocials);
+                    $colClass = match($count) {
+                        1 => 'col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12',
+                        2 => 'col-lg-6 col-md-6 col-12',
+                        3 => 'col-lg-4 col-md-6 col-12',
+                        default => 'col-lg-3 col-md-6 col-12' // 4 or more
+                    };
+                @endphp
+                @if($count > 0)
+                    <div class="rbt-social-feed-area bg-color-white rbt-section-gap">
+                        <div class="container">
+                            <div class="row mb--45">
+                                <div class="col-lg-12">
+                                    <div class="section-title text-center">
+                                        <span class="subtitle bg-primary-opacity">{{ $section->data2 ?? 'Koneksi Sosial' }}</span>
+                                        <h2 class="title">{{ $section->data1 ?? 'Kanal Media Sosial Resmi' }}</h2>
+                                        @if($section->text1)
+                                            <p class="description mt--20" style="font-size: 15px; color: var(--color-body);">{{ $section->text1 }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-5 justify-content-center">
+                                @foreach($activeSocials as $social)
+                                    <div class="{{ $colClass }}">
+                                        <div class="rbt-card variation-01 rbt-hover p--20 d-flex flex-column h-100" style="border-radius: 12px; border: 1px solid var(--color-border); background: var(--color-white); box-shadow: var(--shadow-1);">
+                                            <div class="rbt-card-body p--0 flex-grow-1 d-flex flex-column">
+                                                <h5 class="title mb--15 d-flex align-items-center gap-2" style="font-size: 16px; font-weight: 600; color: var(--color-heading);">
+                                                    <i class="feather-{{ $social['icon'] }}" style="font-size: 20px; color: {{ $social['color'] }};"></i> {{ $social['title'] }}
+                                                </h5>
+                                                <div class="social-embed-wrapper flex-grow-1" style="border-radius: 8px; overflow: hidden; border: 1px solid var(--color-border-opacity); background: var(--color-extra2); height: 420px; min-height: 420px; display: flex; align-items: center; justify-content: center;">
+                                                    {!! $social['embed'] !!}
+                                                </div>
+                                                <div class="text-center mt--15" style="border-top: 1px solid var(--color-border-opacity); padding-top: 12px;">
+                                                    <a href="{{ $social['url'] ?: '#' }}" target="_blank" class="rbt-btn-link text-primary d-inline-flex align-items-center gap-1" style="font-size: 13px; font-weight: 600;">
+                                                        Kunjungi {{ $social['title'] }} <i class="feather-external-link" style="font-size: 13px;"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endif
         @endif
     @endforeach
 @endsection

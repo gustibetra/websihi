@@ -195,6 +195,13 @@ class FrontendController extends Controller
                 ->get();
         }
 
+        $socialMedia = null;
+        if (in_array('social_media', $activeKeys)) {
+            $socialMedia = Common::where('table_name', 'social_media_setting')
+                ->where('key1', 'social_media_config')
+                ->first();
+        }
+
         return view('site.home', compact(
             'sections',
             'heroBanners',
@@ -215,7 +222,8 @@ class FrontendController extends Controller
             'testimonials',
             'setting',
             'fasilitas',
-            'faqs'
+            'faqs',
+            'socialMedia'
         ));
     }
 

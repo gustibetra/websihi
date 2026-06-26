@@ -341,6 +341,13 @@
                                         <i class="ri-palette-line me-1"></i> SEO
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ $selectedSubTab === 'social_media' ? 'active' : '' }}" 
+                                       wire:click.prevent="$set('selectedSubTab', 'social_media')" 
+                                       href="javascript:void(0);">
+                                        <i class="ri-share-line me-1"></i> Social Media
+                                    </a>
+                                </li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -1197,6 +1204,132 @@
                                                         <i class="ri-save-line align-middle me-1"></i> Simpan SEO Settings
                                                     </span>
                                                     <span wire:loading wire:target="saveSeoSettings">
+                                                        <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+                                                        Menyimpan...
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endif
+
+                                <!-- Social Media Tab -->
+                                @if($selectedSubTab === 'social_media')
+                                    <div class="tab-pane active show" id="social-media-tab" role="tabpanel" wire:key="social-media-tab-pane">
+                                        <form wire:submit.prevent="saveSocialMediaSettings">
+                                            <div class="alert alert-info">
+                                                <i class="ri-information-line me-2"></i>
+                                                Silakan isi tautan profil dan kode embed untuk setiap media sosial. Kode embed biasanya berupa tag <code>&lt;iframe&gt;</code>, widget, atau kode embed resmi yang disediakan oleh masing-masing platform (misal: Youtube Share -> Embed).
+                                            </div>
+
+                                            <div class="row g-4">
+                                                <!-- Instagram Card -->
+                                                <div class="col-md-6">
+                                                    <div class="card border h-100 shadow-none">
+                                                        <div class="card-body">
+                                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                                <h6 class="card-title mb-0 d-flex align-items-center gap-2">
+                                                                    <i class="ri-instagram-line text-danger fs-20"></i> Instagram
+                                                                </h6>
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="showInstagram" wire:model="social_show_instagram">
+                                                                    <label class="form-check-label text-muted" for="showInstagram">Tampilkan di Beranda</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Link Profil Instagram</label>
+                                                                <input type="url" class="form-control form-control-sm" placeholder="https://instagram.com/username" wire:model="social_instagram_url">
+                                                            </div>
+                                                            <div>
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Kode Embed Postingan/Feed Instagram</label>
+                                                                <textarea class="form-control form-control-sm" rows="4" placeholder="Masukkan tag blockquote / iframe embed instagram..." wire:model="social_instagram_embed"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- YouTube Card -->
+                                                <div class="col-md-6">
+                                                    <div class="card border h-100 shadow-none">
+                                                        <div class="card-body">
+                                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                                <h6 class="card-title mb-0 d-flex align-items-center gap-2">
+                                                                    <i class="ri-youtube-line text-danger fs-20"></i> YouTube
+                                                                </h6>
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="showYoutube" wire:model="social_show_youtube">
+                                                                    <label class="form-check-label text-muted" for="showYoutube">Tampilkan di Beranda</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Link Channel / Video YouTube</label>
+                                                                <input type="url" class="form-control form-control-sm" placeholder="https://youtube.com/channel/..." wire:model="social_youtube_url">
+                                                            </div>
+                                                            <div>
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Kode Embed Video YouTube (Iframe)</label>
+                                                                <textarea class="form-control form-control-sm" rows="4" placeholder='Contoh: <iframe src="https://www.youtube.com/embed/XXXX" ...></iframe>' wire:model="social_youtube_embed"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Facebook Card -->
+                                                <div class="col-md-6">
+                                                    <div class="card border h-100 shadow-none">
+                                                        <div class="card-body">
+                                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                                <h6 class="card-title mb-0 d-flex align-items-center gap-2">
+                                                                    <i class="ri-facebook-box-line text-primary fs-20"></i> Facebook
+                                                                </h6>
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="showFacebook" wire:model="social_show_facebook">
+                                                                    <label class="form-check-label text-muted" for="showFacebook">Tampilkan di Beranda</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Link Halaman / Profil Facebook</label>
+                                                                <input type="url" class="form-control form-control-sm" placeholder="https://facebook.com/page-name" wire:model="social_facebook_url">
+                                                            </div>
+                                                            <div>
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Kode Embed Postingan/Page Plugin Facebook</label>
+                                                                <textarea class="form-control form-control-sm" rows="4" placeholder="Masukkan kode iframe / SDK Facebook Page Plugin..." wire:model="social_facebook_embed"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- TikTok Card -->
+                                                <div class="col-md-6">
+                                                    <div class="card border h-100 shadow-none">
+                                                        <div class="card-body">
+                                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                                <h6 class="card-title mb-0 d-flex align-items-center gap-2">
+                                                                    <i class="ri-music-fill text-dark fs-20"></i> TikTok
+                                                                </h6>
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="showTiktok" wire:model="social_show_tiktok">
+                                                                    <label class="form-check-label text-muted" for="showTiktok">Tampilkan di Beranda</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Link Profil / Video TikTok</label>
+                                                                <input type="url" class="form-control form-control-sm" placeholder="https://tiktok.com/@username" wire:model="social_tiktok_url">
+                                                            </div>
+                                                            <div>
+                                                                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Kode Embed Video TikTok</label>
+                                                                <textarea class="form-control form-control-sm" rows="4" placeholder="Masukkan kode embed video/feed TikTok..." wire:model="social_tiktok_embed"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4 border-top pt-3 text-end">
+                                                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:target="saveSocialMediaSettings">
+                                                    <span wire:loading.remove wire:target="saveSocialMediaSettings">
+                                                        <i class="ri-save-line align-middle me-1"></i> Simpan Pengaturan Social Media
+                                                    </span>
+                                                    <span wire:loading wire:target="saveSocialMediaSettings">
                                                         <span class="spinner-border spinner-border-sm me-1" role="status"></span>
                                                         Menyimpan...
                                                     </span>

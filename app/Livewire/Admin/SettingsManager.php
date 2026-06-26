@@ -94,6 +94,23 @@ class SettingsManager extends Component
     public $existingKaryaPhoto = null;
     public $newsSearch = '';
 
+    // Social Media settings tab fields
+    public $social_instagram_url = '';
+    public $social_show_instagram = false;
+    public $social_instagram_embed = '';
+    
+    public $social_youtube_url = '';
+    public $social_show_youtube = false;
+    public $social_youtube_embed = '';
+    
+    public $social_facebook_url = '';
+    public $social_show_facebook = false;
+    public $social_facebook_embed = '';
+    
+    public $social_tiktok_url = '';
+    public $social_show_tiktok = false;
+    public $social_tiktok_embed = '';
+
     protected $settingService;
     protected $fileService;
     protected $securitySettingService;
@@ -114,6 +131,7 @@ class SettingsManager extends Component
         $this->loadSecuritySettings();
         $this->loadHomeSections();
         $this->loadSeoSettings();
+        $this->loadSocialMediaSettings();
     }
 
     public function selectSection($section)
@@ -286,6 +304,68 @@ class SettingsManager extends Component
             session()->flash('success', 'SEO & Tampilan settings berhasil disimpan');
         } catch (\Exception $e) {
             session()->flash('error', 'Gagal menyimpan SEO settings: ' . $e->getMessage());
+        }
+    }
+
+    public function loadSocialMediaSettings()
+    {
+        $social = Common::where('table_name', 'social_media_setting')
+            ->where('key1', 'social_media_config')
+            ->first();
+
+        if ($social) {
+            $this->social_instagram_url = $social->data1 ?? '';
+            $this->social_show_instagram = ($social->data2 ?? '0') === '1';
+            $this->social_instagram_embed = $social->text1 ?? '';
+            
+            $this->social_youtube_url = $social->data3 ?? '';
+            $this->social_show_youtube = ($social->data4 ?? '0') === '1';
+            $this->social_youtube_embed = $social->text2 ?? '';
+            
+            $this->social_facebook_url = $social->data5 ?? '';
+            $this->social_show_facebook = ($social->data6 ?? '0') === '1';
+            $this->social_facebook_embed = $social->text3 ?? '';
+            
+            $this->social_tiktok_url = $social->data7 ?? '';
+            $this->social_show_tiktok = ($social->data8 ?? '0') === '1';
+            $this->social_tiktok_embed = $social->text4 ?? '';
+        }
+    }
+
+    public function saveSocialMediaSettings()
+    {
+        try {
+            $social = Common::firstOrCreate([
+                'table_name' => 'social_media_setting',
+                'key1' => 'social_media_config'
+            ], [
+                'created_by' => auth()->id()
+            ]);
+
+            $social->update([
+                'data1' => $this->social_instagram_url ?: null,
+                'data2' => $this->social_show_instagram ? '1' : '0',
+                'text1' => $this->social_instagram_embed ?: null,
+                
+                'data3' => $this->social_youtube_url ?: null,
+                'data4' => $this->social_show_youtube ? '1' : '0',
+                'text2' => $this->social_youtube_embed ?: null,
+                
+                'data5' => $this->social_facebook_url ?: null,
+                'data6' => $this->social_show_facebook ? '1' : '0',
+                'text3' => $this->social_facebook_embed ?: null,
+                
+                'data7' => $this->social_tiktok_url ?: null,
+                'data8' => $this->social_show_tiktok ? '1' : '0',
+                'text4' => $this->social_tiktok_embed ?: null,
+                
+                'updated_by' => auth()->id()
+            ]);
+
+            $this->loadSocialMediaSettings();
+            session()->flash('success', 'Pengaturan Social Media berhasil disimpan');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Gagal menyimpan Social Media settings: ' . $e->getMessage());
         }
     }
 
