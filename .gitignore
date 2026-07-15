@@ -35,3 +35,4 @@ coverage/
 *.sql.bak
 *.bak
 *.sql.old
+!legacy/**
