@@ -41,8 +41,8 @@ Pastikan environment lokal Anda sudah terpasang:
 
 1. **Clone repository**:
    ```bash
-   git clone https://github.com/Andhikaaulia/school.git
-   cd school
+   git clone https://github.com/gustibetra/websihi.git
+   cd web-sihi
    ```
 
 2. **Install dependency backend**:
