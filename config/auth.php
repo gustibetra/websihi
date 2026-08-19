@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+    
+
+     // 🎓 GUARD BARU: E-Learning (Staff & Mahasiswa)
+        // Login e-learning TERPISAH dari login admin (/universe)
+        'elearning' => [
+            'driver' => 'session',
+            'provider' => 'elearning_users',
+        ],
     ],
 
     /*
@@ -69,6 +77,14 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+
+         // 🎓 PROVIDER BARU: mengambil akun dari tabel elearning_users
+        'elearning_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ElearningUser::class,
+        ],
+
     ],
 
     /*

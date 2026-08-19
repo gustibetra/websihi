@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'Karya & Projek Siswa')
+@section('title', 'Skill & Keahlian')
 
 @section('content')
 <!-- Start breadcrumb Area -->
@@ -9,14 +9,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-inner text-center">
-                    <h2 class="title">Karya & Projek Siswa</h2>
-                    <p class="mb--20" style="color: var(--color-body); font-size: 16px;">Galeri Karya Kreatif, Inovasi, dan Projek Siswa Berbagai Kejuruan</p>
+                    <h2 class="title">Skill & Keahlian</h2>
+                    <p class="mb--20" style="color: var(--color-body); font-size: 16px;">Galeri Skill & Keahlian yang didapat oleh mahasiswa/i</p>
                     <ul class="page-list">
                         <li class="rbt-breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li>
                             <div class="icon-right"><i class="feather-chevron-right"></i></div>
                         </li>
-                        <li class="rbt-breadcrumb-item active">Karya Siswa</li>
+                        <li class="rbt-breadcrumb-item active">Skill & Keahlian</li>
                     </ul>
                 </div>
             </div>
@@ -58,15 +58,15 @@
                                     </div>
                                     <div class="rbt-card-body p--25">
                                         <h5 class="rbt-card-title mb--15" style="font-size: 18px; line-height: 1.4; font-weight: 700;">
-                                            <a href="{{ route('project.show', $project->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ $project->data1 }}</a>
+                                            <a href="{{ route('skill.show', $project->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ $project->data1 }}</a>
                                         </h5>
                                         <p class="rbt-card-text" style="font-size: 14px; color: var(--color-body); line-height: 1.6; margin-bottom: 0;">{{ Str::limit(strip_tags($project->text1), 120) }}</p>
                                     </div>
                                 </div>
                                 <div class="rbt-card-body p--25 pt--0">
                                     <div class="rbt-card-bottom" style="border-top: 1px solid var(--color-border); padding-top: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                                        <a class="transparent-button" href="{{ route('project.show', $project->id) }}" style="font-size: 13px; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 6px;">
-                                            Detail Project
+                                        <a class="transparent-button" href="{{ route('skill.show', $project->id) }}" style="font-size: 13px; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 6px;">
+                                            Detail Skill & Keahlian
                                             <i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-primary)" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M0 6h15M11 1l5 5-5 5"/></g></svg></i>
                                         </a>
                                         @if($project->data4)
@@ -85,8 +85,8 @@
                         <div class="col-lg-12">
                             <div class="rbt-info-panel text-center p--50" style="background: var(--color-white); border-radius: 10px; box-shadow: var(--shadow-1);">
                                 <i class="feather-monitor text-primary mb--15" style="font-size: 48px;"></i>
-                                <h5 class="mb--5">Belum Ada Karya Siswa</h5>
-                                <p class="mb--0 text-muted">Belum ada data karya atau projek siswa yang diterbitkan saat ini.</p>
+                                <h5 class="mb--5">Belum Ditambahkan Skill & Keahlian</h5>
+                                <p class="mb--0 text-muted">Belum ada data yang diterbitkan saat ini.</p>
                             </div>
                         </div>
                     @endforelse
@@ -130,9 +130,9 @@
                     <!-- Search Widget -->
                     <div class="rbt-single-widget rbt-widget-search">
                         <div class="inner">
-                            <form action="{{ route('project.index') }}" method="GET" class="rbt-search-style-1">
+                            <form action="{{ route('skill.index') }}" method="GET" class="rbt-search-style-1">
                                 @if(request('jurusan')) <input type="hidden" name="jurusan" value="{{ request('jurusan') }}"> @endif
-                                <input type="text" name="search" placeholder="Cari karya/projek..." value="{{ request('search') }}" style="border: 1px solid var(--color-border); border-radius: 5px; padding: 12px 20px; width: 100%; background: var(--color-white); color: var(--color-heading);">
+                                <input type="text" name="search" placeholder="Cari Skill & Keahlian..." value="{{ request('search') }}" style="border: 1px solid var(--color-border); border-radius: 5px; padding: 12px 20px; width: 100%; background: var(--color-white); color: var(--color-heading);">
                                 <button class="search-btn" type="submit" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--color-body);"><i class="feather-search"></i></button>
                             </form>
                         </div>
@@ -148,13 +148,13 @@
                             <div class="inner" style="display: {{ request('jurusan') ? 'block' : 'none' }};">
                                 <ul class="category-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px !important;">
                                     <li>
-                                        <a href="{{ route('project.index', request()->except('jurusan')) }}" class="{{ !request('jurusan') ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ !request('jurusan') ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ !request('jurusan') ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
+                                        <a href="{{ route('skill.index', request()->except('jurusan')) }}" class="{{ !request('jurusan') ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ !request('jurusan') ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ !request('jurusan') ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
                                             Semua Program
                                         </a>
                                     </li>
                                     @foreach($jurusans as $jur)
                                         <li>
-                                            <a href="{{ route('project.index', array_merge(request()->all(), ['jurusan' => $jur->id])) }}" class="{{ request('jurusan') == $jur->id ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ request('jurusan') == $jur->id ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ request('jurusan') == $jur->id ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
+                                            <a href="{{ route('skill.index', array_merge(request()->all(), ['jurusan' => $jur->id])) }}" class="{{ request('jurusan') == $jur->id ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ request('jurusan') == $jur->id ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ request('jurusan') == $jur->id ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
                                                 {{ $jur->nama }}
                                             </a>
                                         </li>

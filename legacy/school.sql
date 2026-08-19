@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 15, 2026 at 07:53 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Aug 14, 2026 at 02:20 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,22 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `achievements` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `type` varchar(20) NOT NULL DEFAULT 'siswa',
-  `title` varchar(255) NOT NULL,
-  `achiever` varchar(255) NOT NULL,
-  `student_ids` text DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `kategori_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `tingkat_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `type` varchar(20) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'siswa',
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `achiever` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `student_ids` text COLLATE utf8mb4_general_ci,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `kategori_id` bigint UNSIGNED DEFAULT NULL,
+  `tingkat_id` bigint UNSIGNED DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `organizer` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `news_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `photo` text DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `organizer` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `news_id` bigint UNSIGNED DEFAULT NULL,
+  `photo` text COLLATE utf8mb4_general_ci,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -53,16 +53,12 @@ CREATE TABLE `achievements` (
 --
 
 INSERT INTO `achievements` (`id`, `type`, `title`, `achiever`, `student_ids`, `jurusan_id`, `kategori_id`, `tingkat_id`, `date`, `organizer`, `description`, `news_id`, `photo`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'siswa', 'Juara 1 Lomba Robotik Nasional 2026', 'Aura Nabila, Faisal Rahman', '2,1', 1, 118, 130, '2026-05-15', 'Kementerian Riset dan Teknologi', 'Siswa TJKT berhasil meraih medali emas dalam kompetisi robotika tingkat nasional dengan inovasi robot penyelamat mandiri berbasis AI.', 1, 'achievements/4q9Vlb7VyoQwIAKXCo8PES4K9epeIDJDUFPhYPZ5.png;achievements/1JcXa5kFUjhmvwGnEzwaE4XvGQWfInEgqwPBmEjQ.png', 1, 1, 1, '2026-06-15 13:50:49', '2026-06-15 14:40:25'),
-(2, 'siswa', 'Juara 2 Olimpiade Matematika Terapan', 'Bintang Pratama', '3', 4, 116, 129, '2026-04-18', 'Universitas Indonesia', 'Prestasi membanggakan diraih oleh siswi Akuntansi dalam olimpiade matematika terapan tingkat provinsi Jawa Barat.', NULL, 'achievements/wJoIqqui8Fi7dk38FRucrya5snPWxMDU6rkmrUFk.png', 1, 1, 1, '2026-06-15 13:50:49', '2026-06-15 14:11:48'),
-(3, 'siswa', 'Juara 1 Web Design Competition 2026', 'Budi Setiawan', NULL, NULL, 118, 130, '2026-03-22', 'Kementerian Pendidikan dan Kebudayaan', 'Budi Setiawan dari kelas XII RPL meraih Juara 1 nasional dalam kategori desain antarmuka web interaktif bertema edukasi pasca-pandemi.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49'),
-(4, 'siswa', 'Juara 1 Kejuaraan Pencak Silat Pelajar', 'Deden Kurnia', NULL, NULL, 119, 127, '2026-02-10', 'IPSI Kabupaten Subang', 'Medali emas diraih oleh Deden Kurnia dalam kategori tanding kelas C Putra Kejuaraan Pencak Silat Pelajar se-Kabupaten Subang.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49'),
-(5, 'siswa', 'Juara 3 Lomba Karya Tulis Ilmiah Populer', 'Siti Nurhaliza', NULL, NULL, 122, 129, '2026-01-15', 'Dinas Pendidikan Jawa Barat', 'Siti Nurhaliza berhasil menyabet juara ketiga melalui karya tulis ilmiah populernya yang membahas pemanfaatan IoT untuk pertanian berkelanjutan.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49'),
-(6, 'sekolah', 'Penghargaan Sekolah Adiwiyata Mandiri 2026', 'SMK PGRI Subang', NULL, NULL, 117, 130, '2026-06-05', 'Kementerian Lingkungan Hidup dan Kehutanan', 'SMK PGRI Subang dianugerahi penghargaan Adiwiyata Mandiri atas konsistensi sekolah dalam menerapkan budaya peduli lingkungan hidup dan kelestarian alam.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49'),
-(7, 'sekolah', 'Sekolah Rujukan Pembelajaran Berbasis Industri', 'SMK PGRI Subang', NULL, NULL, 118, 130, '2026-05-20', 'Direktorat PSMK Kemendikbud', 'Terpilih menjadi salah satu sekolah percontohan nasional dalam mengimplementasikan kurikulum link and match kelas industri bersama mitra multinasional.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49'),
-(8, 'sekolah', 'Juara 1 Perpustakaan Sekolah Terbaik', 'Perpustakaan Widya Pustaka', NULL, NULL, 122, 127, '2026-04-12', 'Dinas Kearsipan dan Perpustakaan Daerah', 'Perpustakaan Widya Pustaka SMK PGRI Subang dinobatkan sebagai perpustakaan sekolah dengan pengelolaan digital dan kenyamanan baca terbaik tingkat kabupaten.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49'),
-(9, 'sekolah', 'Penghargaan Apresiasi Seni & Budaya Daerah', 'Grup Seni Lingkar Widya', NULL, NULL, 120, 129, '2026-03-10', 'Dinas Pariwisata dan Kebudayaan Jabar', 'Apresiasi tinggi diberikan atas dedikasi sekolah dalam melestarikan seni musik tradisional kecapi suling dan angklung interaktif di kalangan remaja.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49'),
-(10, 'sekolah', 'Juara Umum Tata Kelola Sanitasi Sekolah Sehat', 'SMK PGRI Subang', NULL, NULL, 117, 127, '2026-02-18', 'Dinas Kesehatan Kabupaten Subang', 'Keberhasilan mewujudkan lingkungan sekolah bersih dengan standar pengelolaan air bersih dan sanitasi kelas satu se-kabupaten Subang.', NULL, NULL, 1, 1, NULL, '2026-06-15 13:50:49', '2026-06-15 13:50:49');
+(6, 'sekolah', 'Piagam Penghargaan Keteladanan', 'Subang International Hotel Institute', NULL, NULL, 117, 129, '2018-04-02', 'Wakil Bupati Subang', 'SIHI mendapatkan piagam prestasi penghargaan dari wakil bupati subang dengan kategori Juara III Apresiasi Keteladanan Lembaga Tingkat Jawa Barat ', NULL, 'achievements/IG8CaBClPWDOoWyQvhXZFiWMKFmJYanI6uDCFEAz.jpg', 1, 1, 1, '2026-06-15 13:50:49', '2026-08-03 04:22:35'),
+(11, 'sekolah', 'Juara 1 Kategori Perhotelan', 'Subang International Hotel Institute', NULL, NULL, 116, 127, '2017-04-10', 'Kepala Dinas Pendidikan Dan Kebudayaan Kabupaten Subang', 'SIHI mendapatkan Piagam Prestasi Penghargaan dari Kepala Dinas Pendidikan Dan Kebudayaan Kabupaten Subang dengan kategori lomba : Perhotelan, Dalam rangka kegiatan apresiasi \"Lembaga PAUD dan Kursus Dan Pelatihan\" Berprestasi tingkat kabupaten Subang', NULL, 'achievements/9Mws48CTnIvx1OrzeY8qfwA5CJEt3ZmSXuROdbql.jpg', 1, 1, 1, '2026-08-03 04:50:23', '2026-08-03 05:03:32'),
+(12, 'sekolah', 'Juara III Kategori Pariwisata', 'Subang International Hotel Institute', NULL, NULL, 119, 129, '2017-05-22', 'Kepala Dinas Pendidikan Provinsi Jawa Barat', 'Sihi Mendapatkan Piagam Prestasi penghargaan dari Kepala Dinas Pendidikan Provinsi Jawa Barat, dengan kategori Pariwisata, Pada Apresiasi Lembaga Kursus dan Pelatihan Berprestasi Tingkat Provinsi Jawa Barat Tahun 2017 Bekerjasama dengan DPD HIPKI Jawa Barat Yang Dilaksanakan Pada Tanggal 15 s.d 20 Mei 2017.', NULL, 'achievements/0Wv12SIC1UBkSacY9pNV0tRBXooKuSn2ejhjsS2M.jpg', 1, 1, 1, '2026-08-03 05:00:21', '2026-08-03 05:01:42'),
+(13, 'sekolah', 'Juara I Kategori Pariwisata', 'Subang International Hotel Institute', NULL, NULL, 119, 129, '2017-04-29', 'Kepala Dinas Pendidikan Provinsi Jawa Barat', 'Sihi Mendapatkan Piagam Prestasi penghargaan dari Kepala Dinas Pendidikan Provinsi Jawa Barat, dengan kategori Pariwisata, Pada Apresiasi Lembaga Kursus dan Pelatihan Berprestasi Tingkat Provinsi Jawa Barat Tahun 2017 Bekerjasama dengan DPD HIPKI Jawa Barat Yang Dilaksanakan Pada Tanggal 17 s.d 27 April 2017.', NULL, 'achievements/NcNMExudvVT0yEuPJn2PM0SRSUO6wu2an9x3QftZ.jpg', 1, 1, NULL, '2026-08-03 05:07:50', '2026-08-03 05:07:50'),
+(14, 'sekolah', 'Stand Terinovatif dan Terfavorit', 'Subang International Hotel Institute', NULL, NULL, NULL, 130, '2013-12-01', 'Kementerian Pendidikan dan Kebudayaan Direktorat Jenderal Pendidikan Anak Usia Dini, Nonformal dan Informal Direktorat Pembinaan Kursus dan Pelatihan', 'SIHI mendapatkan piagam prestasi penghargaan di makasar dengan kategori Stand Terinovatif dan Terfavorit, yang di selenggarakan oleh Kementerian Pendidikan dan Kebudayaan Direktorat Jenderal Pendidikan Anak Usia Dini, Nonformal dan Informal Direktorat Pembinaan Kursus dan Pelatihan, Pada Pameran Kursus dan Pelatihan Tahun 2013 yang bbertempat di Mall Ratu Indah Makassar, 29 November s.d. 1 Desember 2013', NULL, 'achievements/dUtecL759pw3wHJKZEy0BrWuhixB138EImu64A0S.jpg;achievements/tXvizIYjYOM7YwBSfEWGAJMfHJ2jHbiHnmqKG1fA.jpg', 1, 1, NULL, '2026-08-03 05:17:00', '2026-08-03 05:17:00'),
+(15, 'sekolah', 'Juara III Pariwisata', 'Subang International Hotel Institute', NULL, NULL, 119, 129, '2016-08-12', 'Gubernur Jawa Barat', 'SIHI mendapatkan piagam prestasi Penghargaan dalam lomba lembaga Kursus Berprestasi Kategori Pariwisata Jenis Keterampilan Perhotelan Tahun 2016 yang diselenggarakan oleh Gubernur Jawa Barat.', NULL, 'achievements/HHmUSwl2NSCgfBtbnkkU1rFyAlsalNqx0FLZ6CVg.jpg', 1, 1, NULL, '2026-08-03 05:24:16', '2026-08-03 05:24:16');
 
 -- --------------------------------------------------------
 
@@ -71,27 +67,27 @@ INSERT INTO `achievements` (`id`, `type`, `title`, `achiever`, `student_ids`, `j
 --
 
 CREATE TABLE `alumni` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `gender` enum('male','female') NOT NULL DEFAULT 'male',
-  `birth_place` varchar(100) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` enum('male','female') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'male',
+  `birth_place` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `tahun_lulus` varchar(4) NOT NULL,
-  `tempat_kerja` varchar(150) DEFAULT NULL,
-  `jabatan` varchar(100) DEFAULT NULL,
-  `status_alumni` varchar(100) DEFAULT NULL,
-  `bidang_pekerjaan` varchar(100) DEFAULT NULL,
-  `testimoni` text DEFAULT NULL,
-  `is_inspiratif` tinyint(1) NOT NULL DEFAULT 0,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tahun_lulus` varchar(4) COLLATE utf8mb4_general_ci NOT NULL,
+  `tempat_kerja` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jabatan` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status_alumni` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bidang_pekerjaan` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `testimoni` text COLLATE utf8mb4_general_ci,
+  `is_inspiratif` tinyint(1) NOT NULL DEFAULT '0',
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -101,21 +97,14 @@ CREATE TABLE `alumni` (
 --
 
 INSERT INTO `alumni` (`id`, `name`, `photo`, `gender`, `birth_place`, `birth_date`, `address`, `phone`, `email`, `tahun_lulus`, `tempat_kerja`, `jabatan`, `status_alumni`, `bidang_pekerjaan`, `testimoni`, `is_inspiratif`, `jurusan_id`, `order`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmad Fauzi', 'alumni/alumni-01.png', 'male', 'Bandung', '2004-03-12', 'Jl. Merdeka No. 45, Bandung', '081234567801', 'ahmad.fauzi@gmail.com', '2022', 'Institut Teknologi Bandung (ITB)', 'Mahasiswa Teknik Informatika', 'Kuliah', NULL, 'Bekal materi pemrograman web dan basis data dari SMK sangat menunjang kuliah saya. Di semester awal ITB saya merasa jauh lebih siap dibanding rekan-rekan lulusan SMA.', 1, NULL, 1, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(2, 'Luthfi Ramadhan', 'alumni/alumni-02.png', 'male', 'Jakarta', '2005-07-22', 'Jl. Gatot Subroto No. 12, Bandung', '081234567802', 'luthfi.r@gmail.com', '2023', 'Universitas Indonesia (UI)', 'Mahasiswa Ilmu Komputer', 'Kuliah', NULL, 'Kurikulum di sekolah yang adaptif dan fokus pada project base learning sangat melatih logika berpikir saya untuk mata kuliah Algoritma dan Pemrograman di UI.', 1, 1, 2, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-18 23:25:50'),
-(3, 'Siti Aminah', 'alumni/alumni-03.png', 'female', 'Cimahi', '2004-11-05', 'Jl. Cihanjuang No. 88, Cimahi', '081234567803', 'siti.aminah@gmail.com', '2022', 'Universitas Gadjah Mada (UGM)', 'Mahasiswa Teknologi Informasi', 'Kuliah', NULL, 'Fasilitas laboratorium komputer dan praktek jaringan selama sekolah membuka wawasan saya tentang arsitektur internet modern, sangat berguna dalam perkuliahan di UGM.', 1, 1, 3, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-18 23:25:56'),
-(4, 'Rizky Pratama', 'alumni/alumni-04.png', 'male', 'Soreang', '2003-09-18', 'Perum Indah Regency No. A4, Bandung', '081234567804', 'rizky.p@gmail.com', '2021', 'Universitas Padjadjaran (Unpad)', 'Mahasiswa Akuntansi Keuangan', 'Kuliah', NULL, 'Praktek komputer akuntansi menggunakan Accurate dan MYOB selama di sekolah membuat mata kuliah Akuntansi Praktis di Unpad terasa jauh lebih mudah dipahami.', 0, 4, 4, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(5, 'Fatimah Az-Zahra', 'alumni/alumni-05.png', 'female', 'Bandung', '2005-01-30', 'Jl. Antapani No. 102, Bandung', '081234567805', 'fatimah.az@gmail.com', '2023', 'Universitas Pendidikan Indonesia (UPI)', 'Mahasiswa Pendidikan Ilmu Komputer', 'Kuliah', NULL, 'Sekolah melatih mental dan kedisiplinan saya. Para guru tidak hanya memberikan ilmu akademis tetapi juga etika kepemimpinan yang luar biasa.', 0, NULL, 5, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(6, 'Budi Santoso', 'alumni/alumni-06.png', 'male', 'Sumedang', '2004-05-14', 'Jl. Jatinangor No. 27, Sumedang', '081234567806', 'budi.s@gmail.com', '2022', 'Telkom University', 'Mahasiswa Teknik Telekomunikasi', 'Kuliah', NULL, 'Pengalaman praktek konfigurasi routing, Cisco, dan Mikrotik di laboratorium sekolah memberikan dasar yang sangat kuat bagi mata kuliah jaringan telekomunikasi saya.', 1, 2, 6, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(7, 'Dewi Lestari', 'alumni/alumni-07.png', 'female', 'Bandung', '2004-08-09', 'Jl. Pasir Kaliki No. 15, Bandung', '081234567807', 'dewi.lestari@gmail.com', '2022', 'Universitas Diponegoro (Undip)', 'Mahasiswa Manajemen Keuangan', 'Kuliah', NULL, 'Berkat pembekalan perpajakan dan audit dari sekolah, saya bisa berprestasi dalam kompetisi akuntansi nasional tingkat universitas semester ini.', 0, 4, 7, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(8, 'Eko Prasetyo', 'alumni/alumni-08.png', 'male', 'Garut', '2003-12-25', 'Jl. Soekarno Hatta No. 345, Bandung', '081234567808', 'eko.p@gmail.com', '2021', 'Institut Teknologi Sepuluh Nopember (ITS)', 'Mahasiswa Sistem Informasi', 'Kuliah', NULL, 'Pelajaran rekayasa perangkat lunak mengajarkan saya esensi dari Software Development Life Cycle (SDLC) yang sangat ditekankan di perkuliahan ITS.', 0, NULL, 8, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(9, 'Indah Cahyani', 'alumni/alumni-09.png', 'female', 'Bandung', '2005-04-12', 'Jl. Buah Batu No. 199, Bandung', '081234567809', 'indah.c@gmail.com', '2023', 'BINUS University', 'Mahasiswa Mobile Application Development', 'Kuliah', NULL, 'Materi Android programming and OOP yang solid selama sekolah membuat saya langsung terpilih menjadi asisten laboratorium di BINUS.', 0, 1, 9, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-18 23:26:02'),
-(10, 'Fajar Nugraha', 'alumni/alumni-10.png', 'male', 'Subang', '2004-10-02', 'Jl. Dago Elos No. 3, Bandung', '081234567810', 'fajar.n@gmail.com', '2022', 'Universitas Brawijaya (UB)', 'Mahasiswa Jaringan Komputer', 'Kuliah', NULL, 'Sertifikasi industri CCNA yang difasilitasi sekolah saat kelas XI benar-benar mempercepat pemahaman materi infrastruktur IT saya di UB.', 1, 2, 10, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(11, 'Rian Hidayat, S.Kom.', 'alumni/alumni-01.png', 'male', 'Bandung', '2000-05-18', 'Jl. Cibaduyut Lama No. 56, Bandung', '081299998881', 'rian.h@gmail.com', '2019', 'PT Tokopedia (GoTo)', 'Senior Frontend Developer', 'Bekerja', 'Software Engineering', 'Belajar di SMK ini adalah pondasi terbaik karir saya. Kurikulum industri dan guru yang kompeten membuat saya siap kerja langsung setelah lulus.', 1, NULL, 11, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(12, 'Dimas Anggara', 'alumni/alumni-02.png', 'male', 'Bandung', '1999-11-04', 'Jl. Sukajadi No. 190, Bandung', '081299998883', 'dimas.a@gmail.com', '2018', 'PT Telkom Indonesia', 'Network Security Specialist', 'Bekerja', 'Cyber Security / IT', 'Kombinasi teori and praktek laboratorium yang lengkap membuat proses sertifikasi keahlian saya berjalan sangat mulus ketika lulus.', 1, 2, 12, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(13, 'Andika Wijaya', 'alumni/alumni-03.png', 'male', 'Cimahi', '2001-02-15', 'Jl. Leuwigajah No. 45, Cimahi', '081234567811', 'andika.w@gmail.com', '2020', 'Shopee Indonesia', 'Fullstack Web Engineer', 'Bekerja', 'Software Developer', 'Tugas akhir berbasis project yang menantang selama sekolah sangat membantu portofolio saya untuk menembus seleksi kerja di e-commerce ternama.', 1, NULL, 13, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(14, 'Riana Fitriani', 'alumni/alumni-04.png', 'female', 'Bandung', '2002-06-21', 'Jl. Kopo Sayati No. 12, Bandung', '081234567812', 'riana.f@gmail.com', '2020', 'PricewaterhouseCoopers (PwC) Indonesia', 'Junior Auditor', 'Bekerja', 'Akuntansi / Auditor', 'Kemampuan audit dan analisis laporan keuangan yang diajarkan guru sangat relevan dengan standar kerja KAP Big Four tempat saya berkarir.', 1, 4, 14, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05'),
-(15, 'Maulana Malik', 'alumni/alumni-05.png', 'male', 'Bandung', '2000-08-31', 'Jl. Gedebage No. 90, Bandung', '081234567813', 'maulana.m@gmail.com', '2019', 'PT Astra International Tbk', 'Systems Administrator', 'Bekerja', 'IT Operations', 'Sekolah tidak hanya mengajarkan skill teknis, tetapi soft skill seperti kedisiplinan dan komunikasi kerja (attitude) yang sangat dihargai di Astra.', 0, 2, 15, 1, 1, 1, '2026-06-16 08:21:05', '2026-06-16 08:21:05');
+(17, 'DANDI ARIPUDIN', 'alumni/alumni_6a7973c32a8b23.26871332.jpg', 'male', '', NULL, '', '', '', '2020', 'Taaktana a Luxury Collection Resort and Spa Labuan Bajo', 'Room Attendant', 'Bekerja', 'Room Attendant ', 'OJT pada saat COVID 19 magang dari Aston Marina Ancol sehingga sempat terhenti. Tapi SIHI terus mendampingi saya hingga akhirnya saya melanjutkan ke GH Universal dan mendapatkan pekerjaan di le Meridien Fairways Dubai dan saat ini di Labuan Bajo', 1, NULL, 0, 1, 1, 1, '2026-08-10 06:46:27', '2026-08-10 06:51:40'),
+(18, 'HERMAWAN', 'alumni/alumni_6a79755e4f1714.31363922.jpg', 'male', '', NULL, '', '', '', '2020', 'Le Meridien Hotel Dubai', 'Room Attendant', 'Bekerja', 'Room Attendant ', 'Terima kasih SIHI! ini tahun ketiga saya di Le Meridien Hotel Dubai sebelum tahun depan lanjut ke Kapal Pesiar :)', 1, NULL, 0, 1, 1, 1, '2026-08-10 06:53:18', '2026-08-10 06:54:28'),
+(19, 'SEPTIANA PRATAMA', 'alumni/alumni_6a79759c584604.97970830.jpg', 'male', '', NULL, '', '', '', '2018', 'Movenpick Hotel Jakarta', 'Reservation Supervisor', 'Bekerja', 'Reservation Supervisor', 'Setelah 5 tahun lulus dari SIHI saya diamanahi untuk menjadi seorang supervisor di hotel bintang 5. Terima kasih yang sebesar-besarnya kepada SIHI yang sudah membimbing saya.', 1, NULL, 0, 1, 1, NULL, '2026-08-10 06:54:20', '2026-08-10 06:54:20'),
+(20, 'WIDANINGSIH', 'alumni/alumni_6a7975ed5c76b9.95949477.jpg', 'female', '', NULL, '', '', '', '2021', 'Pullman Ciawi Vimala Hills Hotel and Resort Bogor', 'Waiter', 'Bekerja', 'Waiter', 'Belajar di SIHI itu menyenangkan banget ~ Saat saya magang, saya ditempatkan di Holiday Inn Jababeka Cikarang dan tidak lama ditarik kerja dan mendapatkan Best Employee. Saya saat ini fokus bimbingan karir untuk ke Kapal Pesiar dan Hotel Luar Negeri. Sambil menunggu, saya melanjutkan karir di Pullman Ciawi Vimala Hills Hotel and Resort di Bogor', 1, NULL, 0, 1, 1, 1, '2026-08-10 06:55:41', '2026-08-10 06:56:00'),
+(21, 'M. AZIS RIJALDI', 'alumni/alumni_6a7976a4717b08.40054875.jpg', 'male', '', NULL, '', '', '', '2021', 'Carnival Cruise', 'Room Attendant', 'Bekerja', 'Room Attendant ', 'Saya belajar dari 0 yang gak bisa apa - apa dan gak tahu apa - apa, dan akhirnya bisa sampai di titik ini. Terima kasih SIHI atas bimbingannya. ', 1, NULL, 0, 1, 1, NULL, '2026-08-10 06:58:44', '2026-08-10 06:58:44'),
+(22, 'ALIP MAULANA', 'alumni/alumni_6a7976ee689f71.06998363.jpg', 'male', '', NULL, '', '', '', '2021', 'P&O Cruise Line', 'Chef De Partie', 'Bekerja', 'Chef De Partie', 'Lulus SMA saya ingin melanjutkan ke kapal pesiar dan saya mulai menemukan passion saya, yaitu Cook. Tidak mudah untuk bisa di titik ini dan SIHI selalu mendampingi di saat ada kesulitan.', 1, NULL, 0, 1, 1, NULL, '2026-08-10 06:59:58', '2026-08-10 06:59:58'),
+(23, 'MUHAMAD KHAIRUL FIKRI', 'alumni/alumni_6a79775ea26868.22866108.jpg', 'male', '', NULL, '', '', '', '2020', ' Virgin Voyages Cruise Line', 'Room Attendant', 'Bekerja', 'Room Attendant ', 'Bangga menjadi alumni SIHI. Pembelajarannya lebih banyak praktek jadi ketika bekerja di perhotelan atau kapal pesiar sudah siap secara fisik dan mental.', 1, NULL, 0, 1, 1, 1, '2026-08-10 07:01:50', '2026-08-10 07:03:05'),
+(24, 'ANGGI GOPIKI', 'alumni/alumni_6a7977a1234088.17470628.jpg', 'male', '', NULL, '', '', '', '2020', 'Celebrity Cruiship', 'Room Attendant', 'Bekerja', 'Room Attendant ', 'Begitu dipermudahnya perjalanan saya sebagai pelaut. Terima kasih SIHI atas ilmu-ilmu yang sudah diberikan, sangat bermanfaat ilmunya', 1, NULL, 0, 1, 1, NULL, '2026-08-10 07:02:57', '2026-08-10 07:02:57');
 
 -- --------------------------------------------------------
 
@@ -124,26 +113,26 @@ INSERT INTO `alumni` (`id`, `name`, `photo`, `gender`, `birth_place`, `birth_dat
 --
 
 CREATE TABLE `announcement` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(150) NOT NULL,
-  `content` text DEFAULT NULL,
-  `excerpt` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `banner` varchar(255) DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `period` varchar(50) DEFAULT NULL COMMENT 'Period (contoh: "2024-2029") - optional, jika NULL berarti pengumuman bersifat umum',
-  `attachment` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `content` text COLLATE utf8mb4_general_ci,
+  `excerpt` text COLLATE utf8mb4_general_ci,
+  `image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `banner` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `period` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Period (contoh: "2024-2029") - optional, jika NULL berarti pengumuman bersifat umum',
+  `attachment` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
-  `is_public` tinyint(1) NOT NULL DEFAULT 1,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `custom1` varchar(255) DEFAULT NULL,
-  `custom2` varchar(255) DEFAULT NULL,
-  `custom3` text DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `is_public` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `custom1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom3` text COLLATE utf8mb4_general_ci,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -171,9 +160,9 @@ INSERT INTO `announcement` (`id`, `title`, `slug`, `content`, `excerpt`, `image`
 --
 
 CREATE TABLE `cache` (
-  `key` varchar(255) NOT NULL,
-  `value` mediumtext NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_general_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -182,7 +171,9 @@ CREATE TABLE `cache` (
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
 ('356a192b7913b04c54574d18c28d46e6395428ab', 'i:1;', 1781991692),
-('356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1781991692;', 1781991692);
+('356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1781991692;', 1781991692),
+('portal_sekolah_cache_356a192b7913b04c54574d18c28d46e6395428ab', 'i:1;', 1786348791),
+('portal_sekolah_cache_356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1786348791;', 1786348791);
 
 -- --------------------------------------------------------
 
@@ -191,9 +182,9 @@ INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
 --
 
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) NOT NULL,
-  `owner` varchar(255) NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -203,38 +194,38 @@ CREATE TABLE `cache_locks` (
 --
 
 CREATE TABLE `common` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `table_name` varchar(50) NOT NULL,
-  `key1` varchar(100) DEFAULT NULL,
-  `key2` varchar(100) DEFAULT NULL,
-  `key3` varchar(100) DEFAULT NULL,
-  `data1` varchar(255) DEFAULT NULL,
-  `data2` varchar(255) DEFAULT NULL,
-  `data3` varchar(255) DEFAULT NULL,
-  `data4` varchar(255) DEFAULT NULL,
-  `data5` varchar(255) DEFAULT NULL,
-  `data6` varchar(255) DEFAULT NULL,
-  `data7` varchar(255) DEFAULT NULL,
-  `data8` varchar(255) DEFAULT NULL,
-  `data9` varchar(255) DEFAULT NULL,
-  `data10` varchar(255) DEFAULT NULL,
-  `data11` varchar(255) DEFAULT NULL,
-  `data12` varchar(255) DEFAULT NULL,
-  `data13` varchar(255) DEFAULT NULL,
-  `data14` varchar(255) DEFAULT NULL,
-  `data15` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `table_name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `key1` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `key2` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `key3` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data3` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data4` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data5` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data6` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data7` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data8` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data9` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data10` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data11` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data12` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data13` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data14` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data15` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `date3` date DEFAULT NULL,
   `date4` date DEFAULT NULL,
-  `text1` text DEFAULT NULL,
-  `text2` text DEFAULT NULL,
-  `text3` text DEFAULT NULL,
-  `text4` text DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Status aktif/nonaktif record',
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Urutan tampil',
+  `text1` text COLLATE utf8mb4_general_ci,
+  `text2` text COLLATE utf8mb4_general_ci,
+  `text3` text COLLATE utf8mb4_general_ci,
+  `text4` text COLLATE utf8mb4_general_ci,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Status aktif/nonaktif record',
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Urutan tampil',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -244,34 +235,11 @@ CREATE TABLE `common` (
 --
 
 INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `date1`, `date2`, `date3`, `date4`, `text1`, `text2`, `text3`, `text4`, `created_by`, `updated_by`, `is_active`, `order`, `created_at`, `updated_at`) VALUES
-(8, 'tingkat_kelas', 'TK001', NULL, NULL, 'Kelas X', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(9, 'tingkat_kelas', 'TK002', NULL, NULL, 'Kelas XI', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(10, 'tingkat_kelas', 'TK003', NULL, NULL, 'Kelas XII', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(11, 'kelas', 'KL001', NULL, NULL, 'X RPL 1', '8', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(12, 'kelas', 'KL002', NULL, NULL, 'X RPL 2', '8', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(13, 'kelas', 'KL003', NULL, NULL, 'XI RPL 1', '9', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(14, 'kelas', 'KL004', NULL, NULL, 'XII RPL 1', '10', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(15, 'kelas', 'KL005', NULL, NULL, 'X TJKT 1', '8', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(16, 'kelas', 'KL006', NULL, NULL, 'XI TJKT 1', '9', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(17, 'kelas', 'KL007', NULL, NULL, 'X AKL 1', '8', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(18, 'kompetensi_keahlian', 'KK001', NULL, NULL, 'Pemrograman Web', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(19, 'kompetensi_keahlian', 'KK002', NULL, NULL, 'Pemrograman Mobile', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(20, 'kompetensi_keahlian', 'KK003', NULL, NULL, 'Basis Data', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(21, 'kompetensi_keahlian', 'KK004', NULL, NULL, 'UI/UX Design', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(22, 'kompetensi_keahlian', 'KK005', NULL, NULL, 'Software Testing', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(23, 'kompetensi_keahlian', 'KK006', NULL, NULL, 'Administrasi Sistem Jaringan', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(24, 'kompetensi_keahlian', 'KK007', NULL, NULL, 'Routing & Switching', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(25, 'kompetensi_keahlian', 'KK008', NULL, NULL, 'Cloud Computing', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(26, 'kompetensi_keahlian', 'KK009', NULL, NULL, 'Fiber Optik', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(27, 'kompetensi_keahlian', 'KK010', NULL, NULL, 'Akuntansi Keuangan', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(28, 'kompetensi_keahlian', 'KK011', NULL, NULL, 'Perpajakan', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
+(18, 'kompetensi_keahlian', 'KK001', NULL, NULL, 'Perhotelan', '7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-08-03 03:50:11'),
 (29, 'kurikulum', 'KU001', NULL, NULL, 'Kurikulum Merdeka', NULL, NULL, '2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(30, 'kurikulum', 'KU002', NULL, NULL, 'Kurikulum 2013 (Revisi)', NULL, NULL, '2013', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(31, 'kurikulum', 'KU003', NULL, NULL, 'Kurikulum Industri', NULL, NULL, '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(32, 'kurikulum', 'KU004', NULL, NULL, 'Teaching Factory', NULL, NULL, '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (33, 'structure', 'SK001', 'sekolah', NULL, 'Manajemen Sekolah', '202', NULL, NULL, 'sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>asdasd</p>', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-19 06:44:11'),
 (34, 'structure', 'SK002', 'sekolah', NULL, 'Komite Sekolah', '6', NULL, NULL, 'sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(35, 'structure', 'OR001', 'organisasi', NULL, 'OSIS 2026/2027', '202', NULL, '1', 'organisasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>ada desc</p>', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-19 06:47:13'),
+(35, 'structure', 'OR001', 'organisasi', NULL, 'OSIS 2026/2027', '202', NULL, '1', 'organisasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>ada desc</p>', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 04:25:54'),
 (36, 'structure', 'OR002', 'organisasi', NULL, 'MPK 2024/2025', '6', NULL, NULL, 'organisasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (37, 'structure', 'EK001', 'ekskul', NULL, 'Pramuka', '6', NULL, NULL, 'ekskul', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (38, 'structure', 'EK002', 'ekskul', NULL, 'PMR', '6', NULL, NULL, 'ekskul', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
@@ -279,18 +247,18 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 (40, 'structure', 'EK004', 'ekskul', NULL, 'IT Club', '6', '1', NULL, 'ekskul', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (41, 'structure', 'KP001', 'kepanitiaan', NULL, 'Panitia MPLS 2025', '6', NULL, NULL, 'kepanitiaan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (42, 'structure', 'KP002', 'kepanitiaan', NULL, 'Panitia Wisuda 2025', '6', NULL, NULL, 'kepanitiaan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(43, 'jabatan_organisasi', 'JB001', NULL, NULL, 'Kepala Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(44, 'jabatan_organisasi', 'JB002', NULL, NULL, 'Wakasek Kurikulum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(45, 'jabatan_organisasi', 'JB003', NULL, NULL, 'Wakasek Kesiswaan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(46, 'jabatan_organisasi', 'JB004', NULL, NULL, 'Kaprog / Kaprodi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(47, 'jabatan_organisasi', 'JB005', NULL, NULL, 'Pembina', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(48, 'jabatan_organisasi', 'JB006', NULL, NULL, 'Pelatih', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(49, 'jabatan_organisasi', 'JB007', NULL, NULL, 'Ketua', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(50, 'jabatan_organisasi', 'JB008', NULL, NULL, 'Wakil Ketua', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(51, 'jabatan_organisasi', 'JB009', NULL, NULL, 'Sekretaris', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(52, 'jabatan_organisasi', 'JB010', NULL, NULL, 'Bendahara', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(53, 'jabatan_organisasi', 'JB011', NULL, NULL, 'Koordinator', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(54, 'jabatan_organisasi', 'JB012', NULL, NULL, 'Anggota', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
+(43, 'jabatan_organisasi', 'JB001', NULL, NULL, 'Direktur Lembaga', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:12:22'),
+(44, 'jabatan_organisasi', 'JB002', NULL, NULL, 'Penasehat', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:12:35'),
+(45, 'jabatan_organisasi', 'JB003', NULL, NULL, 'Pembina', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:12:43'),
+(46, 'jabatan_organisasi', 'JB004', NULL, NULL, 'Sekertaris Direktur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:13:07'),
+(47, 'jabatan_organisasi', 'JB005', NULL, NULL, 'Wakil Direktur Bidang keuangan Dan Kesekretariatan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:14:02'),
+(48, 'jabatan_organisasi', 'JB006', NULL, NULL, 'Wakil Direktur Bidang Akademik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:14:35'),
+(49, 'jabatan_organisasi', 'JB007', NULL, NULL, 'Wakil Direktur Bidang Marketing Dan Instruktur Bar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-08-10 02:57:27'),
+(50, 'jabatan_organisasi', 'JB008', NULL, NULL, 'Wakil Direktur Bidang Kemahasiswaan Dan Alumni', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:15:42'),
+(51, 'jabatan_organisasi', 'JB009', NULL, NULL, 'Asisten Wakil DIrektur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:16:06'),
+(52, 'jabatan_organisasi', 'JB010', NULL, NULL, 'Bidang Bahasa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:16:28'),
+(53, 'jabatan_organisasi', 'JB011', NULL, NULL, 'Bidang Marketing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:16:39'),
+(54, 'jabatan_organisasi', 'JB012', NULL, NULL, 'Bidang Bimbingan Karir', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 09:16:56'),
 (55, 'divisi', 'DV001', NULL, NULL, 'Humas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (56, 'divisi', 'DV002', NULL, NULL, 'Kesiswaan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (57, 'divisi', 'DV003', NULL, NULL, 'Kurikulum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
@@ -305,34 +273,30 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 (66, 'divisi', 'DV012', NULL, NULL, 'Divisi Konsumsi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (67, 'divisi', 'DV013', NULL, NULL, 'Divisi Perlengkapan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (68, 'divisi', 'DV014', NULL, NULL, 'Divisi Dokumentasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(69, 'jenis_kerjasama', 'JK001', NULL, NULL, 'PKL (Praktik Kerja Lapangan)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(70, 'jenis_kerjasama', 'JK002', NULL, NULL, 'Teaching Factory', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(71, 'jenis_kerjasama', 'JK003', NULL, NULL, 'Kelas Industri', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(72, 'jenis_kerjasama', 'JK004', NULL, NULL, 'Rekrutmen Alumni', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(73, 'jenis_kerjasama', 'JK005', NULL, NULL, 'Guru Tamu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(74, 'jenis_kerjasama', 'JK006', NULL, NULL, 'Sinkronisasi Kurikulum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(75, 'jenis_kerjasama', 'JK007', NULL, NULL, 'Sertifikasi Kompetensi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(76, 'jenis_kerjasama', 'JK008', NULL, NULL, 'Kunjungan Industri', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(77, 'jenis_kerjasama', 'JK009', NULL, NULL, 'Magang Guru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(83, 'bidang_industri', 'BI001', NULL, NULL, 'Teknologi Informasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(84, 'bidang_industri', 'BI002', NULL, NULL, 'Software House', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(85, 'bidang_industri', 'BI003', NULL, NULL, 'Telekomunikasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(86, 'bidang_industri', 'BI004', NULL, NULL, 'Manufaktur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(87, 'bidang_industri', 'BI005', NULL, NULL, 'Otomotif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(88, 'bidang_industri', 'BI006', NULL, NULL, 'Perbankan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(89, 'bidang_industri', 'BI007', NULL, NULL, 'Retail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(90, 'bidang_industri', 'BI008', NULL, NULL, 'Digital Marketing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(91, 'bidang_industri', 'BI009', NULL, NULL, 'Kuliner & F&B', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(92, 'bidang_industri', 'BI010', NULL, NULL, 'Hospitality & Pariwisata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(93, 'bidang_industri', 'BI011', NULL, NULL, 'Konstruksi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(94, 'bidang_industri', 'BI012', NULL, NULL, 'Kesehatan & Farmasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(95, 'bidang_industri', 'BI013', NULL, NULL, 'Pendidikan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(96, 'fasilitas', 'FS001', NULL, NULL, 'Laboratorium Komputer RPL', 'Gedung B Lt 2', NULL, '36 Siswa', NULL, 'fasilitas/MdiKed4VANSMIl2EZvRZu7naV4uq47zky1CCUxPM.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Laboratorium Komputer RPL</p>', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-12 06:05:24'),
-(97, 'fasilitas', 'FS002', NULL, NULL, 'Laboratorium Jaringan TJKT', 'Gedung B Lt 1', NULL, '30 Siswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(98, 'fasilitas', 'FS003', NULL, NULL, 'Perpustakaan', 'Gedung A Lt 1', NULL, '100 Orang', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(99, 'fasilitas', 'FS004', NULL, NULL, 'Masjid Sekolah', 'Area Tengah', NULL, '500 Jamaah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(100, 'fasilitas', 'FS005', NULL, NULL, 'Lapangan Olahraga', 'Belakang Gedung', NULL, '-', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>aaassd</p>', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(101, 'fasilitas', 'FS006', NULL, NULL, 'Aula Serbaguna', 'Gedung C', NULL, '300 Orang', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
+(69, 'jenis_kerjasama', 'JK001', NULL, NULL, 'On the Job Training', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 07:18:32'),
+(70, 'jenis_kerjasama', 'JK002', NULL, NULL, 'Pengembangan SDM, Pendidikan, Pelatihan, dan Sertifikasi Berbasis SKKNI', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 07:18:55'),
+(71, 'jenis_kerjasama', 'JK003', NULL, NULL, 'On the Job Training dan Penyerapan Tenaga  Kerja', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 07:19:15'),
+(72, 'jenis_kerjasama', 'JK004', NULL, NULL, 'Training/PKL dan Informasi penyerapan kerja.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 07:25:36'),
+(73, 'jenis_kerjasama', 'JK005', NULL, NULL, 'Guru Tamu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:25:40'),
+(74, 'jenis_kerjasama', 'JK006', NULL, NULL, 'Sinkronisasi Kurikulum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:25:41'),
+(75, 'jenis_kerjasama', 'JK007', NULL, NULL, 'Sertifikasi Kompetensi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:25:44'),
+(76, 'jenis_kerjasama', 'JK008', NULL, NULL, 'Kunjungan Industri', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:25:45'),
+(77, 'jenis_kerjasama', 'JK009', NULL, NULL, 'Magang Guru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:25:51'),
+(83, 'bidang_industri', 'BI001', NULL, NULL, 'Perhotelan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 07:12:31'),
+(84, 'bidang_industri', 'BI002', NULL, NULL, 'Pariwisata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-30 07:16:02'),
+(85, 'bidang_industri', 'BI003', NULL, NULL, 'Telekomunikasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:16:09'),
+(86, 'bidang_industri', 'BI004', NULL, NULL, 'Manufaktur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:16:16'),
+(87, 'bidang_industri', 'BI005', NULL, NULL, 'Otomotif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:16:18'),
+(88, 'bidang_industri', 'BI006', NULL, NULL, 'Perbankan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:16:20'),
+(89, 'bidang_industri', 'BI007', NULL, NULL, 'Retail', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:16:23'),
+(90, 'bidang_industri', 'BI008', NULL, NULL, 'Digital Marketing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:16:24'),
+(91, 'bidang_industri', 'BI009', NULL, NULL, 'Kuliner & F&B', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:26:01'),
+(92, 'bidang_industri', 'BI010', NULL, NULL, 'Hospitality & Pariwisata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:26:03'),
+(93, 'bidang_industri', 'BI011', NULL, NULL, 'Konstruksi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:26:05'),
+(94, 'bidang_industri', 'BI012', NULL, NULL, 'Kesehatan & Farmasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:26:09'),
+(95, 'bidang_industri', 'BI013', NULL, NULL, 'Pendidikan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 0, '2026-06-11 21:12:52', '2026-07-30 07:26:11'),
+(100, 'fasilitas', 'FS005', NULL, NULL, 'Ruangan Administrasi', 'Lantai 1', NULL, '10', NULL, 'fasilitas/lWgzVsHiKf3V6Brh60Z9Pezi2ZY0oXgEODhqy5c1.jpg;fasilitas/ZHgeOBNEFA9Nh0Ixvp5VISxVlSZH6V4GmdebL3pR.jpg;fasilitas/ciXZpAL4d16YwgQNVfRtLBA6atnD2DV64MJbLfkx.jpg;fasilitas/G2oegHdVGN0hTfMcByufSbGbjsc6jNgAXDJx9Mm5.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>ruangan ini digunakan untuk mengurus pedaftaran, melakukan pembayaran seperti spp dan lain lain.</p>', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
+(101, 'fasilitas', 'FS006', NULL, NULL, 'Ruangan kelas', 'Lantai 2', NULL, '50', NULL, 'fasilitas/TMXVOHeQN10FWRP8GckeSMjhIn5Y12Q9NdFHPNFj.jpg;fasilitas/CfCcvfz6SEEO8t7kgGDRQjRkSx2ZvlDgdrN8prhk.jpg;fasilitas/nSM2hWoOzK2HMQzX7WaI1NWEhPFL4w5pmhRGP3M5.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Ruangan kelas yang nyaman dipakai untuk pembelajaran, berbagai fasilitas tersedia yang ada di dalam kelas seperti wifi, ac, serta smart tv led yang dipakai untuk media pembelajaran.</p><p>&nbsp;</p>', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (102, 'sertifikasi', 'SR001', NULL, NULL, 'BNSP - Teknik Jaringan Komputer', NULL, NULL, 'BNSP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (103, 'sertifikasi', 'SR002', NULL, NULL, 'Mikrotik MTCNA', NULL, NULL, 'Mikrotik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (104, 'sertifikasi', 'SR003', NULL, NULL, 'Cisco IT Essentials', NULL, NULL, 'Cisco Networking Academy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
@@ -341,15 +305,12 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 (107, 'sertifikasi', 'SR006', NULL, NULL, 'AWS Academy Cloud Foundations', NULL, NULL, 'Amazon Web Services', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (108, 'sertifikasi', 'SR007', NULL, NULL, 'Adobe Certified Professional', NULL, NULL, 'Adobe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (109, 'sertifikasi', 'SR008', NULL, NULL, 'TOEIC', NULL, NULL, 'ETS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(110, 'program_unggulan', 'PU001', NULL, NULL, 'Teaching Factory', NULL, NULL, 'Akademik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'program  yang menghubungkan pembelajaran dengan dunia industri, memberi siswa pengalaman produksi nyata dan  melatih keterampilan profesional', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-15 20:07:56'),
-(111, 'program_unggulan', 'PU002', NULL, NULL, 'Kelas Industri', NULL, NULL, 'Kerjasama Industri', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Program yang menghadirkan suasana belajar layaknya di perusahaan, membekali siswa dengan pengalaman kerja nyata, standar industri, serta meningkatkan peluang kerja dan wirausaha setelah lulus.', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-15 20:07:08'),
-(112, 'program_unggulan', 'PU003', NULL, NULL, 'Smart School', NULL, NULL, 'Teknologi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'yang memanfaatkan teknologi digital untuk menciptakan sistem pembelajaran modern, interaktif, efisien, dan terintegrasi, sehingga siswa dan guru lebih siap menghadapi tantangan era industri 4.0.', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-15 20:09:03'),
-(113, 'program_unggulan', 'PU004', NULL, NULL, 'Kelas Coding', NULL, NULL, 'Teknologi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Program yang membekali siswa dengan keterampilan pemrograman, logika komputasi, dan pengembangan aplikasi berbasis digital, sehingga mereka siap menghadapi tantangan teknologi serta peluang karier di era industri 4.0.', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-15 20:09:25'),
-(114, 'program_unggulan', 'PU005', NULL, NULL, 'Inkubator Bisnis', NULL, NULL, 'Kewirausahaan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'program unggulan SMK yang mendukung siswa mengembangkan ide usaha, melatih keterampilan wirausaha, serta membimbing mereka membangun bisnis nyata melalui pendampingan, pelatihan, dan kerja sama dengan mitra industri.', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-06-15 20:09:52'),
+(110, 'program_unggulan', 'PU001', NULL, NULL, 'IN HOUSE TRAINING', NULL, 'program_unggulan/BqiQx8IchgjkmWMFVhJHVxmistBQFkAYeu0h5klP.jpg', 'Pelatihan Kerja', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Program In House Training ini ditujukan untuk industri yang memerlukan upgrading keahlian Hospitality  dan kompetensi yang dibutukan selama bekerja. Adapun keahlian dan kompetensi yang diberikan adalah \n\n1. Bahasa Inggris\n2. Table Manner\n3. Skill Cleaning Service\n4. Skill Customer Service\n5. Pengolahan makanan dan minuman\n6. Grooming / Beauty Class', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-08-10 01:55:10'),
+(111, 'program_unggulan', 'PU002', NULL, NULL, 'Short Course', NULL, 'program_unggulan/3IoKIstqze0wHcS8qTeATpzP7qffFVPfdsgk1X86.jpg', 'Pelatihan Kerja', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Program Short Course ini merupakan program singkat bagi yang ingin bekerja di perhotelan atau kapal pesiar namun sudah memiliki fokus di bidang tertentu. Program ini dilaksanakan selama 8 bulan, yaitu 3 (tiga) bulan pembelajaran di kelas dan 6 (enam) bulan Praktik Kerja Industri /On the Job Training. Adapun bidang yang tersedia adalah : \n1. Housekeeping\n2. Food and Beverage Service\n3. Basic Cooking', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-08-10 01:56:51'),
 (116, 'kategori_prestasi', 'GP001', NULL, NULL, 'Akademik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (117, 'kategori_prestasi', 'GP002', NULL, NULL, 'Non Akademik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (118, 'kategori_prestasi', 'GP003', NULL, NULL, 'Kejuruan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(119, 'kategori_prestasi', 'GP004', NULL, NULL, 'Olahraga', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
+(119, 'kategori_prestasi', 'GP004', NULL, NULL, 'Pariwisata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-08-03 05:00:59'),
 (120, 'kategori_prestasi', 'GP005', NULL, NULL, 'Seni dan Budaya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (121, 'kategori_prestasi', 'GP006', NULL, NULL, 'Organisasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (122, 'kategori_prestasi', 'GP007', NULL, NULL, 'Literasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
@@ -371,22 +332,6 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 (138, 'status_alumni', 'SA005', NULL, NULL, 'Mengikuti Pelatihan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (139, 'status_alumni', 'SA006', NULL, NULL, 'Mencari Kerja', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (140, 'status_alumni', 'SA007', NULL, NULL, 'Belum Terdata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(141, 'bidang_pekerjaan', 'BP001', NULL, NULL, 'Software Developer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(142, 'bidang_pekerjaan', 'BP002', NULL, NULL, 'Web Developer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(143, 'bidang_pekerjaan', 'BP003', NULL, NULL, 'Mobile Developer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(144, 'bidang_pekerjaan', 'BP004', NULL, NULL, 'Network Engineer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(145, 'bidang_pekerjaan', 'BP005', NULL, NULL, 'IT Support', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(146, 'bidang_pekerjaan', 'BP006', NULL, NULL, 'UI/UX Designer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(147, 'bidang_pekerjaan', 'BP007', NULL, NULL, 'Graphic Designer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(148, 'bidang_pekerjaan', 'BP008', NULL, NULL, 'Digital Marketing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(149, 'bidang_pekerjaan', 'BP009', NULL, NULL, 'Akuntan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(150, 'bidang_pekerjaan', 'BP010', NULL, NULL, 'Staff Administrasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(151, 'bidang_pekerjaan', 'BP011', NULL, NULL, 'Operator Produksi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(152, 'bidang_pekerjaan', 'BP012', NULL, NULL, 'Quality Control', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(153, 'bidang_pekerjaan', 'BP013', NULL, NULL, 'Teknisi Otomotif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(154, 'bidang_pekerjaan', 'BP014', NULL, NULL, 'Guru / Pendidik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(155, 'bidang_pekerjaan', 'BP015', NULL, NULL, 'Wirausaha / Entrepreneur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(156, 'bidang_pekerjaan', 'BP016', NULL, NULL, 'Freelancer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (157, 'kategori_berita', 'KB001', NULL, NULL, 'Berita Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (158, 'kategori_berita', 'KB002', NULL, NULL, 'Prestasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (159, 'kategori_berita', 'KB003', NULL, NULL, 'Akademik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
@@ -405,13 +350,11 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 (172, 'kategori_pengumuman', 'PN004', NULL, NULL, 'PPDB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (173, 'kategori_pengumuman', 'PN005', NULL, NULL, 'Libur Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
 (174, 'kategori_pengumuman', 'PN006', NULL, NULL, 'Beasiswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(175, 'kategori_galeri', 'KG001', NULL, NULL, 'Kegiatan Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(176, 'kategori_galeri', 'KG002', NULL, NULL, 'Prestasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(177, 'kategori_galeri', 'KG003', NULL, NULL, 'PKL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(178, 'kategori_galeri', 'KG004', NULL, NULL, 'Workshop', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:52', '2026-06-11 21:12:52'),
-(179, 'kategori_galeri', 'KG005', NULL, NULL, 'Lomba', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
-(180, 'kategori_galeri', 'KG006', NULL, NULL, 'Wisuda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
-(181, 'kategori_galeri', 'KG007', NULL, NULL, 'MPLS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
+(175, 'kategori_galeri', 'KG001', NULL, NULL, 'English Camp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-08-10 07:20:24'),
+(176, 'kategori_galeri', 'KG002', NULL, NULL, 'KLBI', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-08-10 07:20:39'),
+(177, 'kategori_galeri', 'KG003', NULL, NULL, 'Praktek', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-29 09:45:42'),
+(178, 'kategori_galeri', 'KG004', NULL, NULL, 'Table Manner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:52', '2026-07-29 09:46:36'),
+(180, 'kategori_galeri', 'KG006', NULL, NULL, 'Akreditasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-11 21:12:53', '2026-08-03 09:16:13'),
 (182, 'kategori_download', 'KD001', NULL, NULL, 'Formulir', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
 (183, 'kategori_download', 'KD002', NULL, NULL, 'Brosur & Leaflet', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
 (184, 'kategori_download', 'KD003', NULL, NULL, 'Kalender Akademik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
@@ -432,40 +375,31 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 (199, 'tag_konten', 'TG012', NULL, NULL, 'Wisuda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
 (201, 'sertifikasi', 'SR009', NULL, NULL, 'Oracle Database Admin', NULL, 'sertifikasi/P13V2clr8Jj2OHU2ABK6CLgLb1CLnpagSljApLVN.jpg', 'Oracle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Oracle Database', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 00:34:46', '2026-06-13 00:35:10'),
 (202, 'period', 'PD001', NULL, NULL, 'Tahun Ajaran 2026/2027', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-07-01', '2027-07-01', NULL, NULL, 'Tahun Ajaran 2026/2027 Semester Ganjil', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 00:43:33', '2026-06-13 00:45:14'),
-(203, 'tingkat_kelas', 'TK004', NULL, NULL, 'Kelas XIII', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kelas Tambahan', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 00:45:45', '2026-06-13 00:45:58'),
-(204, 'kelas', 'KL008', NULL, NULL, 'XII AKL III', '10', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 00:47:02', '2026-06-13 00:47:02');
-INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `date1`, `date2`, `date3`, `date4`, `text1`, `text2`, `text3`, `text4`, `created_by`, `updated_by`, `is_active`, `order`, `created_at`, `updated_at`) VALUES
-(206, 'home_section', 'hero_banner', NULL, NULL, 'Hero Banner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-13 06:40:26', '2026-06-13 06:40:26'),
-(207, 'home_section', 'sambutan', NULL, NULL, 'Sambutan Kepala Sekolah', 'home/media_1781359987.jpg', 'Dr. H. Ahmad Fauzi, M.Pd.', 'Kepala Sekolah', 'Sambutan Kepala Sekolah', 'Kurikulum Merdeka berorientasi industri', 'Lulusan siap kerja, siap kuliah, siap wirausaha', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Assalamualaikum Wr. Wb. Selamat datang di website resmi sekolah kami. Kami berkomitmen untuk menyelenggarakan pendidikan berkualitas tinggi yang relevan dengan kebutuhan industri masa kini. Didukung dengan fasilitas modern serta pengajar yang berkompeten, kami mendidik siswa menjadi insan profesional dan berakhlak mulia.', NULL, NULL, NULL, 1, 1, 1, 2, '2026-06-13 06:40:26', '2026-06-13 07:13:07'),
-(208, 'home_section', 'statistik', NULL, NULL, 'Statistik Sekolah', 'Siswa Aktif', '1,200+', 'Pendidik & Staf', '85', 'Program Keahlian', '3', 'Mitra Industri', '50+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 5, '2026-06-13 06:40:26', '2026-06-19 00:07:20'),
-(209, 'home_section', 'program_keahlian', NULL, NULL, 'Program Keahlian', 'Program Keahlian Terbaik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pilihan program keahlian yang relevan dengan perkembangan industri global.', NULL, NULL, NULL, 1, 1, 0, 3, '2026-06-13 06:40:26', '2026-06-19 00:07:24'),
-(210, 'home_section', 'program_unggulan', NULL, NULL, 'Program Unggulan', 'Program Unggulan Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Program unggulan untuk mengasah hard skill and soft skill siswa secara optimal.', NULL, NULL, NULL, 1, 1, 1, 6, '2026-06-13 06:40:26', '2026-06-19 00:07:18'),
-(211, 'home_section', 'mitra_industri', NULL, NULL, 'Mitra Industri', 'Kerjasama Industri (DU/DI)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Didukung oleh perusahaan nasional dan internasional terpercaya dalam penyaluran kerja dan magang.', NULL, NULL, NULL, 1, 1, 1, 16, '2026-06-13 06:40:26', '2026-06-20 12:53:02'),
-(212, 'home_section', 'prestasi_siswa', NULL, NULL, 'Prestasi Siswa', 'Prestasi Terbaru Siswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Prestasi membanggakan dari siswa-siswi terbaik kami di berbagai bidang perlombaan.', NULL, NULL, NULL, 1, 1, 1, 8, '2026-06-13 06:40:26', '2026-06-20 12:53:14'),
-(213, 'home_section', 'prestasi_sekolah', NULL, NULL, 'Prestasi & Penghargaan Sekolah', 'Penghargaan & Prestasi Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Penghargaan resmi atas kualitas tata kelola, inovasi, dan prestasi institusi kami.', NULL, NULL, NULL, 1, 1, 0, 9, '2026-06-13 06:40:26', '2026-06-20 12:53:12'),
-(214, 'home_section', 'karya_siswa', NULL, NULL, 'Karya & Projek Siswa', 'Karya Kreatif & Projek Siswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Inovasi, produk kreatif, dan portofolio orisinal buatan siswa-siswi kami.', NULL, NULL, NULL, 1, 1, 1, 10, '2026-06-13 06:40:26', '2026-06-20 12:53:10'),
-(215, 'home_section', 'berita_terbaru', NULL, NULL, 'Berita Terbaru', 'Kabar & Informasi Terkini', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ikuti berita terkini mengenai berbagai kegiatan, pengumuman, dan agenda di sekolah kami.', NULL, NULL, NULL, 1, 1, 1, 11, '2026-06-13 06:40:26', '2026-06-20 12:53:08'),
-(216, 'home_section', 'agenda_event', NULL, NULL, 'Agenda & Event', 'Agenda & Kegiatan Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pantau jadwal acara, ujian, pertemuan wali murid, dan kegiatan mendatang.', NULL, NULL, NULL, 1, 1, 1, 12, '2026-06-13 06:40:26', '2026-06-20 12:53:07'),
-(217, 'home_section', 'galeri', NULL, NULL, 'Galeri Kegiatan', 'Galeri Dokumentasi Kegiatan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dokumentasi visual dari berbagai aktivitas edukasi, sosial, dan prestasi di sekolah.', NULL, NULL, NULL, 1, 1, 1, 13, '2026-06-13 06:40:26', '2026-06-20 12:53:06'),
-(218, 'home_section', 'alumni_berprestasi', NULL, NULL, 'Alumni Berprestasi', 'Testimoni & Kisah Sukses Alumni', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Inspirasi dan kisah sukses para lulusan kami yang telah berkiprah di dunia industri dan perguruan tinggi.', NULL, NULL, NULL, 1, 1, 1, 14, '2026-06-13 06:40:26', '2026-06-20 12:53:04'),
-(219, 'home_section', 'testimoni', NULL, NULL, 'Testimoni', 'Apa Kata Mereka?', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pendapat para orang tua siswa, tokoh industri, dan masyarakat tentang kualitas pendidikan kami.', NULL, NULL, NULL, 1, 1, 1, 15, '2026-06-13 06:40:26', '2026-06-20 12:53:03'),
-(221, 'home_section', 'ppdb', NULL, NULL, 'PPDB', 'Penerimaan Peserta Didik Baru', 'Daftar Sekarang', '/ppdb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ayo bergabung bersama keluarga besar sekolah kami! Pendaftaran online PPDB tahun ajaran baru telah resmi dibuka.', NULL, NULL, NULL, 1, 1, 0, 17, '2026-06-13 06:40:26', '2026-06-20 12:52:58'),
-(223, 'hero_banner_slide', 'HB01', NULL, NULL, 'Mewujudkan Generasi Unggul dan Berkarakter', 'hero_banner/bg-image-25_1781361679.jpg', 'Lihat Selengkapnya', '#', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Selamat Datang di Portal Resmi Sekolah Kami. Kami siap membimbing dan mengantarkan putra-putri Anda menuju masa depan cemerlang.', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 06:40:26', '2026-06-13 07:41:21'),
-(224, 'hero_banner_slide', 'HB02', NULL, NULL, 'Pendidikan Kreatif & Berbasis Teknologi', 'hero_banner/chatgpt-image-jun-21-2026-04-26-02-am_1781990794.png', 'Program Unggulan', '#', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mempersiapkan siswa didik dengan kompetensi digital yang siap bersaing secara global di era modern.', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 06:40:26', '2026-06-20 14:26:36'),
-(225, 'karya_siswa', 'KR178136013063', NULL, NULL, 'Tong Sampah Berbasi IoT', 'karya_siswa/screenshot-2026-05-25-104640_1781360130.png', '1', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tong Sampah Berbasi IoT', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 07:15:30', '2026-06-13 07:15:30'),
+(206, 'home_section', 'hero_banner', NULL, NULL, 'Hero Banner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(207, 'home_section', 'sambutan', NULL, NULL, 'Sambutan Kepala Sekolah', 'home/direktur-lembaga_1785379872.jpeg', 'Yushini Muliawanti, S.Pd.', 'Direktur Lembaga', 'Sambutan Direktur Lembaga', 'Pendidikan Perhotelan & Kapal Pesiar', 'Lulusan satu tahun siap kerja', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Salam hangat dari Subang International Hotel Institute (SIHI).\nSebagai Direktur, saya dengan bangga mempersembahkan SIHI sebagai pusat pendidikan hospitality yang berdedikasi menggali potensi terbaik putra-putri daerah. Sejalan dengan visi mulia Yayasan Utomo Bhakti, kami berkomitmen penuh mencetak tenaga profesional yang tidak hanya terampil, namun juga siap bersaing dan terserap di industri global.\nDidukung oleh fasilitas modern dan kurikulum berbasis industri, kami terus berinovasi untuk memastikan setiap peserta didik meraih standar kompetensi tertinggi. Kesuksesan ratusan alumni kami adalah bukti nyata dari dedikasi ini.\nTerima kasih atas kepercayaan dan dukungan Anda. Mari bersinergi bersama SIHI mewujudkan generasi hospitality yang unggul, berkarakter, dan berdaya saing internasional.\nHormat kami,\n\n[Yushini Muliawanti, S.Pd.]\nDirektur Lembaga LP3 SIHI', NULL, NULL, NULL, 1, 1, 1, 2, '2026-07-29 05:32:05', '2026-08-04 03:10:49'),
+(208, 'home_section', 'statistik', NULL, NULL, 'Statistik Sekolah', 'Siswa Aktif', '1,500+', 'Pendidik & Staf', '90', 'Program Diploma', '4', 'Mitra Industri', '100+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, 3, '2026-07-29 05:32:05', '2026-07-30 09:47:27'),
+(209, 'home_section', 'program_keahlian', NULL, NULL, 'Program Keahlian', 'Program Keahlian Terbaik', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pilihan program keahlian yang relevan dengan perkembangan industri global.', NULL, NULL, NULL, 1, 1, 1, 4, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(210, 'home_section', 'program_unggulan', NULL, NULL, 'Program Unggulan', 'Program Unggulan Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Program unggulan untuk mengasah hard skill and soft skill siswa secara optimal.', NULL, NULL, NULL, 1, 1, 0, 5, '2026-07-29 05:32:05', '2026-07-30 06:46:52'),
+(211, 'home_section', 'mitra_industri', NULL, NULL, 'Mitra Industri', 'DAFTAR MOU SIHI', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Didukung oleh perusahaan nasional dan internasional terpercaya dalam penyaluran kerja dan magang.', NULL, NULL, NULL, 1, 1, 1, 6, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(212, 'home_section', 'prestasi_siswa', NULL, NULL, 'Prestasi Siswa', 'Prestasi Terbaru Siswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Prestasi membanggakan dari siswa-siswi terbaik kami di berbagai bidang perlombaan.', NULL, NULL, NULL, 1, 1, 1, 7, '2026-07-29 05:32:05', '2026-08-04 03:31:03'),
+(213, 'home_section', 'prestasi_sekolah', NULL, NULL, 'Prestasi & Penghargaan Sekolah', 'Penghargaan & Prestasi Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Penghargaan resmi atas kualitas tata kelola, inovasi, dan prestasi institusi kami.', NULL, NULL, NULL, 1, 1, 1, 8, '2026-07-29 05:32:05', '2026-08-04 03:32:01'),
+(214, 'home_section', 'karya_siswa', NULL, NULL, 'Karya & Projek Siswa', 'Skill Dan Keahlian', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SKill Dan Keahlian yang akan didapat', NULL, NULL, NULL, 1, 1, 1, 9, '2026-07-29 05:32:05', '2026-07-31 08:16:14'),
+(215, 'home_section', 'berita_terbaru', NULL, NULL, 'Berita Terbaru', 'Kabar & Informasi Terkini', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ikuti berita terkini mengenai berbagai kegiatan, pengumuman, dan agenda di sekolah kami.', NULL, NULL, NULL, 1, 1, 1, 10, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(216, 'home_section', 'agenda_event', NULL, NULL, 'Agenda & Event', 'Agenda & Kegiatan Sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pantau jadwal acara, ujian, pertemuan wali murid, dan kegiatan mendatang.', NULL, NULL, NULL, 1, 1, 1, 11, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(217, 'home_section', 'galeri', NULL, NULL, 'Galeri Kegiatan', 'Galeri Dokumentasi Kegiatan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dokumentasi visual dari berbagai aktivitas edukasi, sosial, dan prestasi di sekolah.', NULL, NULL, NULL, 1, 1, 1, 12, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(218, 'home_section', 'alumni_berprestasi', NULL, NULL, 'Alumni Berprestasi', 'Testimoni & Kisah Sukses Alumni', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Inspirasi dan kisah sukses para lulusan kami yang telah berkiprah di dunia industri dan perguruan tinggi.', NULL, NULL, NULL, 1, 1, 1, 13, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(219, 'home_section', 'testimoni', NULL, NULL, 'Testimoni', 'Apa Kata Mereka?', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pendapat para orang tua siswa, tokoh industri, dan masyarakat tentang kualitas pendidikan kami.', NULL, NULL, NULL, 1, 1, 0, 14, '2026-07-29 05:32:05', '2026-08-10 06:47:34'),
+(221, 'home_section', 'ppdb', NULL, NULL, 'PPDB', 'Penerimaan Peserta Didik Baru', 'Daftar Sekarang', '/ppdb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ayo bergabung bersama keluarga besar sekolah kami! Pendaftaran online PPDB tahun ajaran baru telah resmi dibuka.', NULL, NULL, NULL, 1, 1, 0, 15, '2026-07-29 05:32:05', '2026-08-04 05:46:28'),
+(224, 'hero_banner_slide', 'HB02', NULL, NULL, 'Cepat Kerja, Cepat Sukses Go International', 'hero_banner/background_1785390404.jpg', 'DAFTAR SEKARANG', '/pendaftaran', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pendidikan Perhotelan & Kapal Pesiar, Pendidikan Satu Tahun Siap Kerja Dan Lulus Siap Bersaing Di Dunia Kerja', NULL, NULL, NULL, 1, 1, 1, 0, '2026-07-29 05:32:05', '2026-08-04 04:13:29'),
+(225, 'karya_siswa', 'KR178136013063', NULL, NULL, 'Cook Helper', 'karya_siswa/foto-1_1786348735.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-13 07:15:30', '2026-08-12 07:20:58'),
 (226, 'tag_konten', 'TG013', NULL, NULL, 'juara', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-14 15:15:14', '2026-06-14 15:15:14'),
 (227, 'jurusan', 'JR001', NULL, NULL, 'Rekayasa Perangkat Lunak', 'RPL', 'Budi Santoso, S.Kom', 'A', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Deskripsi jurusan Rekayasa Perangkat Lunak', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
 (228, 'jurusan', 'JR002', NULL, NULL, 'Teknik Jaringan Komputer dan Telekomunikasi', 'TJKT', 'Ahmad Rizal, S.T', 'A', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Deskripsi jurusan Teknik Jaringan Komputer dan Telekomunikasi', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
 (229, 'jurusan', 'JR003', NULL, NULL, 'Akuntansi dan Keuangan Lembaga', 'AKL', 'Siti Aminah, S.E', 'B', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Deskripsi jurusan Akuntansi dan Keuangan Lembaga', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(230, 'period', 'PD002', NULL, NULL, 'Tahun Ajaran 2023/2024', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-07-15', '2024-06-15', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(231, 'period', 'PD003', NULL, NULL, 'Tahun Ajaran 2024/2025', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-15', '2025-06-15', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(232, 'period', 'PD004', NULL, NULL, 'Tahun Ajaran 2025/2026', NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-07-15', '2026-06-15', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(233, 'period', 'PD005', NULL, NULL, 'Periode OSIS 2024/2025', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-01', '2025-06-30', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(235, 'karya_siswa', 'CM001', NULL, NULL, 'Aplikasi IoT Monitoring Pertanian Pintar', NULL, '227', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sistem monitoring kelembapan tanah, suhu, dan penyiraman otomatis berbasis IoT yang terintegrasi dengan aplikasi mobile.', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(236, 'karya_siswa', 'CM002', NULL, NULL, 'Rancang Bangun Jaringan Server Cloud Lokal', NULL, '228', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Solusi infrastruktur cloud lokal menggunakan Kubernetes untuk menunjang virtualisasi laboratorium komputer sekolah.', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(237, 'karya_siswa', 'CM003', NULL, NULL, 'Sistem Informasi Kasir & Inventory Toko Retail', NULL, '227', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aplikasi POS (Point of Sales) berbasis web yang dilengkapi dengan modul laporan keuangan otomatis dan inventory tracking.', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(238, 'karya_siswa', 'CM004', NULL, NULL, 'Sistem Keamanan Pintar Menggunakan Pengenalan Wajah', NULL, '228', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Prototipe sistem keamanan pintu gerbang sekolah dengan face recognition menggunakan kamera pintar Raspberry Pi.', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
-(239, 'karya_siswa', 'CM005', NULL, NULL, 'Audit Laporan Keuangan Digital UMKM', NULL, '229', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Penyusunan dan digitalisasi laporan keuangan menggunakan aplikasi pencatatan akuntansi modern untuk UMKM binaan sekolah.', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 14:54:16', '2026-06-15 14:54:16'),
+(236, 'karya_siswa', 'CM002', NULL, NULL, 'Barista And Bartending', 'karya_siswa/bartending_1785394522.jpeg', '228', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-15 14:54:16', '2026-08-12 07:20:53'),
+(237, 'karya_siswa', 'CM003', NULL, NULL, 'Housekeeper', 'karya_siswa/d2_1785394380.jpeg', '227', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-15 14:54:16', '2026-08-12 07:20:46'),
+(238, 'karya_siswa', 'CM004', NULL, NULL, 'Waiter', 'karya_siswa/d3_1785394337.jpeg', '228', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-15 14:54:16', '2026-08-12 07:20:40'),
+(239, 'karya_siswa', 'CM005', NULL, NULL, 'Front Liner', 'karya_siswa/d1ph_1785394279.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-15 14:54:16', '2026-08-12 07:20:28'),
 (240, 'tag_konten', 'TG014', NULL, NULL, 'keselamatan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 15:34:23', '2026-06-15 15:34:23'),
 (241, 'tag_konten', 'TG015', NULL, NULL, 'siswa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 15:34:23', '2026-06-15 15:34:23'),
 (242, 'tag_konten', 'TG016', NULL, NULL, 'tefa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 15:34:35', '2026-06-15 15:34:35'),
@@ -474,26 +408,66 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 (245, 'tag_konten', 'TG019', NULL, NULL, 'ujian', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 15:35:25', '2026-06-15 15:35:25'),
 (246, 'tag_konten', 'TG020', NULL, NULL, 'bkk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 15:35:49', '2026-06-15 15:35:49'),
 (247, 'tag_konten', 'TG021', NULL, NULL, 'karir', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-15 15:35:50', '2026-06-15 15:35:50'),
-(248, 'mitra_industri', 'MT001', NULL, NULL, 'PT. Telkom Indonesia Tbk', 'https://telkom.co.id', 'mitra_industri/partner-1.webp', 'Telekomunikasi & Jaringan', '021-5001111', 'JK006;JK008', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 1, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(249, 'mitra_industri', 'MT002', NULL, NULL, 'PT. Astra International Tbk', 'https://astra.co.id', 'mitra_industri/partner-2.webp', 'Otomotif & Manufaktur', '021-6522555', 'JK005;JK007', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 2, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(250, 'mitra_industri', 'MT003', NULL, NULL, 'PT. Toyota Motor Manufacturing Indonesia', 'https://toyota.co.id', 'mitra_industri/partner-3.webp', 'Manufaktur Otomotif', '021-8836000', 'JK005;JK007', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 3, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(251, 'mitra_industri', 'MT004', NULL, NULL, 'PT. Bank Central Asia Tbk (BCA)', 'https://bca.co.id', 'mitra_industri/partner-4.webp', 'Perbankan & Layanan Keuangan', '021-23588000', 'JK004;JK006', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 4, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(252, 'mitra_industri', 'MT005', NULL, NULL, 'Shopee Indonesia', 'https://shopee.co.id', 'mitra_industri/partner-5.webp', 'E-Commerce & Teknologi', '021-80600900', 'JK003;JK008', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 5, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(253, 'mitra_industri', 'MT006', NULL, NULL, 'PT. GoTo Gojek Tokopedia Tbk', 'https://gotocompany.com', 'mitra_industri/partner-6.webp', 'Teknologi & Layanan Digital', '021-50849000', 'JK003;JK007', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 6, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(254, 'mitra_industri', 'MT007', NULL, NULL, 'PT. Indomarco Prismatama (Indomaret)', 'https://indomaret.co.id', 'mitra_industri/partner-7.webp', 'Retail & Logistik', '021-7590999', 'JK006;JK008', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 7, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(255, 'mitra_industri', 'MT008', NULL, NULL, 'CV. Sinergi Solusi Informatika', 'https://example.com/sinergi', NULL, 'Software House & Konsultan IT', '022-1234567', 'JK004;JK007', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 8, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(256, 'mitra_industri', 'MT009', NULL, NULL, 'PT. Kereta Api Indonesia (Persero)', 'https://kai.id', NULL, 'Transportasi & Logistik BUMN', '121', 'JK002;JK007', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 9, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(257, 'mitra_industri', 'MT010', NULL, NULL, 'CV. Media Kreatif Nusantara', 'https://example.com/mediakreatif', NULL, 'Desain & Multimedia', '022-7654321', 'JK006;JK009', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', NULL, NULL, NULL, 1, NULL, 1, 10, '2026-06-16 08:38:21', '2026-06-16 08:38:21'),
-(258, 'structure', 'ST001', 'yayasan', NULL, 'Struktur Yayasan', NULL, NULL, NULL, 'yayasan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yayasan Pendidikan yang menaungi dan menyelenggarakan kegiatan pendidikan di sekolah ini.', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
+(257, 'mitra_industri', 'MT010', NULL, NULL, 'GH Universal', 'https://ghuniversal.com/', 'mitra_industri/Vea6urueQb6poC15fmEvhAo4rogrwpYtj3y7qEdU.png', 'Perhotelan', '081802020023', '72;69', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kemitraan strategis dalam penyelarasan kurikulum sekolah, penyediaan tempat praktek kerja lapangan (PKL) / magang industri bagi siswa, guru tamu, serta program rekrutmen alumni secara langsung.', 'Jl. Dr. Setiabudi No.376, Ledeng, Kec. Cidadap, Kota Bandung, Jawa Barat', '(+) Hotel ini berlokasi strategis di daerah Setiabudi, Bandung. Link dari HOD untuk keluar negerinya banyak. Lingkungan kerja nyaman.\n(-) Hotel ini tidak memberikan uang saku kepada trainee. Hotel ini terdampak efisiensi, jadi sangat kecil kesempatan untuk ditarik bekerja', NULL, 1, 1, 1, 10, '2026-06-16 08:38:21', '2026-06-16 08:38:21');
+INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `date1`, `date2`, `date3`, `date4`, `text1`, `text2`, `text3`, `text4`, `created_by`, `updated_by`, `is_active`, `order`, `created_at`, `updated_at`) VALUES
+(258, 'structure', 'ST001', 'yayasan', NULL, 'TIM MANAJEMEN DAN INSTRUKTUR', '202', NULL, '1', 'yayasan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-16 09:29:46', '2026-08-10 02:42:09'),
 (259, 'structure', 'SK003', 'sekolah', NULL, 'Guru PPPK', NULL, NULL, NULL, 'sekolah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Daftar Guru Pegawai Pemerintah dengan Perjanjian Kerja (PPPK) yang bertugas di sekolah ini.', NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
 (260, 'tag_konten', 'TG022', NULL, NULL, 'kompetisi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, 0, '2026-06-18 23:21:13', '2026-06-18 23:21:13'),
-(261, 'home_section', 'school_life', NULL, NULL, 'School Life', NULL, 'https://www.youtube.com/watch?v=nA1Aqp0sPQo', 'SMK Al-Wutsqo', 'Kehidupan Sekolah', '99%', 'Puas', 'Pembelajaran Fleksibel', 'feather-heart', 'Belajar di Mana Saja', 'feather-book', 'Berbasis Praktik', 'feather-award', NULL, NULL, NULL, NULL, NULL, NULL, 'Fakta yang terbukti bahwa siswa dapat belajar dengan nyaman menggunakan kurikulum fleksibel kami.', 'Akses materi pembelajaran secara online kapan saja dan di mana saja tanpa hambatan.', 'Kurikulum dirancang untuk meningkatkan keterampilan nyata yang siap digunakan di dunia kerja.', NULL, 2, 1, 1, 4, '2026-06-19 00:06:20', '2026-06-19 00:09:52'),
-(262, 'seo_setting', 'seo_config', NULL, NULL, 'SMK PGRI Subang', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sekolah Menengah Kejuruan PGRI Subang adalah sekolah menengah tingkat atas berbasis kejuruan. SMK PGRI Subang sekolah yang menyelenggarakan pendidikan kejuruan kelompok teknologi, informasi dan industri', 'smk, sekolah, favorit, modern', NULL, NULL, 1, 1, 1, 1, '2026-06-20 12:26:33', '2026-06-20 12:26:33'),
-(263, 'home_section', 'fasilitas', NULL, NULL, 'Fasilitas Sekolah', NULL, NULL, NULL, 'SARANA & PRASARANA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dukung proses belajar mengajar dengan fasilitas pendidikan modern dan lingkungan belajar yang nyaman.', NULL, NULL, NULL, NULL, NULL, 1, 7, '2026-06-20 12:35:53', '2026-06-20 12:53:14'),
-(264, 'home_section', 'faq', NULL, NULL, 'Frequently Asked Questions', NULL, NULL, NULL, 'FAQ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Temukan jawaban atas pertanyaan-pertanyaan yang sering diajukan mengenai sekolah kami.', NULL, NULL, NULL, NULL, 1, 1, 18, '2026-06-20 12:35:53', '2026-06-26 05:43:09'),
+(261, 'home_section', 'school_life', NULL, NULL, 'School Life', 'home/class_1786345836.jpeg', '', 'Kegiatan Akademik', 'Kegiatan Akademik', '99%', 'Puas', 'ENGLISH CAMP', 'feather-heart', 'KBM (Kegiatan Belajar Mengajar)', 'feather-book', 'Upgrading', 'feather-award', NULL, NULL, NULL, NULL, NULL, NULL, 'nglish Camp merupakan kegiatan masa orientasi/adaptasi dengan lingkungan kampus, program kampus, serta bertujuan untuk mengenalkan Bahasa Inggris dimana pembelajarannya akan dimulai dari Basic atau dasar. Selama English Camp ini dilakukan juga pembentukan character building dan pendalaman keagamaan. Kegiatan ini dilaksanakan selama 1 (satu) bulan sebelum pembelajaran dimulai. \n\nKegiatan English Camp meliputi\n1. Masa Orientasi lingkungan dan program kampus\n2. Pengenalan Bahasa Inggris Dasar\n3. Pengenalan Etika Perhotelan\n4. Pembentukan Karakter\n5. Keagamaan\n6. Kelas Motivasi\n7. Outbond', 'Kegiatan Belajar Mengajar dilaksanakan setiap hari Senin - Jumat pukul 08.00 - 16.00 WIB. Kegiatan pembelajaran SIHI 30% teori dan 70% praktik.', '\nDilaksanakan Senin - Jumat pukul 19.30 - 21.00 WIB. Materi yang diajarkan selama Extra Class adalah pendalaman bahasa Inggris dan Public Speaking, Pendalaman ilmu keagamaan, Character Building, dan kelas motivasi, serta memberi pembelajaran selama KBM yang belum dipahami.', NULL, 1, 1, 0, 16, '2026-07-29 05:32:05', '2026-08-10 07:11:28'),
+(262, 'seo_setting', 'seo_config', NULL, NULL, 'Subang International Hotel Institute', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sekolah Menengah Kejuruan PGRI Subang adalah sekolah menengah tingkat atas berbasis kejuruan. SMK PGRI Subang sekolah yang menyelenggarakan pendidikan kejuruan kelompok teknologi, informasi dan industri', 'smk, sekolah, favorit, modern', NULL, NULL, 1, 1, 1, 1, '2026-06-20 12:26:33', '2026-07-29 08:27:35'),
+(263, 'home_section', 'fasilitas', NULL, NULL, 'Fasilitas Sekolah', NULL, NULL, NULL, 'SARANA & PRASARANA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Fasilitas dan sarana prasarana yang lengkap dan modern untuk menunjang kegiatan pembelajaran.', NULL, NULL, NULL, 1, 1, 1, 17, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
+(264, 'home_section', 'faq', NULL, NULL, 'Frequently Asked Questions', NULL, NULL, NULL, 'FAQ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Pertanyaan yang sering diajukan mengenai Kampus kami.', NULL, NULL, NULL, 1, 1, 1, 18, '2026-07-29 05:32:05', '2026-07-29 05:32:05'),
 (265, 'faq', 'CM001', NULL, NULL, 'Berapa biaya pendaftaran?', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Untuk setiap calon peserta didik yg ingin mendaftar dikenakan biaya sebesar Rp. 200.000', NULL, NULL, NULL, 1, 1, 1, 0, '2026-06-20 19:48:10', '2026-06-20 19:48:10'),
-(266, 'home_section', 'social_media', NULL, NULL, 'Media Sosial', 'Koneksi Sosial', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ikuti kanal media sosial resmi kami untuk mendapatkan informasi terbaru secara real-time.', NULL, NULL, NULL, 2, 1, 1, 18, '2026-06-26 05:33:09', '2026-06-26 05:43:10'),
-(267, 'social_media_setting', 'social_media_config', NULL, NULL, 'https://www.instagram.com/smeriofficial/', '1', 'https://www.youtube.com/@broadcastsmkpgrisubang/videos', '1', 'https://facebook.com', '0', 'https://tiktok.com', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 1, 0, '2026-06-26 05:33:09', '2026-06-26 05:41:27');
+(266, 'home_section', 'social_media', NULL, NULL, 'Media Sosial', 'Koneksi Sosial', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ikuti kanal media sosial resmi kami untuk mendapatkan informasi terbaru secara real-time.', NULL, NULL, NULL, NULL, 1, 1, 18, '2026-06-26 05:33:09', '2026-08-04 05:46:58'),
+(267, 'social_media_setting', 'social_media_config', NULL, NULL, 'https://www.instagram.com/sihi.subang', '1', 'https://www.youtube.com/@sihi.subang6609', '1', 'https://facebook.com', '0', 'https://www.tiktok.com/@sihi.subang', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, '2026-06-26 05:33:09', '2026-07-29 09:11:35'),
+(270, 'mitra_industri', NULL, NULL, NULL, 'Novotel Karawang', 'https://www.instagram.com/novotelkarawang', 'mitra_industri/QHhBmTxvYfunufsWIH9QWW0D6uRj5eGF5mDrwhGk.jpg', 'Perhotelan', '082146862198', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Interchange Karawang Barat, Margakaya, Telukjambe Barat, Karawang, Jawa Barat', '(+) Hotel ini adalah hotel chain internasional dari grup Accor. Dapat uang saku untuk trainee. Ada kesempatan untuk ditarik kerja, tergantung performa. \n(-) Lingkungan kerja cenderung kurang nyaman. Banyak overtime kerja.', NULL, 1, 1, 1, 0, NULL, NULL),
+(271, 'mitra_industri', NULL, NULL, NULL, 'Holiday Inn Jababeka', 'https://cikarangjababeka.holidayinn.com/', 'mitra_industri/KfTgsPp7bWjPayW4ZYHGLmT59Jz1NCyPBo2RMH7h.jpg', 'Perhotelan', '08563282006', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ' Jl. Jababeka Raya Kav. A-2, Jababeka 1, Cikarang Utara, Bekasi, Jawa Barat', '(+) Hotel chain international dari grup IHG. Dapat uang saku untuk trainee. Lokasi strategis. Ada kesempatan untuk ditarik kerja berdasarkan performa. \n(-) Ulasan dari alumni, lingkungan kerja kurang nyaman untuk F&B Service. Biaya hidup relatif lebih mahal karena di kawasan industri. ', NULL, 1, 1, 1, 0, NULL, NULL),
+(272, 'mitra_industri', NULL, NULL, NULL, 'Resinda', 'https://resindahotel.com/', 'mitra_industri/YffeF2JDlqevdxN2bkJ6pK4mlSKe1KDHQNLZKLfd.jpg', 'Perhotelan', '081310747379', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Resinda Raya No.1, Purwadana, Telukjambe Timur, Karawang, Jawa Barat', '(+) Hotel chain lokal skala internasional, sudah diakui beberapa negara. Dapat uang saku untuk trainee. Penarikan kerja berdasarkan performa. Biaya hidup cenderung lebih murah.\n(-) Tidak menerima pekerja dari luar, jadi sulit untuk melamar kerja apabila bukan ex. trainee dari hotel tersebut.  ', NULL, 1, 1, 1, 0, NULL, NULL),
+(273, 'mitra_industri', NULL, NULL, NULL, 'Swisbel - Resort Dago Heritage', 'https://www.swiss-belhotel.com/hotels/swiss-belresort-dago-heritage', 'mitra_industri/v4bEQaOhBkE9YL4YOL60ICy5D3oNRLMAWN2moKIC.jpg', 'Perhotelan', '081573867962', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Komplek Dago Heritage 1917, Jl. Lapangan Golf Dago Atas No. 78, Bandung.', '(+) Hotel chain internasional. Banyak trainee yang diangkat kerja. Dapat uang saku untuk trainee. \n(-) Penilaian performa cukup ketat.', NULL, 1, 1, 1, 0, NULL, NULL),
+(274, 'mitra_industri', NULL, NULL, NULL, 'Indigo', 'https://hotelindigobandung.com/id/', 'mitra_industri/BGMRpE638nMx4pRwFQRJM24v8veM8ioNj69DzF3L.jpg', 'Perhotelan', '(022) 86028888', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Dago Pakar Raya No.3, Resor Dago Pakar, Bandung, Jawa Barat', '(+) Pengangkatan trainee berdasarkan perfoma. Dapat uang saku \n(-) Lingkungan kerja kurang nyaman', NULL, 1, 1, 1, 0, NULL, NULL),
+(275, 'mitra_industri', NULL, NULL, NULL, 'Grand Mercure', 'https://grandmercurebandung.com/', 'mitra_industri/oWsNwVcQTAo6yskhnFmKttC4zpPrAv7R71ty9ZTB.jpg', 'Perhotelan', '082216308166', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jalan Dr. Setiabudi no. 269-275 Bandung', '(+) Lokasi strategis.Dapat uang saku untuk trainee, lingkungan kerja nyaman. \n(-) Tidak ada perkembangan untuk trainee', NULL, 1, 1, 1, 0, NULL, NULL),
+(276, 'mitra_industri', NULL, NULL, NULL, 'Pullman Ciawi', 'https://www.instagram.com/pullmanciawivimalahills', 'mitra_industri/D6LS6HS7VUbT1dpYH4AWM31Nx2FUV2bBW6rO7FoT.jpg', 'Perhotelan', '089620230020', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Raya Puncak, Gadog, Megamendung, 16770 Bogor', '(+) Dapat uang saku untuk trainee. Ada kesempatan untuk trainee diangkat kerja \n(-) Lokasi jauh', NULL, 1, 1, 1, 0, NULL, NULL),
+(277, 'mitra_industri', NULL, NULL, NULL, 'Santika Linggarjati', 'https://www.mysantika.com/indonesia/kuningan/hotel-santika-premiere-linggarjati-kuningan', 'mitra_industri/xbcaNXxUaQH1LD3FE7zG2zhtB9GEaY7d4zBCUggu.jpg', 'Perhotelan', '087777255744', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jalan Raya Linggarjati, Kecamatan Cilimus, Kabupaten Kuningan, Jawa Barat ', '(+) Hotel chain lokal skala internasional. Kesempatan besar untuk diangkat kerja\n(-) Tidak dapat uang saku untuk trainee. Gaji yang relatif kecil bagi casual', NULL, 1, 1, 1, 0, NULL, NULL),
+(278, 'mitra_industri', NULL, NULL, NULL, 'Harper', 'https://www.harperhotels.com/id/', 'mitra_industri/PaD3kBdU3kHVBYotdMYBtau3gl8wwTRjfKF8R3AW.jpg', 'Perhotelan', '(0264) 8642888', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Raya Bungursari No.122, Bungursari, Kec. Bungursari, Kabupaten Purwakarta, Jawa Barat', '(+) Hotel chain internasional. Banyak trainee yang diangkat kerja. Dapat uang saku untuk trainee. \n(-) Penilaian performa cukup ketat.', NULL, 1, 1, 1, 0, NULL, NULL),
+(279, 'mitra_industri', NULL, NULL, NULL, 'Grand Tjokro', 'https://grandtjokro.com/bandung', 'mitra_industri/tL4jhHvInE43jgp5YKEbkofFRfc9xy3mWlmVOucM.jpg', 'Perhotelan', '082130300374', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Cihampelas No.211-217, Cipaganti, Kecamatan Coblong, Kota Bandung, Jawa Barat', '(+) Hotel chain lokal skala internasional. Program SHA. Dapat uang saku untuk trainee \n(-) Penilaian performa yang cukup ketat', NULL, 1, 1, 1, 0, NULL, NULL),
+(280, 'mitra_industri', NULL, NULL, NULL, 'Delonix', 'https://www.delonixhotel.com/id/', 'mitra_industri/tGE5WM7S3HNQbHae02iOwTIHIuAyuBKETgREhIpH.jpg', 'Perhotelan', '(0267) 644370', '72', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Marsma R. Iswahyudi, Karawang Barat, Karawang, Jawa Barat', '(+) Hotel chain lokal skala internasional. Program SHA. Dapat uang saku untuk trainee \n(-) Penilaian performa yang cukup ketat', NULL, 1, 1, 1, 0, NULL, NULL),
+(281, 'mitra_industri', NULL, NULL, NULL, 'Mercure Karawang', 'https://mercure.hotelkarawang.com/id/', 'mitra_industri/14QdvaDG1FFb1dku0STlGjEkKiIqsG624m7G16IO.jpg', 'Perhotelan', '08111773324', '69', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Galuh Mas Raya, Sukaharja, Telukjambe Barat, Karawang, Jawa Barat', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(282, 'mitra_industri', NULL, NULL, NULL, 'Hotel Lotus Subang', 'https://lotus.hotelsubang.com/id/', 'mitra_industri/3AkYsrzEPskBHRV4XwZaqcNGQG3Cv3LLZxHYiugM.jpg', 'Perhotelan', '085793802229', '69', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Letjen Suprapto No.31, Karanganyar, Subang, Jawa Barat.', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(283, 'mitra_industri', NULL, NULL, NULL, 'Gumilang Hotel Regency Bandung', 'https://gumilangregency.com/', 'mitra_industri/mLAWMfo1lNUlyJkbeMzjmdxcgyhVJaaUQs1DuCY2.png', 'Perhotelan', '(022) 2012618', '69', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Dr. Setiabudhi 323 -325 Bandung 40154 West Java', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(284, 'mitra_industri', NULL, NULL, NULL, 'LSP Pariwisata Maestro Indonesia', 'https://sidia.kemenperin.go.id/competency/lsp/view/2244/pariwisata-maestro-indonesia', 'mitra_industri/yKKHfeW3Pzkbhux1uumb5XwCWdTjxl9Qcf7MeSTG.jpg', 'Pariwisata', '081283185859', '70', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Letjen Suprapto Ruko Grosir, Cempaka Emas Blok M No. 6, Jakarta Pusat, DKI Jakarta', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(285, 'mitra_industri', NULL, NULL, NULL, 'Prime Plaza Purwakarta', 'https://kbi.pphotels.com/', 'mitra_industri/75wZNrqYCnbRR5ztl2fagpMvkwjA7L4T250o6j83.jpg', 'Perhotelan', '081510220003', '71', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Blok L, Kota Bukit Indah, Cinangka, Bungursari, Kabupaten Purwakarta, Jawa Barat', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(286, 'mitra_industri', NULL, NULL, NULL, 'Royal Tulip Gunung Geulis Bogor', 'https://royal-tulip-gunung-geulis.goldentulip.com/id/?sr=SEO_GOOGLE', 'mitra_industri/dRLyF88MZYkR0MomgB9ZSkVehiLBrFLLPvEFx4x9.jpg', 'Perhotelan', '081314977484', '71', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Pasir Angin, Gadog, Ciawi, Bogor, Jawa Barat.', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(287, 'mitra_industri', NULL, NULL, NULL, 'Aston Cirebon', 'https://www.astonhotelsinternational.com/id/hotel/view/10/aston-cirebon-hotel---convention-center', 'mitra_industri/ega8N3rhPkBo5YTHdrqDMF4dVEzQnt9snhS9eDJh.jpg', 'Perhotelan', '081287676380', '69', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Brigjend Dharsono No. 12C (By Pass), Cirebon, Jawa Barat 45132.', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(288, 'mitra_industri', NULL, NULL, NULL, 'Hotel Horison Bandung', 'https://www.horisonultimabandung.com/en/', 'mitra_industri/DVClpNNe5ea0FAIfeY0g5bkk1zx3JjiceE1C8Vq6.jpg', 'Perhotelan', '087779885588', '71', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'Jl. Pelajar Pejuang 45 No. 121, Turangga, Lengkong, Bandung.', '', NULL, 1, 1, 1, 0, NULL, NULL),
+(289, 'jabatan_organisasi', 'JB013', NULL, NULL, 'Pembantu Umum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-07-30 09:17:26', '2026-07-30 09:17:26'),
+(290, 'jabatan_organisasi', 'JB014', NULL, NULL, 'Bidang Kemitraan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-07-30 09:17:53', '2026-08-10 03:20:28'),
+(291, 'jabatan_organisasi', 'JB015', NULL, NULL, 'Bidang Digital Marketing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-07-30 09:18:11', '2026-07-30 09:18:11'),
+(292, 'jabatan_organisasi', 'JB016', NULL, NULL, 'Ketua Yayasan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-07-31 02:57:36', '2026-08-05 08:33:37'),
+(293, 'fasilitas', NULL, NULL, NULL, 'Toilet', '-', NULL, 'bergantian', NULL, 'fasilitas/MKrmfblQEJoWMHeAIWBLH56ggmLVEdn30StF2uWS.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Fasilitas toilet yang di sediakan sangat nyaman</p>', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(294, 'jabatan_organisasi', 'JB017', NULL, NULL, 'Instruktur Mata Ajar Etiket', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-05 08:33:29', '2026-08-06 06:42:15'),
+(295, 'jabatan_organisasi', 'JB018', NULL, NULL, 'Instruktur Mata Ajar English Conversation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-06 06:44:47', '2026-08-06 06:44:47'),
+(296, 'jabatan_organisasi', 'JB019', NULL, NULL, 'Instruktur General English', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-06 06:45:11', '2026-08-06 06:45:11'),
+(297, 'jabatan_organisasi', 'JB020', NULL, NULL, 'Instruktur Mata Ajar Office', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-06 06:45:21', '2026-08-06 06:45:21'),
+(298, 'jabatan_organisasi', 'JB021', NULL, NULL, 'Instruktur FB Knowledge, FB Service, dan ESP FB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-06 06:45:34', '2026-08-06 06:45:34'),
+(299, 'jabatan_organisasi', 'JB022', NULL, NULL, 'Instruktur Housekeeping', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-06 06:45:45', '2026-08-06 06:45:45'),
+(300, 'jabatan_organisasi', 'JB023', NULL, NULL, 'Instruktur Housekeeping, ESP For Hotel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-06 06:46:08', '2026-08-06 06:46:08'),
+(301, 'jabatan_organisasi', 'JB024', NULL, NULL, 'Instruktur Food And Beverage Service', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-06 06:46:42', '2026-08-06 06:46:42'),
+(302, 'jabatan_organisasi', 'JB025', NULL, NULL, 'INSTRUKTUR FRONT OFFICE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 02:57:00', '2026-08-10 02:57:00'),
+(303, 'jabatan_organisasi', 'JB026', NULL, NULL, 'Staff Administrasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 03:05:56', '2026-08-10 03:05:56'),
+(305, 'fasilitas', NULL, NULL, NULL, 'Kampus 2 LP3 SIHi', '', NULL, '', NULL, 'fasilitas/VLpRAM4naA363nwfSb9ixLdec94qBvVLPkziXopS.jpg;fasilitas/JQJhNJzmTKdGYOoNIZwMAzBEhy3LIUGTFzHlsTam.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(306, 'fasilitas', NULL, NULL, NULL, 'Ruang Praktik Housekeeping', '', NULL, '', NULL, 'fasilitas/UAAhpNtyTq9TWqZpQ2YLCygtmTF2SipdaRUNTB56.jpg;fasilitas/hKCrZyWprrgBvNG22o6Hgcull8tapeBVkbXEsrEf.jpg;fasilitas/wIhFo4xmWD72h7087q9NBFewP8T50HmBLIIsmS69.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Ruang Praktik yang digunakan untuk pembelajaran housekeeping</p>', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(307, 'fasilitas', NULL, NULL, NULL, 'ruang praktik food and beverage service', '', NULL, '', NULL, 'fasilitas/9QcDKUzzMjb9hxpw8ZUw8Lv6e8LFBqleuQpP2iu0.jpg;fasilitas/MwL3RPDMULTzqK4kCjxXNMl3l7yCaHHHto0EvWBa.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Ruangan Praktik yang digunakan mahasiswa untuk praktik food and beverage service</p>', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(308, 'fasilitas', NULL, NULL, NULL, 'ruang praktik FRONT OFFICE', '', NULL, '', NULL, 'fasilitas/v3MLLSBJOrVoL5f5r6qGsEKoDajRyyeuiYykJlWc.jpg;fasilitas/BhlwxMfuYw95w6P6naiFhWMJFbRNvN3QwKDRmGH2.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(309, 'fasilitas', NULL, NULL, NULL, 'Ruang PRAKTIK BAR DAN COOKING', '', NULL, '', NULL, 'fasilitas/pB8VRuEsMCOwSDX3qrSMYo8iP2Z0WtzS4HvchR19.jpg;fasilitas/NBqjYrZV9hlla6SZxn97z1F2CaE4fhUDFcLwoIh8.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(310, 'fasilitas', NULL, NULL, NULL, 'Asrama Putra & Putri', '', NULL, '', NULL, 'fasilitas/iXoYJeajHScjaFxOOhvPZTtfvGfnGwy0oBo09Aqr.jpg;fasilitas/GWQhbMgexNulWzHorbJu5tq91XjILan3M7u5j4q1.jpg;fasilitas/0MAVI7FBslLJZIthNyEZV5vtsZTEPL4xu7QjdLxp.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Asrama putra dan putri yang telah disediakan oleh kampus yang digunakan untuk istirahat serta menyimpan barang mahasiswa/i</p>', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(311, 'fasilitas', NULL, NULL, NULL, 'Ruangan Bimbingan Karir', '', NULL, '', NULL, 'fasilitas/pGJgLxvFnrYoP4sMTAFD98p3ZnCF5LToh23u2Ls7.jpg;fasilitas/elGtsPPkhcHRY8jxw5ANQkrwVasvdPcBgHg351Ez.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, 1, 1, 1, 0, NULL, NULL),
+(312, 'bidang_pekerjaan', 'BP001', NULL, NULL, 'Room Attendant ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 06:49:25', '2026-08-10 06:49:25'),
+(313, 'bidang_pekerjaan', 'BP002', NULL, NULL, 'Reservation Supervisor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 06:49:53', '2026-08-10 06:49:53'),
+(314, 'bidang_pekerjaan', 'BP003', NULL, NULL, 'Waiter', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 06:50:20', '2026-08-10 06:50:20'),
+(315, 'bidang_pekerjaan', 'BP004', NULL, NULL, 'Chef De Partie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 06:56:51', '2026-08-10 06:56:51'),
+(316, 'jabatan_organisasi', 'JB027', NULL, NULL, 'WAKIL DIREKTUR BIDANG KEUANGAN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 08:15:27', '2026-08-10 08:15:27'),
+(317, 'jabatan_organisasi', 'JB028', NULL, NULL, 'Instruktur Kitchen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 0, '2026-08-10 08:33:14', '2026-08-10 08:33:14'),
+(318, 'elearning_settings', 'absen_mahasiswa', NULL, NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2026-08-11 06:51:12', '2026-08-11 07:04:54');
 
 -- --------------------------------------------------------
 
@@ -502,16 +476,16 @@ INSERT INTO `common` (`id`, `table_name`, `key1`, `key2`, `key3`, `data1`, `data
 --
 
 CREATE TABLE `downloads` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `file_path` varchar(255) NOT NULL,
-  `file_size` varchar(50) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `file_path` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file_size` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -530,13 +504,13 @@ INSERT INTO `downloads` (`id`, `title`, `category_id`, `jurusan_id`, `file_path`
 (7, 'SOP Pelaksanaan Praktik Kerja Lapangan (PKL) Siswa', 185, NULL, 'documents/sop_pkl_siswa.pdf', '1.4 MB', 'Standar operasional prosedur pengajuan, pelaksanaan, dan pelaporan kegiatan Praktik Kerja Lapangan (PKL).', 1, 1, 1, '2026-06-10 07:29:59', '2026-06-16 07:29:59'),
 (8, 'Dokumen Kurikulum Operasional Satuan Pendidikan (KOSP)', 186, NULL, 'documents/kurikulum_kosp_smk.pdf', '2.8 MB', 'Kurikulum operasional sekolah yang memuat profil lulusan, struktur kurikulum, dan beban belajar siswa.', 1, 1, 1, '2026-06-11 07:29:59', '2026-06-16 07:29:59'),
 (9, 'Modul Ajar Dasar-Dasar Pemrograman (HTML/CSS/JS)', 187, NULL, 'documents/modul_rpl_pemrograman.pdf', '4.5 MB', 'Buku panduan praktikum pemrograman web dasar untuk siswa kelas X jurusan Rekayasa Perangkat Lunak.', 1, 1, 1, '2026-06-11 07:29:59', '2026-06-16 07:29:59'),
-(10, 'Panduan Keselamatan Kerja & Penggunaan Lab Komputer Jaringan', 185, 2, 'documents/panduan_lab_tjkt.pdf', '1.9 MB', 'SOP keselamatan kerja, tata cara penggunaan perangkat router, switch, dan cabling di laboratorium TJKT.', 1, 1, 1, '2026-06-12 07:29:59', '2026-06-16 07:29:59'),
-(11, 'Modul Praktikum Administrasi & Infrastruktur Jaringan Kelas XI', 187, 2, 'documents/modul_jaringan_tjkt.pdf', '5.2 MB', 'Materi praktikum konfigurasi routing dinamis, VLAN, dan firewall menggunakan simulator jaringan Cisco Packet Tracer.', 1, 1, 1, '2026-06-12 07:29:59', '2026-06-16 07:29:59'),
+(10, 'Panduan Keselamatan Kerja & Penggunaan Lab Komputer Jaringan', 185, NULL, 'documents/panduan_lab_tjkt.pdf', '1.9 MB', 'SOP keselamatan kerja, tata cara penggunaan perangkat router, switch, dan cabling di laboratorium TJKT.', 1, 1, 1, '2026-06-12 07:29:59', '2026-06-16 07:29:59'),
+(11, 'Modul Praktikum Administrasi & Infrastruktur Jaringan Kelas XI', 187, NULL, 'documents/modul_jaringan_tjkt.pdf', '5.2 MB', 'Materi praktikum konfigurasi routing dinamis, VLAN, dan firewall menggunakan simulator jaringan Cisco Packet Tracer.', 1, 1, 1, '2026-06-12 07:29:59', '2026-06-16 07:29:59'),
 (12, 'Modul Pembelajaran Akuntansi Keuangan Dasar Kelas X', 187, 4, 'documents/modul_akuntansi_dasar.pdf', '3.8 MB', 'Modul ajar mencakup pengenalan persamaan dasar akuntansi, jurnal umum, buku besar, dan siklus akuntansi jasa.', 1, 1, 1, '2026-06-13 07:29:59', '2026-06-16 07:29:59'),
 (13, 'Formulir Pengajuan Beasiswa Komite Kurang Mampu (BKM)', 182, NULL, 'documents/formulir_beasiswa_bkm.pdf', '280 KB', 'Formulir permohonan keringanan biaya sekolah dan pengajuan beasiswa BKM dari Komite Sekolah.', 1, 1, 1, '2026-06-13 07:29:59', '2026-06-16 07:29:59'),
 (14, 'Formulir Pendaftaran Ekstrakurikuler Sekolah', 182, NULL, 'documents/formulir_ekstrakurikuler.pdf', '150 KB', 'Form pendaftaran anggota baru ekstrakurikuler wajib Pramuka maupun pilihan (PMR, Futsal, Coding Club).', 1, 1, 1, '2026-06-14 07:29:59', '2026-06-16 07:29:59'),
 (15, 'Leaflet Profil Kompetensi Keahlian Rekayasa Perangkat Lunak', 183, NULL, 'documents/leaflet_rpl.pdf', '1.5 MB', 'Pamflet promosi jurusan RPL yang berisi prospek kerja, materi utama keahlian, dan prestasi siswa.', 1, 1, 1, '2026-06-14 07:29:59', '2026-06-16 07:29:59'),
-(16, 'Leaflet Profil Kompetensi Keahlian Teknik Jaringan Komputer & Telekomunikasi', 183, 2, 'documents/leaflet_tjkt.pdf', '1.7 MB', 'Leaflet informasi kurikulum TJKT, sertifikasi kompetensi Mikrotik/Cisco, dan prospek karir alumni.', 1, 1, 1, '2026-06-15 07:29:59', '2026-06-16 07:29:59'),
+(16, 'Leaflet Profil Kompetensi Keahlian Teknik Jaringan Komputer & Telekomunikasi', 183, NULL, 'documents/leaflet_tjkt.pdf', '1.7 MB', 'Leaflet informasi kurikulum TJKT, sertifikasi kompetensi Mikrotik/Cisco, dan prospek karir alumni.', 1, 1, 1, '2026-06-15 07:29:59', '2026-06-16 07:29:59'),
 (17, 'Leaflet Profil Kompetensi Keahlian Akuntansi & Keuangan Lembaga', 183, 4, 'documents/leaflet_akl.pdf', '1.3 MB', 'Brosur ringkas program keahlian AKL mengenai lab manual/komputer akuntansi Accurate dan MYOB.', 1, 1, 1, '2026-06-15 07:29:59', '2026-06-16 07:29:59'),
 (18, 'Jadwal Pelajaran & Kalender Kegiatan Kelas X Semester Ganjil', 184, NULL, 'documents/jadwal_kegiatan_kelas10.pdf', '920 KB', 'Pembagian jadwal pelajaran mingguan dan jadwal bimbingan akademik kelas X.', 1, 1, 1, '2026-06-16 07:29:59', '2026-06-16 07:29:59'),
 (19, 'Jadwal Pelajaran & Kalender Kegiatan Kelas XI Semester Ganjil', 184, NULL, 'documents/jadwal_kegiatan_kelas11.pdf', '940 KB', 'Pembagian jadwal pelajaran mingguan dan jadwal persiapan pelaksanaan PKL kelas XI.', 1, 1, 1, '2026-06-16 07:29:59', '2026-06-16 07:29:59'),
@@ -547,33 +521,324 @@ INSERT INTO `downloads` (`id`, `title`, `category_id`, `jurusan_id`, `file_path`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `elearning_attendances`
+--
+
+CREATE TABLE `elearning_attendances` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `check_in` time DEFAULT NULL,
+  `check_out` time DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Hadir',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `elearning_attendances`
+--
+
+INSERT INTO `elearning_attendances` (`id`, `user_id`, `date`, `check_in`, `check_out`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '2026-08-05', '10:45:00', '10:46:00', 'Terlambat', '2026-08-05 03:45:57', '2026-08-05 03:46:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_courses`
+--
+
+CREATE TABLE `elearning_courses` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `program` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `owner_id` bigint UNSIGNED NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `elearning_courses`
+--
+
+INSERT INTO `elearning_courses` (`id`, `title`, `program`, `description`, `owner_id`, `is_active`, `created_at`, `updated_at`) VALUES
+(6, 'apa', 'perhotelan', 'apa', 14, 1, '2026-08-12 08:44:28', '2026-08-12 08:44:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_documents`
+--
+
+CREATE TABLE `elearning_documents` (
+  `id` bigint UNSIGNED NOT NULL,
+  `student_id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `drive_link` varchar(500) NOT NULL,
+  `notes` text,
+  `status` varchar(20) NOT NULL DEFAULT 'Menunggu',
+  `feedback` text,
+  `reviewed_by` bigint UNSIGNED DEFAULT NULL,
+  `submitted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_exams`
+--
+
+CREATE TABLE `elearning_exams` (
+  `id` bigint UNSIGNED NOT NULL,
+  `course_id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `instructions` text COLLATE utf8mb4_general_ci,
+  `soal_path` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `start_at` datetime NOT NULL,
+  `end_at` datetime NOT NULL,
+  `is_open` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_exam_submissions`
+--
+
+CREATE TABLE `elearning_exam_submissions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `exam_id` bigint UNSIGNED NOT NULL,
+  `student_id` bigint UNSIGNED NOT NULL,
+  `answer` text COLLATE utf8mb4_general_ci,
+  `drive_link` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `file_path` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `score` int DEFAULT NULL,
+  `feedback` text COLLATE utf8mb4_general_ci,
+  `submitted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_job_applications`
+--
+
+CREATE TABLE `elearning_job_applications` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `whatsapp` varchar(50) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `job_posting_id` bigint UNSIGNED DEFAULT NULL,
+  `cv_path` varchar(500) DEFAULT NULL,
+  `drive_link` varchar(500) DEFAULT NULL,
+  `intro` text,
+  `status` varchar(20) NOT NULL DEFAULT 'Baru',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `elearning_job_applications`
+--
+
+INSERT INTO `elearning_job_applications` (`id`, `name`, `email`, `whatsapp`, `position`, `job_posting_id`, `cv_path`, `drive_link`, `intro`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Gusti Ardana Betra', 'apa@gmail.com', '093482088429', 'front office — grand mercure', 1, NULL, 'https://drive.google.com/drive/folders/173oAHjzMxNWi48svta6UG12swWWZ9OyD?usp=drive_link', 'apaweh', 'Diproses', '2026-08-11 10:07:23', '2026-08-11 10:08:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_job_postings`
+--
+
+CREATE TABLE `elearning_job_postings` (
+  `id` bigint UNSIGNED NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `company_website` varchar(255) DEFAULT NULL,
+  `company_photo` varchar(500) DEFAULT NULL,
+  `position` varchar(255) NOT NULL,
+  `employment_type` varchar(100) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `description` text,
+  `status` varchar(20) NOT NULL DEFAULT 'open',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `elearning_job_postings`
+--
+
+INSERT INTO `elearning_job_postings` (`id`, `company_name`, `company_website`, `company_photo`, `position`, `employment_type`, `location`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'grand mercure', 'https://grandmercurebandung.com/', 'elearning/loker/ulzaRQNL5pRTFhTf59jebCuyfC4rz0Dmsi6cxYC5.jpg', 'front office', 'Part Time', 'bandung', 'contoh', 'open', '2026-08-11 10:06:20', '2026-08-11 10:08:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_materials`
+--
+
+CREATE TABLE `elearning_materials` (
+  `id` bigint UNSIGNED NOT NULL,
+  `course_id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file_path` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_payments`
+--
+
+CREATE TABLE `elearning_payments` (
+  `id` bigint UNSIGNED NOT NULL,
+  `student_id` bigint UNSIGNED DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `amount` decimal(12,0) NOT NULL,
+  `details` text COLLATE utf8mb4_general_ci,
+  `payment_channel` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `slip_number` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `program` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `manual_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `manual_nim` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `due_date` date DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Tunggakan',
+  `paid_at` timestamp NULL DEFAULT NULL,
+  `payment_proof_link` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `proof_type` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `proof_note` text COLLATE utf8mb4_general_ci,
+  `proof_submitted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `elearning_payments`
+--
+
+INSERT INTO `elearning_payments` (`id`, `student_id`, `title`, `amount`, `details`, `payment_channel`, `slip_number`, `program`, `manual_name`, `manual_nim`, `due_date`, `status`, `paid_at`, `payment_proof_link`, `proof_type`, `proof_note`, `proof_submitted_at`, `created_at`, `updated_at`) VALUES
+(3, 1, 'spp', '2500000', NULL, NULL, NULL, NULL, NULL, NULL, '2026-08-29', 'Tunggakan', NULL, NULL, NULL, NULL, NULL, '2026-08-12 08:50:54', '2026-08-12 08:50:54'),
+(4, 1, 'UKT', '1000000', '[{\"title\":\"SPP semeter 1\",\"amount\":1000000}]', 'BANK BRI', 'SIHI/20260812/0004', 'perhotelan', NULL, NULL, '2026-08-12', 'Tunggakan', NULL, NULL, NULL, NULL, NULL, '2026-08-12 09:36:57', '2026-08-12 09:36:57'),
+(5, NULL, 'UKT', '2000000', '[{\"title\":\"SPP semeter 1\",\"amount\":2000000}]', 'KANTOR SIHI', 'SIHI/20260812/0005', 'perhotelan', 'Ucup', '2306700', '2026-08-13', 'Tunggakan', NULL, NULL, NULL, NULL, NULL, '2026-08-12 10:06:22', '2026-08-12 10:06:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elearning_users`
+--
+
+CREATE TABLE `elearning_users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `staff_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nomor_induk` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `program` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `elearning_users`
+--
+
+INSERT INTO `elearning_users` (`id`, `name`, `email`, `password`, `role`, `staff_type`, `nomor_induk`, `photo`, `program`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Gusti Ardana Betra', 'apaweh@gmail.com', '$2y$12$Zb4pSnLTLUb.QZtA3QFvJum.to6PSNUkhhA5mS4.yKczKlZFkag1m', 'mahasiswa', NULL, '2306700080', 'elearning/profiles/IMG_3907-20260812-104530.JPG', 'perhotelan', 1, '2026-08-05 03:43:24', '2026-08-12 03:45:30'),
+(5, 'Yushini Muliawanti, S.Pd', 'yushi@gmail.com', '$2y$12$0ndmjzESxanRqdbX5er6OerCe4/XDjOyF7U3oxseT3cppwRzfmPOO', 'staff', 'direktur', '201607011', 'elearning/profiles/Direktur-Lembaga-20260812-132332.jpeg', NULL, 1, '2026-08-12 05:04:24', '2026-08-12 06:27:16'),
+(6, 'Hemmy Nur Hamidah,S.PD', 'hemmy@gmail.com', '$2y$12$vB9NTROsX4XrMboP0uc25eGzeiUGiwfDWPWbt6EUnI0L1X08.xrF6', 'staff', 'wakil_direktur', '202502022', NULL, NULL, 1, '2026-08-12 06:18:57', '2026-08-12 06:25:24'),
+(7, 'Asmi Putri Purwaningsih,S.I.Kom', 'miputrip@gmail.com', '$2y$12$ZJqMDbTh5dtOPh459FWiXejj2OyOxPhXqAji68SrBlZIF9hwHY.z.', 'staff', 'administrasi', '201905016', NULL, NULL, 1, '2026-08-12 06:31:07', '2026-08-12 06:31:07'),
+(8, 'Windu Yanuar, S.Tr.Par', 'windu@gmail.com', '$2y$12$lSoajZ21Yo/r5H6w15UXMu6Vl5tOKDW0Ve7UHE7vq.tIWpOBYwIn6', 'staff', 'wakil_direktur', '202002019', NULL, NULL, 1, '2026-08-12 06:32:26', '2026-08-12 06:32:26'),
+(9, 'Iif Miftahul Khoer, SE', 'iif@gmail.com', '$2y$12$QaAYJsX1rpfA0GJurK7SR.hUmnzjHh9DmRVyMeiBuvWC8Q74Yqawq', 'staff', 'administrasi', '202501116', NULL, NULL, 1, '2026-08-12 06:34:40', '2026-08-12 06:34:40'),
+(10, 'Zahra Fadla Amalia, A. Ma. Par', 'zahra@gmail.com', '$2y$12$w.v3xBseoOzu7/qjcDk8oOds3cDMmX1rfdlNM8UaLK0NJRoaF8uF6', 'staff', 'administrasi', '12345678', NULL, NULL, 1, '2026-08-12 06:37:19', '2026-08-12 06:37:19'),
+(11, 'DENA SOLIHIN GARNIDA ROSYADI', 'dena@gmail.com', '$2y$12$OgGXfstAGei3U9UpWRi.4uMwcdF1WwJv5gd/HYe6a80qCXgwMbWBW', 'staff', 'pengajar', '201810008', NULL, NULL, 1, '2026-08-12 06:39:43', '2026-08-12 06:39:43'),
+(12, 'REGGY RIZQIARTA DWIRACHFI', 'reggy@gmail.com', '$2y$12$Wg2mVSmSR0sn4SPV0KGhFOGYWdYliFr9e742IDt2nXdqh8aDykcS6', 'staff', 'pengajar', '202007007', NULL, NULL, 1, '2026-08-12 06:41:30', '2026-08-12 06:41:30'),
+(13, 'DEBI FITRIA DEWI OKTAPIANI, SE.Par', 'debi@gmailcom', '$2y$12$4/Y3UGP0qPOpcIHuKSJcme8JdrXoJ5KbTSI1IA24mrs9uMAw1qQxC', 'staff', 'pengajar', '201307010', NULL, NULL, 1, '2026-08-12 06:42:59', '2026-08-12 06:42:59'),
+(14, 'Fadillah Wulansari., M.Pd', 'fad@gmail.com', '$2y$12$4Cfzbv6GYY76GxedWc38GuIV2dkohe/Dhmdt.2ZNEw.ND4MXX9Tgm', 'staff', 'pengajar', '1415049503', NULL, NULL, 1, '2026-08-12 06:43:46', '2026-08-12 06:43:46'),
+(15, 'IWAN SETIAWAN', 'iwan@gmail.com', '$2y$12$r.A1dTRBUpha9vDrZCNWde31ztXYbi3XzvbQB.kQZKKuWHpTWlpau', 'staff', 'pengajar', '202505025', NULL, NULL, 1, '2026-08-12 06:44:53', '2026-08-12 06:44:53'),
+(16, 'TONI SUHARDIMAN', 'toni@gmail.com', '$2y$12$FvUOOrR01FRjRkAyIQRYaeiDddF/U2g2cW/PHsjzuFRDrs8QcmN62', 'staff', 'pengajar', '123455', NULL, NULL, 1, '2026-08-12 06:45:44', '2026-08-12 06:45:44'),
+(17, 'ROBI SURACHMAN, S.Pd', 'robi@gmail.com', '$2y$12$ZsFN7YBCDX39LC0abu/DF.dC7zQ0RgnooCVkxssFmzxX2d1nISnSG', 'staff', 'pengajar', '202504014', NULL, NULL, 1, '2026-08-12 06:46:39', '2026-08-12 06:46:39'),
+(18, 'SONI KUSDINAR', 'soni@gmail.com', '$2y$12$/UfJ8r.sn4KkY2PvxlnVe.lmwcRw0A3YV0m6/kErAuC6rNMyLeOJy', 'staff', 'pengajar', '201607012', NULL, NULL, 1, '2026-08-12 06:47:46', '2026-08-12 06:47:46'),
+(19, 'YOPSI APRILIKA, S.Pd', 'yopsi@gmail.com', '$2y$12$sdmac5cq3IOrsUo6WWqjc.DYi.jCai3JSR08UXUooB9eTYFC94sjK', 'staff', 'pengajar', '201207007', NULL, NULL, 1, '2026-08-12 06:48:44', '2026-08-12 06:48:44'),
+(20, 'ALIP MAULANA', 'alip@gmail.com', '$2y$12$UEmbnlzy.pS3z7NnaYcBf.uerUq1EuTz7oKOoRoTQHpI5CrHhIOCq', 'staff', 'pengajar', '12345677', NULL, NULL, 1, '2026-08-12 06:49:54', '2026-08-12 06:49:54'),
+(21, 'ARYAPUTRA BIJAKSANA', 'arya@gmail.com', '$2y$12$k0LzUtKVWI5ACwqzAHgx0eMN/UEPdmDihEeRMmZ4FtpNejGnRXu2a', 'staff', 'pengajar', '32145', NULL, NULL, 1, '2026-08-12 06:50:49', '2026-08-12 06:50:49'),
+(22, 'Abdul Japar', '2623033@student.sihi.ac.id', '$2y$12$yuoISYZamXh8XuByMXZBtuv4YZG3k8TJgjrmxXwa5wU2Nj26uFfEK', 'mahasiswa', NULL, '2623033', NULL, NULL, 1, '2026-08-13 05:03:41', '2026-08-13 05:03:41'),
+(23, 'Alfaira R Sabili Akbar', '2623034@student.sihi.ac.id', '$2y$12$g6.tFF.SLMG/d3zZM0qpveIbvgOn76OBFykJ6kX5ei2R1ZMDPv5SC', 'mahasiswa', NULL, '2623034', NULL, NULL, 1, '2026-08-13 05:03:42', '2026-08-13 05:03:42'),
+(24, 'Anisa Agustiani', '2623035@student.sihi.ac.id', '$2y$12$FA7apSP8w6R18zaMcz3v.ORLJcvfCEz1Sww1Fzeue/Se03jgUfd5O', 'mahasiswa', NULL, '2623035', NULL, NULL, 1, '2026-08-13 05:03:42', '2026-08-13 05:03:42'),
+(25, 'Ayu Fara Agustin', '2623036@student.sihi.ac.id', '$2y$12$sveoagWzrRT2rhLV7M7IluPY4w73MjvXGpBtPxr1oYdxHvbTrYnUG', 'mahasiswa', NULL, '2623036', NULL, NULL, 1, '2026-08-13 05:03:42', '2026-08-13 05:03:42'),
+(26, 'Catur Putra Wijaya', '2623037@student.sihi.ac.id', '$2y$12$7wbukgT/oJHpir0dAiHbxuIpCGtjWLddgi5AN/Xl2B4tF6iT/et6a', 'mahasiswa', NULL, '2623037', NULL, NULL, 1, '2026-08-13 05:03:43', '2026-08-13 05:03:43'),
+(27, 'Cica Susanti', '2623038@student.sihi.ac.id', '$2y$12$vCGumlAklf9hHE1dMmLDDe/MaFrg2QUg1poc84qp0LlSnNLOATNGG', 'mahasiswa', NULL, '2623038', NULL, NULL, 1, '2026-08-13 05:03:43', '2026-08-13 05:03:43'),
+(28, 'Dimaz Satrio Ardiansyah', '2623039@student.sihi.ac.id', '$2y$12$wEkKB0uiRHvNvodya01k7OQa0nHjH.Ae0zIy.9rAc.ChFemkn9gca', 'mahasiswa', NULL, '2623039', NULL, NULL, 1, '2026-08-13 05:03:44', '2026-08-13 05:03:44'),
+(29, 'Dina Septiani', '2623040@student.sihi.ac.id', '$2y$12$T6Ac35QRi3UY37zTGJUckeVcCqxa7VFG/pQob7MQTlbeVMz9CNi8C', 'mahasiswa', NULL, '2623040', NULL, NULL, 1, '2026-08-13 05:03:44', '2026-08-13 05:03:44'),
+(30, 'Elnino Pratama Sebat', '2623041@student.sihi.ac.id', '$2y$12$Fc0e4Bd/tL8VJbqM7NuDjOPOE/5CgwlfbvIO4UInZUFzfPlhwlYN.', 'mahasiswa', NULL, '2623041', NULL, NULL, 1, '2026-08-13 05:03:44', '2026-08-13 05:03:44'),
+(31, 'Fikriani Aulia', '2623042@student.sihi.ac.id', '$2y$12$6VdiuGZmiv0vRXs5gQSFPOB/4jz8exkPup9P2yql/0VVqrzxChZpa', 'mahasiswa', NULL, '2623042', NULL, NULL, 1, '2026-08-13 05:03:45', '2026-08-13 05:03:45'),
+(32, 'Fina Komalasari', '2623043@student.sihi.ac.id', '$2y$12$Pq49/jY3nqquJgBfaLTi1.OTUw4Nnffg3KpEofZSwNbzYCnBSa/ru', 'mahasiswa', NULL, '2623043', NULL, NULL, 1, '2026-08-13 05:03:45', '2026-08-13 05:03:45'),
+(33, 'Keysa Nazmi Hanifa', '2623044@student.sihi.ac.id', '$2y$12$yLgp3DJ3jW9dGDzBhtQybe4ycaaYjfCcss66aLgvk556gOGqEtqZ6', 'mahasiswa', NULL, '2623044', NULL, NULL, 1, '2026-08-13 05:03:45', '2026-08-13 05:03:45'),
+(34, 'Keysa Nur Ikhsan', '2623045@student.sihi.ac.id', '$2y$12$XnEgJf7RueibKdM.u7SacuP9qlPVnnOEJqnjklv5W1ZfjCcUUkime', 'mahasiswa', NULL, '2623045', NULL, NULL, 1, '2026-08-13 05:03:46', '2026-08-13 05:03:46'),
+(35, 'Levski Ray Gunawan', '2623046@student.sihi.ac.id', '$2y$12$Zs4VNWg5cszUiScJ5MsXgOXkkMmL4ks/JMKSI4D0mifs1gUcC0Cei', 'mahasiswa', NULL, '2623046', NULL, NULL, 1, '2026-08-13 05:03:46', '2026-08-13 05:03:46'),
+(36, 'Muhammad Ammar Firdaus', '2623047@student.sihi.ac.id', '$2y$12$JjE9ZzaeoSDajRXUdpvGAO62PfT7h56bdpaUcO1bxhmXZCDRvw/AG', 'mahasiswa', NULL, '2623047', NULL, NULL, 1, '2026-08-13 05:03:46', '2026-08-13 05:03:46'),
+(37, 'Naila Siti Nurhaliza', '2623048@student.sihi.ac.id', '$2y$12$oLSwABWII/00AROCRLfWoeZUcEgNK.i55mTznjMUCapxpSZiMZLyq', 'mahasiswa', NULL, '2623048', NULL, NULL, 1, '2026-08-13 05:03:47', '2026-08-13 05:03:47'),
+(38, 'Nur Fitria Amalia', '2623049@student.sihi.ac.id', '$2y$12$XoJzx6RqWXAYvKk0HZCmE.DJm.88AUyQbMe8NtUVIXzO7cP6/mHCq', 'mahasiswa', NULL, '2623049', NULL, NULL, 1, '2026-08-13 05:03:47', '2026-08-13 05:03:47'),
+(39, 'Regina Putri Amelia', '2623050@student.sihi.ac.id', '$2y$12$yEST8dzf4GWaANWcWIoXBuYtKLjjCGO.vW3BqOp.hWeRECMoAdG6e', 'mahasiswa', NULL, '2623050', NULL, NULL, 1, '2026-08-13 05:03:47', '2026-08-13 05:03:47'),
+(40, 'Reyhan prakas al bukhari', '2623051@student.sihi.ac.id', '$2y$12$X5eBU8tTxeQmAr2IN6U4mOK9ETC9k/CYTanF/CTBcn73lx/CjZi06', 'mahasiswa', NULL, '2623051', NULL, NULL, 1, '2026-08-13 05:03:48', '2026-08-13 05:03:48'),
+(41, 'Rika Indriyani', '2623052@student.sihi.ac.id', '$2y$12$qaNwHcw1uDQgTbnet5VBMeJJT.H8rNJjQojsDD.fXc1tLYgdlB2J6', 'mahasiswa', NULL, '2623052', NULL, NULL, 1, '2026-08-13 05:03:48', '2026-08-13 05:03:48'),
+(42, 'Shilva Rizqiyatunissa', '2623053@student.sihi.ac.id', '$2y$12$rohaeOB/E3w5puw9kh5zS.dgl.qbO6oLJWXnEfsE6bonQBwHa8AOO', 'mahasiswa', NULL, '2623053', NULL, NULL, 1, '2026-08-13 05:03:49', '2026-08-13 05:03:49'),
+(43, 'Silvi Nureani Oktaria', '2623054@student.sihi.ac.id', '$2y$12$sKSdulKJjj.i1fPAM4T8v.EzFdj1au3vGxa38pEzzlEVDmUxcPxiO', 'mahasiswa', NULL, '2623054', NULL, NULL, 1, '2026-08-13 05:03:49', '2026-08-13 05:03:49'),
+(44, 'Siti Khodijah', '2623055@student.sihi.ac.id', '$2y$12$W0qsSmftAkoJWi233u69WulhqbVf477GjeWZnSkG1g10I5KNL8Js2', 'mahasiswa', NULL, '2623055', NULL, NULL, 1, '2026-08-13 05:03:49', '2026-08-13 05:03:49'),
+(45, 'Vera Solihat', '2623056@student.sihi.ac.id', '$2y$12$JSeXtak8MSNlumFq/s749ufXaFPdlaFHoBEckFCWMcHYxewmlMoQq', 'mahasiswa', NULL, '2623056', NULL, NULL, 1, '2026-08-13 05:03:50', '2026-08-13 05:03:50'),
+(46, 'Wita Febriyanti', '2623057@student.sihi.ac.id', '$2y$12$7cSPZXwm0kAIQxlWJ7dcxeud8cMXnx6YYZDeUPb1T6f69eetUNQ92', 'mahasiswa', NULL, '2623057', NULL, NULL, 1, '2026-08-13 05:03:50', '2026-08-13 05:03:50'),
+(47, 'Yoga Bahari', '2623058@student.sihi.ac.id', '$2y$12$LV.QGySprLzkMvPcw7aImeP0fg8PCb2gKesN7DbBuH.fWSTvVDlOu', 'mahasiswa', NULL, '2623058', NULL, NULL, 1, '2026-08-13 05:03:50', '2026-08-13 05:03:50'),
+(48, 'Zahara Yuliarti Dwi', '2623059@student.sihi.ac.id', '$2y$12$4KW0q9AJQ0fHlgTLuNK8ruYdHvKZjXwpiJOMorQLq32vymZhBxaPK', 'mahasiswa', NULL, '2623059', NULL, NULL, 1, '2026-08-13 05:03:51', '2026-08-13 05:03:51'),
+(49, 'Zeva Zakiah Farrel', '2623060@student.sihi.ac.id', '$2y$12$ofOON/y93tEBMyO/b1.CtOjkwzBCURAo7E17xvebuDKDoxh2bhrm6', 'mahasiswa', NULL, '2623060', NULL, NULL, 1, '2026-08-13 05:03:51', '2026-08-13 05:03:51'),
+(50, 'Zikri Ibrahim', '2623061@student.sihi.ac.id', '$2y$12$.S9B9oakyM40gu6zeXQ8Oe2BO9j1LSSSr2ewTUMfuXpz0yZe9HF5C', 'mahasiswa', NULL, '2623061', NULL, NULL, 1, '2026-08-13 05:03:51', '2026-08-13 05:03:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `events`
 --
 
 CREATE TABLE `events` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(150) NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `excerpt` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `banner` varchar(255) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `excerpt` text COLLATE utf8mb4_general_ci,
+  `image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `banner` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `location` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `start_datetime` datetime DEFAULT NULL,
   `end_datetime` datetime DEFAULT NULL,
-  `speaker` varchar(255) DEFAULT NULL,
-  `organizer` varchar(255) DEFAULT NULL,
-  `period` varchar(50) DEFAULT NULL COMMENT 'Period (contoh: "2024-2029") - optional, jika NULL berarti event bersifat umum',
-  `attachment` varchar(255) DEFAULT NULL,
-  `custom1` varchar(255) DEFAULT NULL,
-  `custom2` varchar(255) DEFAULT NULL,
-  `custom3` text DEFAULT NULL,
-  `is_public` tinyint(1) NOT NULL DEFAULT 1,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `speaker` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `organizer` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `period` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Period (contoh: "2024-2029") - optional, jika NULL berarti event bersifat umum',
+  `attachment` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom3` text COLLATE utf8mb4_general_ci,
+  `is_public` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -583,16 +848,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `slug`, `category_id`, `jurusan_id`, `description`, `excerpt`, `image`, `banner`, `location`, `start_datetime`, `end_datetime`, `speaker`, `organizer`, `period`, `attachment`, `custom1`, `custom2`, `custom3`, `is_public`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Seminar Tren Teknologi Industri Kreatif dan Artificial Intelligence', 'seminar-tren-teknologi-industri-kreatif-dan-artificial-intelligence', 163, NULL, '<p>Perkembangan teknologi AI yang sangat pesat memberikan dampak besar bagi industri kreatif dan teknologi informasi. Seminar ini akan membahas tren terbaru kecerdasan buatan dan bagaimana siswa dapat mempersiapkan diri menghadapi era otomatisasi.</p><p>Acara ini wajib diikuti oleh seluruh siswa program keahlian teknologi informasi, namun terbuka juga untuk umum.</p>', 'Seminar nasional tentang perkembangan teknologi kecerdasan buatan (AI) di dunia industri kreatif modern.', NULL, NULL, 'Aula Utama Lantai 3 Gedung Rektorat', '2026-06-15 09:00:00', '2026-06-15 12:30:00', 'Dr. Eko Prasetyo, M.T. (AI Research Lead)', 'Program Studi RPL & OSIS SMK', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02'),
-(2, 'Workshop Web Development Modern dengan Laravel 11', 'workshop-web-development-modern-dengan-laravel-11', 164, NULL, '<p>Pelajari cara membangun aplikasi web modern menggunakan Laravel 11 dari awal hingga deployment. Workshop ini fokus pada hands-on coding, best practices, dan optimasi arsitektur web modern.</p><p>Siswa diharapkan membawa laptop masing-masing dengan PHP >= 8.2 dan Composer sudah terinstall.</p>', 'Workshop coding praktis membangun aplikasi web interaktif menggunakan framework terpopuler Laravel 11.', NULL, NULL, 'Laboratorium Komputer RPL 1', '2026-06-17 08:00:00', '2026-06-17 16:00:00', 'Indra Permana (Senior Backend Developer)', 'Himpunan Jurusan RPL', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02'),
-(3, 'Lomba Coding Antar Kelas: Web Design Competition 2026', 'lomba-coding-antar-kelas-web-design-competition-2026', 165, NULL, '<p>Tunjukkan kreativitas dan kemampuan coding kamu dalam mendesain halaman web interaktif dengan tema \"Green School Portal\". Kompetisi ini ditujukan untuk memupuk semangat inovasi dan kerja sama tim.</p><p>Pemenang akan mendapatkan sertifikat penghargaan dan hadiah menarik dari sponsor industri.</p>', 'Kompetisi desain web interaktif antar kelas dengan tema portal sekolah ramah lingkungan.', NULL, NULL, 'Laboratorium Komputer RPL 2', '2026-06-20 08:30:00', '2026-06-20 15:00:00', 'Team Juri Industri & Guru Produktif', 'Panitia Lomba Kominfo OSIS', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02'),
-(4, 'Pelatihan Dasar Jaringan Komputer dan Fiber Optic', 'pelatihan-dasar-jaringan-komputer-dan-fiber-optic', 166, 2, '<p>Pelatihan teknis mengenai konfigurasi jaringan lokal (LAN), manajemen bandwidth, serta teknik instalasi dan splicing kabel fiber optic.</p><p>Sangat cocok untuk siswa yang ingin berkarir sebagai network engineer.</p>', 'Pelatihan hands-on instalasi fiber optic and konfigurasi routing mikrotik untuk siswa TJKT.', NULL, NULL, 'Laboratorium Jaringan Komputer & FO', '2026-06-25 09:00:00', '2026-06-25 14:00:00', 'Irwan Setiawan, CCNA (Network Engineer)', 'Program Keahlian TJKT', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02'),
-(5, 'Kunjungan Industri ke Kantor Google Indonesia & Tokopedia', 'kunjungan-industri-ke-kantor-google-indonesia-tokopedia', 167, NULL, '<p>Kunjungan tahunan dalam rangka memperkenalkan budaya kerja perusahaan teknologi papan atas dunia (Tech Giant) kepada para siswa tingkat akhir.</p><p>Siswa akan diajak berkeliling kantor dan berdiskusi langsung dengan software engineer profesional.</p>', 'Studi banding lapangan ke Google Indonesia dan Tokopedia Tower Jakarta untuk pengenalan budaya kerja startup.', NULL, NULL, 'Tech Offices Jakarta (Google & Tokopedia)', '2026-06-29 06:00:00', '2026-06-29 18:00:00', 'Developer Relations Team', 'Hubungan Industri & Humas Sekolah', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02'),
-(6, 'Pameran Karya Kreatif Siswa SMK Unggulan 2026', 'pameran-karya-kreatif-siswa-smk-unggulan-2026', 168, NULL, '<p>Pameran tahunan yang memamerkan produk-produk inovatif, sistem IoT, aplikasi mobile, hingga karya seni buatan siswa-siswi berprestasi dari seluruh program keahlian.</p><p>Terbuka untuk orang tua siswa, alumni, dan perwakilan dari industri mitra.</p>', 'Expo tahunan pameran produk inovasi, aplikasi mobile, dan teknologi tepat guna ciptaan siswa.', NULL, NULL, 'Lapangan Utama & Gedung Olahraga Sekolah', '2026-06-10 08:00:00', '2026-06-10 16:00:00', 'Kepala Dinas Pendidikan & Perwakilan DUDI', 'Panitia Expo SMK', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02'),
-(7, 'Seminar Karier: Sukses Masuk Dunia Kerja & Lolos Interview', 'seminar-karier-sukses-masuk-dunia-kerja-lolos-interview', 163, NULL, '<p>Dunia kerja membutuhkan kesiapan mental dan soft skills yang matang. Seminar ini dipandu oleh praktisi HR berpengalaman untuk memberikan tips menulis CV ATS-friendly dan teknik wawancara kerja.</p>', 'Seminar persiapan karir, cara membuat CV profesional, dan strategi menghadapi wawancara HRD.', NULL, NULL, 'Ruang Aula Mini Gedung B', '2026-05-31 09:30:00', '2026-05-31 12:00:00', 'Rina Kartika, M.Psi. (HR Manager)', 'Bursa Kerja Khusus (BKK) Sekolah', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02'),
-(8, 'Workshop Cyber Security & Ethical Hacking Essentials', 'workshop-cyber-security-ethical-hacking-essentials', 164, 1, '<p>Membahas dasar-dasar pertahanan keamanan siber, identifikasi kerentanan web (OWASP Top 10), serta cara melindungi infrastruktur sistem informasi dari serangan hacker jahat.</p>', 'Workshop keamanan siber dan pemahaman dasar etika peretasan (ethical hacking) untuk proteksi data.', NULL, NULL, 'Laboratorium Komputer TJKT 2', '2026-07-10 09:00:00', '2026-07-10 15:00:00', 'Yusuf Maulana, CEH (Cyber Security Specialist)', 'Program Studi TJKT', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-18 23:22:30'),
-(9, 'Lomba Inovasi Teknologi Tepat Guna Tingkat Provinsi', 'lomba-inovasi-teknologi-tepat-guna-tingkat-provinsi', 165, NULL, '<p>Ajang kompetisi regional untuk memamerkan inovasi teknologi yang bermanfaat bagi masyarakat umum dan ramah lingkungan.</p>', 'Kompetisi karya teknologi terapan tingkat provinsi Jawa Barat tahun 2026.', 'agendas/images/mIoRYTc6TW2KJcMvuUb575yUod99YCUK8zE633fV.png', 'agendas/banners/9xZfknwUSaeWkwSt9BCCa0RnqiDJQKkyrbzX7PRA.png', 'Pusat Edukasi & Rekreasi Regional', '2026-07-20 08:00:00', '2026-07-20 17:00:00', 'Dewan Juri Asosiasi Ilmuwan Indonesia', 'Dinas Pemberdayaan Masyarakat', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-16 07:41:40'),
-(10, 'Kunjungan Industri Jurusan Akuntansi ke Kantor KPP Pratama', 'kunjungan-industri-jurusan-akuntansi-ke-kantor-kpp-pratama', 167, 4, '<p>Kunjungan ini bertujuan memberikan pemahaman mendalam tentang tata cara perpajakan, pengelolaan pelaporan keuangan negara, serta prospek karir di bidang administrasi pajak.</p>', 'Studi lapangan pengenalan sistem administrasi perpajakan dan pelaporan SPT tahunan di KPP.', NULL, NULL, 'Kantor Pelayanan Pajak (KPP) Pratama', '2026-05-12 08:30:00', '2026-05-12 13:00:00', 'Fungsional Penyuluh Pajak KPP', 'Program Keahlian AKL', 'Tahun Ajaran 2025/2026', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-15 15:51:02', '2026-06-15 15:51:02');
+(11, 'English Camp', 'english-camp', NULL, NULL, '<p><strong>SIHI English Camp — \"English Today, Global Hospitality Tomorrow\"</strong></p><p>&nbsp;</p><p>SIHI English Camp merupakan program immersif pembelajaran Bahasa Inggris yang diselenggarakan oleh Subang International Hotel Institute (SIHI). Kegiatan ini dirancang untuk membangun kepercayaan diri, kemampuan komunikasi, dan kecintaan peserta terhadap Bahasa Inggris melalui suasana belajar yang menyenangkan, interaktif, dan penuh kebersamaan. Mengusung tagline <strong>\"English Today, Global Hospitality Tomorrow\"</strong>, SIHI English Camp menekankan bahwa penguasaan Bahasa Inggris hari ini adalah kunci kesuksesan di industri perhotelan dan hospitality global di masa depan. Selama kegiatan berlangsung, peserta didorong untuk aktif berbahasa Inggris dalam berbagai aktivitas — mulai dari permainan interaktif, simulasi percakapan perhotelan, hingga penampilan kreatif di malam keakraban. Lebih dari sekadar belajar bahasa, English Camp menjadi wadah pembentukan karakter: melatih kerja sama tim, kepemimpinan, keberanian tampil di depan umum, serta wawasan lintas budaya — nilai-nilai yang menjadi fondasi utama insan hospitality profesional.</p>', '', 'agendas/images/k8u9tlHx4fiz3cbtl3SkqjJKEooL3f7rgXkJQiem.jpg', 'agendas/banners/1sXqsOZPimprU8YoIB4RlgS7fnSWhIgtzfP8OmJa.jpg', 'Kampus SIHI', '2026-08-10 08:00:00', '2026-09-13 08:00:00', '', 'LP3 SIHI', 'Tahun Ajaran 2026/2027', NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-08-10 05:00:37', '2026-08-10 05:55:28');
 
 -- --------------------------------------------------------
 
@@ -601,13 +857,13 @@ INSERT INTO `events` (`id`, `title`, `slug`, `category_id`, `jurusan_id`, `descr
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_general_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_general_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -617,13 +873,13 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `galleries` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(150) NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `upload_by` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `slug` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `upload_by` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -633,16 +889,13 @@ CREATE TABLE `galleries` (
 --
 
 INSERT INTO `galleries` (`id`, `slug`, `category_id`, `jurusan_id`, `title`, `description`, `upload_by`, `created_at`, `updated_at`) VALUES
-(1, 'kegiatan-belajar-mengajar-praktikum-iot-rpl', 175, NULL, 'Kegiatan Belajar Mengajar Praktikum IoT RPL', 'Dokumentasi kegiatan praktikum pemrograman Internet of Things (IoT) siswa kelas XI program keahlian Rekayasa Perangkat Lunak di laboratorium komputer.', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(2, 'pelepasan-siswa-pkl-jurusan-teknik-jaringan-komputer', 177, 2, 'Pelepasan Siswa PKL Jurusan Teknik Jaringan Komputer', 'Acara pembekalan dan pelepasan resmi siswa kelas XI Teknik Jaringan Komputer dan Telekomunikasi (TJKT) yang akan melaksanakan Praktik Kerja Lapangan (PKL) di industri mitra.', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(3, 'pemenang-juara-1-lomba-web-design-tingkat-nasional', 176, NULL, 'Pemenang Juara 1 Lomba Web Design Tingkat Nasional', 'Momen kebanggaan penyerahan piala dan penghargaan bagi siswa perwakilan sekolah yang berhasil meraih Juara 1 dalam ajang Lomba Desain Web Nasional.', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(4, 'workshop-cloud-computing-modern-bersama-aws-academy', 178, 2, 'Workshop Cloud Computing Modern bersama AWS Academy', 'Pelaksanaan workshop intensif teknologi komputasi awan (Cloud Computing) bagi siswa tingkat akhir TJKT yang bekerja sama dengan instruktur bersertifikasi AWS.', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(5, 'kemeriahan-kegiatan-mpls-siswa-baru-angkatan-2026', 181, NULL, 'Kemeriahan Kegiatan MPLS Siswa Baru Angkatan 2026', 'Dokumentasi berbagai keseruan dan materi orientasi lingkungan sekolah (MPLS) bagi siswa-siswi baru di lapangan utama dan aula sekolah.', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(6, 'wisuda-dan-pelepasan-siswa-kelas-xii-tahun-2026', 180, NULL, 'Wisuda dan Pelepasan Siswa Kelas XII Tahun 2026', 'Rangkaian prosesi wisuda kelulusan dan upacara pelepasan siswa kelas XII tahun pelajaran 2025/2026 yang berlangsung khidmat.', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(7, 'kunjungan-industri-jurusan-akuntansi-ke-bank-indonesia', 175, 1, 'Kunjungan Industri Jurusan Akuntansi ke Bank Indonesia', 'Studi lapangan dan pengenalan operasional sistem moneter serta tata kelola keuangan negara bagi siswa Akuntansi (AKL) di kantor Bank Indonesia.', 1, '2026-06-16 07:14:12', '2026-06-19 06:24:32'),
-(8, 'aksi-sosial-dan-bakti-masyarakat-osis-smk-unggulan', 175, NULL, 'Aksi Sosial dan Bakti Masyarakat OSIS SMK Unggulan', 'Dokumentasi kegiatan bakti sosial pembagian sembako dan bersih-bersih lingkungan sekitar sekolah oleh pengurus OSIS.', 1, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(9, 'lomba-futsal-dan-olahraga-antar-kelas-classmeeting', 179, 1, 'Lomba Futsal dan Olahraga Antar Kelas Classmeeting', 'Momen keseruan pertandingan futsal, voli, dan tarik tambang antar kelas pasca ujian semester ganjil.', 1, '2026-06-16 07:14:12', '2026-06-19 06:24:46'),
-(10, 'ujian-kompetensi-keahlian-ukk-program-keahlian-rpl', 175, NULL, 'Ujian Kompetensi Keahlian (UKK) Program Keahlian RPL', 'Dokumentasi pelaksanaan ujian praktik keahlian siswa tingkat akhir program Rekayasa Perangkat Lunak yang dinilai langsung oleh asesor industri.', 1, '2026-06-16 07:14:12', '2026-06-16 07:14:12');
+(11, 'praktek-table-manner', 178, NULL, 'Praktek Table Manner', 'lorem ipsum', 1, '2026-08-03 08:55:38', '2026-08-03 08:55:38'),
+(12, 'cooking', 177, NULL, 'Cooking', 'lorem ipsum', 1, '2026-08-03 08:59:05', '2026-08-03 08:59:05'),
+(13, 'sertifikat-akreditasi', 180, NULL, 'Sertifikat Akreditasi', 'lorem ipsum', 1, '2026-08-03 09:18:09', '2026-08-03 09:18:09'),
+(14, 'alumni-lulusan-sih', NULL, NULL, 'Alumni Lulusan SIHI', 'alumni sihi yang sekarang sudah membuktikan bahwa lulusan sihi mampu bersaing di dunia industri, dan mereka sekarang bekerja di kanca internasional', 1, '2026-08-04 05:02:38', '2026-08-04 05:02:38'),
+(15, 'kunjungan-langsung-belajar-industri', 176, NULL, 'Kunjungan Langsung Belajar Industri', 'Kunjungan Langsung Belajar Industri atau KLBI merupakan program yang dilakukan 1 (satu) kali selama pembelajaran. Kegiatan selama KLBI  yaitu Pembelajaran langsung industri, peserta didik akan belajar dengan pihak industri secara langsung, Uji Kompetensi (Ujikom) bersama Industri, Tour de Hotel, Table Manner, dan beberapa kegiatan seminar mengenai pengetahuan perhotelan lainnya dengan natrasumber dari pihak industri. Kegiatan ini dilakukan selama 2 hari 1 malam. KLBI diadakan di hotel nasional dan/atau internasional bintang 4 atau 5. \r\n\r\nKegiatan KLBI ini bertujuan sebagai langkah nyata SIHI dalam memastikan kurikulum dan pembelajaran yag dilaksanakan telah sama dan berstandar industri, sehinggga para lulusan SIHI akan menjadi Sumber Daya Manusia (SDM) yang siap kerja serta memiliki keterampilan berstandar industri dan berdaya saing tinggi', 1, '2026-08-10 07:30:16', '2026-08-10 07:30:16'),
+(16, 'day-one-english-camp', 175, NULL, 'Day One English Camp', 'kegiatan hari pertama pada english camp yaitu perkenalan serta pemaparan profile dan tata tertib di SIHI', 1, '2026-08-10 07:41:19', '2026-08-10 07:41:19'),
+(17, 'olahraga-pagi-bersama-mahasiswai-baru-di-sihi', 175, NULL, 'olahraga pagi bersama mahasiswa/i baru di sihi', 'sebelum memulai kegiatan pembelajaran, mahasiswa/i baru sihi melakukan olahraga pagi bersama agar badan terasa sehat dan segar ketika pembelajaran berlangsung', 1, '2026-08-12 03:00:46', '2026-08-12 03:00:46');
 
 -- --------------------------------------------------------
 
@@ -651,10 +904,10 @@ INSERT INTO `galleries` (`id`, `slug`, `category_id`, `jurusan_id`, `title`, `de
 --
 
 CREATE TABLE `gallery_images` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `gallery_id` bigint(20) UNSIGNED NOT NULL,
-  `image_path` varchar(255) NOT NULL,
-  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `id` bigint UNSIGNED NOT NULL,
+  `gallery_id` bigint UNSIGNED NOT NULL,
+  `image_path` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `sort_order` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -664,36 +917,19 @@ CREATE TABLE `gallery_images` (
 --
 
 INSERT INTO `gallery_images` (`id`, `gallery_id`, `image_path`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 1, 'gallery-01.jpg', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(2, 1, 'gallery-02.jpg', 2, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(3, 1, 'gallery-03.jpg', 3, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(4, 2, 'gallery-01.jpg', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(5, 2, 'gallery-02.jpg', 2, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(6, 2, 'gallery-03.jpg', 3, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(7, 3, 'gallery-01.jpg', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(8, 3, 'gallery-02.jpg', 2, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(9, 3, 'gallery-03.jpg', 3, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(10, 4, 'gallery-01.jpg', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(11, 4, 'gallery-02.jpg', 2, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(12, 4, 'gallery-03.jpg', 3, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(13, 5, 'gallery-01.jpg', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(14, 5, 'gallery-02.jpg', 2, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(15, 5, 'gallery-03.jpg', 3, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(16, 6, 'gallery-01.jpg', 1, '2026-06-16 07:14:11', '2026-06-16 07:14:11'),
-(17, 6, 'gallery-02.jpg', 2, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(18, 6, 'gallery-03.jpg', 3, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(19, 7, 'gallery-01.jpg', 1, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(20, 7, 'gallery-02.jpg', 2, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(21, 7, 'gallery-03.jpg', 3, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(22, 8, 'gallery-01.jpg', 1, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(23, 8, 'gallery-02.jpg', 2, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(24, 8, 'gallery-03.jpg', 3, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(25, 9, 'gallery-01.jpg', 1, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(26, 9, 'gallery-02.jpg', 2, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(27, 9, 'gallery-03.jpg', 3, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(28, 10, 'gallery-01.jpg', 1, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(29, 10, 'gallery-02.jpg', 2, '2026-06-16 07:14:12', '2026-06-16 07:14:12'),
-(30, 10, 'gallery-03.jpg', 3, '2026-06-16 07:14:12', '2026-06-16 07:14:12');
+(38, 11, 'gallery/foto-2_1785747338.jpeg', 0, '2026-08-03 08:55:39', '2026-08-03 08:55:39'),
+(39, 12, 'gallery/foto-1_1785747545.jpeg', 0, '2026-08-03 08:59:05', '2026-08-03 08:59:05'),
+(40, 13, 'gallery/foto-1_1785748689.jpeg', 0, '2026-08-03 09:18:09', '2026-08-03 09:18:09'),
+(41, 13, 'gallery/foto-2_1785748689.jpeg', 1, '2026-08-03 09:18:10', '2026-08-03 09:18:10'),
+(42, 13, 'gallery/foto-3_1785748690.jpeg', 2, '2026-08-03 09:18:10', '2026-08-03 09:18:10'),
+(43, 13, 'gallery/foto-4_1785748690.jpeg', 3, '2026-08-03 09:18:10', '2026-08-03 09:18:10'),
+(44, 14, 'gallery/galeri-alumni_1785819758.png', 0, '2026-08-04 05:02:43', '2026-08-04 05:02:43'),
+(45, 15, 'gallery/cooking_1786347016.jpeg', 0, '2026-08-10 07:30:16', '2026-08-10 07:30:16'),
+(46, 15, 'gallery/d2_1786347016.jpeg', 1, '2026-08-10 07:30:17', '2026-08-10 07:30:17'),
+(47, 15, 'gallery/kbli_1786347017.jpeg', 2, '2026-08-10 07:30:18', '2026-08-10 07:30:18'),
+(49, 16, 'gallery/day-1_1786347679.jpeg', 0, '2026-08-10 07:41:20', '2026-08-10 07:41:20'),
+(50, 17, 'gallery/whatsapp-image-2026-08-12-at-053547_1786503646.jpeg', 0, '2026-08-12 03:00:51', '2026-08-12 03:00:51'),
+(51, 17, 'gallery/whatsapp-image-2026-08-12-at-053548_1786503651.jpeg', 1, '2026-08-12 03:00:51', '2026-08-12 03:00:51');
 
 -- --------------------------------------------------------
 
@@ -702,13 +938,13 @@ INSERT INTO `gallery_images` (`id`, `gallery_id`, `image_path`, `sort_order`, `c
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
-  `attempts` tinyint(3) UNSIGNED NOT NULL,
-  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
-  `available_at` int(10) UNSIGNED NOT NULL,
-  `created_at` int(10) UNSIGNED NOT NULL
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -718,16 +954,16 @@ CREATE TABLE `jobs` (
 --
 
 CREATE TABLE `job_batches` (
-  `id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `total_jobs` int(11) NOT NULL,
-  `pending_jobs` int(11) NOT NULL,
-  `failed_jobs` int(11) NOT NULL,
-  `failed_job_ids` longtext NOT NULL,
-  `options` mediumtext DEFAULT NULL,
-  `cancelled_at` int(11) DEFAULT NULL,
-  `created_at` int(11) NOT NULL,
-  `finished_at` int(11) DEFAULT NULL
+  `id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_general_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -737,23 +973,23 @@ CREATE TABLE `job_batches` (
 --
 
 CREATE TABLE `menus` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `parent_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `location` varchar(50) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `slug` varchar(150) DEFAULT NULL,
-  `link_type` enum('page','structure','route','url','group') DEFAULT 'url',
-  `page_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `structure_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `custom_url` varchar(255) DEFAULT NULL,
-  `icon` varchar(100) DEFAULT NULL,
-  `css_class` varchar(100) DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `open_new_tab` tinyint(1) NOT NULL DEFAULT 0,
-  `description` text DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `parent_id` bigint UNSIGNED DEFAULT NULL,
+  `location` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `link_type` enum('page','structure','route','url','group') COLLATE utf8mb4_general_ci DEFAULT 'url',
+  `page_id` bigint UNSIGNED DEFAULT NULL,
+  `structure_id` bigint UNSIGNED DEFAULT NULL,
+  `custom_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `icon` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `css_class` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `order` int NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `open_new_tab` tinyint(1) NOT NULL DEFAULT '0',
+  `description` text COLLATE utf8mb4_general_ci,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -763,49 +999,32 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`id`, `parent_id`, `location`, `title`, `slug`, `link_type`, `page_id`, `structure_id`, `custom_url`, `icon`, `css_class`, `order`, `is_active`, `open_new_tab`, `description`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'header', 'Beranda', NULL, 'route', NULL, NULL, '/site', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-13 06:50:28', '2026-06-14 13:09:03'),
-(2, NULL, 'header', 'Profil', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 2, 1, 0, NULL, 1, NULL, '2026-06-14 13:09:56', '2026-06-14 13:09:56'),
-(3, 2, 'header', 'Sambutan Kepala Sekolah', NULL, 'page', 1, NULL, NULL, NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-14 13:10:25', '2026-06-14 14:37:43'),
-(4, 2, 'header', 'Sejarah Sekolah', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 2, 1, 0, NULL, 1, NULL, '2026-06-14 13:10:51', '2026-06-14 13:10:51'),
-(5, 2, 'header', 'Visi & Misi', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 3, 1, 0, NULL, 1, NULL, '2026-06-14 13:11:12', '2026-06-14 13:11:12'),
-(6, 2, 'header', 'Struktur Organisasi', NULL, 'structure', 2, NULL, NULL, NULL, NULL, 4, 1, 0, NULL, 1, 1, '2026-06-14 13:11:28', '2026-06-17 10:03:19'),
-(7, 2, 'header', 'Identitas Sekolah', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 5, 1, 0, NULL, 1, NULL, '2026-06-14 13:11:50', '2026-06-14 13:11:50'),
-(8, 2, 'header', 'Akreditasi', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 6, 1, 0, NULL, 1, NULL, '2026-06-14 13:12:06', '2026-06-14 13:12:06'),
-(9, 2, 'header', 'Fasilitas', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 7, 1, 0, NULL, 1, NULL, '2026-06-14 13:12:22', '2026-06-14 13:12:22'),
-(10, 2, 'header', 'Program Unggulan', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 8, 1, 0, NULL, 1, NULL, '2026-06-14 13:12:51', '2026-06-14 13:12:51'),
-(11, NULL, 'header', 'Guru & Tendik', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 3, 1, 0, NULL, 1, NULL, '2026-06-14 13:14:55', '2026-06-14 13:14:55'),
-(12, 11, 'header', 'Manajemen Sekolah', NULL, 'structure', NULL, NULL, NULL, NULL, NULL, 1, 1, 0, NULL, 1, NULL, '2026-06-14 13:15:26', '2026-06-14 13:15:26'),
-(13, 11, 'header', 'Guru Produktif', NULL, 'structure', NULL, NULL, NULL, NULL, NULL, 2, 1, 0, NULL, 1, NULL, '2026-06-14 13:15:50', '2026-06-14 13:15:50'),
-(14, 11, 'header', 'Guru Adaptif', NULL, 'structure', NULL, NULL, NULL, NULL, NULL, 3, 1, 0, NULL, 1, NULL, '2026-06-14 13:16:11', '2026-06-14 13:16:11'),
-(15, 11, 'header', 'Guru Normatif', NULL, 'structure', NULL, NULL, NULL, NULL, NULL, 4, 1, 0, NULL, 1, NULL, '2026-06-14 13:16:28', '2026-06-14 13:16:28'),
-(16, 11, 'header', 'Tenaga Kependidikan', NULL, 'structure', NULL, NULL, NULL, NULL, NULL, 5, 1, 0, NULL, 1, NULL, '2026-06-14 13:17:04', '2026-06-14 13:17:04'),
-(17, NULL, 'header', 'Program Keahlian', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 4, 1, 0, NULL, 1, NULL, '2026-06-14 13:17:39', '2026-06-14 13:17:39'),
-(18, 17, 'header', 'Pengembangan Perangkat Lunak dan Gim', NULL, 'route', NULL, NULL, '/jurusan/pplg', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-14 13:20:44', '2026-06-17 19:52:22'),
-(19, 17, 'header', 'Teknik Jaringan Komputer dan Telekomunikasi', NULL, 'route', NULL, NULL, '/prodi/TJKT', NULL, NULL, 2, 1, 0, NULL, 1, NULL, '2026-06-14 13:21:33', '2026-06-14 13:21:33'),
-(20, 17, 'header', 'Teknik dan Bisnis Sepeda Motor', NULL, 'route', NULL, NULL, '/prodi/tbsm', NULL, NULL, 3, 1, 0, NULL, 1, NULL, '2026-06-14 13:26:26', '2026-06-14 13:26:26'),
-(21, 17, 'header', 'Akuntasni dan Keuangan Lembaga', NULL, 'route', NULL, NULL, '/prodi/akl', NULL, NULL, 4, 1, 0, NULL, 1, NULL, '2026-06-14 13:28:38', '2026-06-14 13:28:38'),
-(22, 17, 'header', 'Manajemen Perkantoran dan Layanan Bisnis', NULL, 'route', NULL, NULL, '/prodi/MPLB', NULL, NULL, 5, 1, 0, NULL, 1, NULL, '2026-06-14 13:29:15', '2026-06-14 13:29:15'),
-(23, 17, 'header', 'Pemasaran', NULL, 'route', NULL, NULL, '/prodi/pm', NULL, NULL, 6, 1, 0, NULL, 1, NULL, '2026-06-14 13:29:41', '2026-06-14 13:29:41'),
-(24, 17, 'header', 'Perhotelan', NULL, 'route', NULL, NULL, '/prodi/ph', NULL, NULL, 7, 1, 0, NULL, 1, NULL, '2026-06-14 13:30:12', '2026-06-14 13:30:12'),
-(25, NULL, 'header', 'Kesiswaan', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 5, 1, 0, NULL, 1, NULL, '2026-06-14 13:47:01', '2026-06-14 13:47:01'),
-(26, 25, 'header', 'Organisasi Siswa', NULL, 'route', NULL, NULL, '/organisasi', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-14 13:47:31', '2026-06-16 09:15:11'),
-(27, 25, 'header', 'Ekstrakurikuler', NULL, 'route', NULL, NULL, '/ekstrakurikuler', NULL, NULL, 2, 1, 0, NULL, 1, NULL, '2026-06-14 13:48:02', '2026-06-14 13:48:02'),
-(29, 25, 'header', 'Tata Tertib', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 4, 1, 0, NULL, 1, NULL, '2026-06-14 13:49:40', '2026-06-14 13:49:40'),
-(30, 2, 'header', 'Hubungan Industri', NULL, 'route', NULL, NULL, '/hubin', NULL, NULL, 9, 1, 0, NULL, 1, NULL, '2026-06-14 13:53:16', '2026-06-14 13:53:16'),
-(31, NULL, 'header', 'Alumni', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 6, 1, 0, NULL, 1, NULL, '2026-06-14 13:53:54', '2026-06-14 13:53:54'),
-(32, 31, 'header', 'Alumni Inspiratif', NULL, 'route', NULL, NULL, '/alumni', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-14 13:54:33', '2026-06-16 09:06:21'),
-(33, 31, 'header', 'Tracer Study', NULL, 'route', NULL, NULL, '/tracer', NULL, NULL, 2, 1, 0, NULL, 1, 1, '2026-06-14 13:55:07', '2026-06-14 13:57:13'),
+(1, NULL, 'header', 'Beranda', NULL, 'route', NULL, NULL, '/site', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-13 06:50:28', '2026-07-29 08:04:18'),
+(2, NULL, 'header', 'Profil', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 2, 1, 0, NULL, 1, NULL, '2026-06-14 13:09:56', '2026-07-29 08:04:18'),
+(4, 2, 'header', 'Sejarah SIHI', NULL, 'page', 3, NULL, NULL, NULL, NULL, 2, 1, 0, NULL, 1, 1, '2026-06-14 13:10:51', '2026-07-31 04:25:41'),
+(5, 2, 'header', 'Visi & Misi', NULL, 'page', 4, NULL, NULL, NULL, 'custom-class', 3, 1, 0, NULL, 1, 1, '2026-06-14 13:11:12', '2026-07-31 04:41:00'),
+(6, 2, 'header', 'TIM manajemen DAN INSTRUKTUR', NULL, 'structure', 5, NULL, NULL, NULL, NULL, 4, 1, 0, NULL, 1, 1, '2026-06-14 13:11:28', '2026-08-10 04:40:04'),
+(8, 2, 'header', 'Akreditasi', NULL, 'page', 6, NULL, NULL, NULL, NULL, 6, 1, 0, NULL, 1, 1, '2026-06-14 13:12:06', '2026-08-03 05:36:49'),
+(9, 2, 'header', 'Fasilitas', NULL, 'route', NULL, NULL, '/fasilitas', NULL, NULL, 7, 1, 0, NULL, 1, 1, '2026-06-14 13:12:22', '2026-07-31 06:40:31'),
+(17, NULL, 'header', 'Program Diploma', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 4, 1, 0, NULL, 1, NULL, '2026-06-14 13:17:39', '2026-07-30 03:02:36'),
+(18, 17, 'header', 'Diploma 2 (Fastrack) Layanan Hotel Terapung', NULL, 'route', NULL, NULL, '/jurusan/LHT', NULL, NULL, 2, 1, 0, NULL, 1, 1, '2026-06-14 13:20:44', '2026-07-31 03:20:47'),
+(19, 17, 'header', 'Diploma 3 Perhotelan', NULL, 'route', NULL, NULL, '/jurusan/DPH', NULL, NULL, 3, 1, 0, NULL, 1, 1, '2026-06-14 13:21:33', '2026-08-04 08:28:05'),
+(20, 17, 'header', 'Diploma 4 Pengelolaan Perhotelan', NULL, 'route', NULL, NULL, '/jurusan/PP', NULL, NULL, 4, 1, 0, NULL, 1, 1, '2026-06-14 13:26:26', '2026-08-10 07:33:13'),
+(24, 17, 'header', 'Diploma 1 Perhotelan', NULL, 'route', NULL, NULL, '/jurusan/PH', NULL, '', 1, 1, 0, NULL, 1, 1, '2026-06-14 13:30:12', '2026-07-31 03:23:13'),
+(25, NULL, 'header', 'Layanan', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 6, 1, 0, NULL, 1, NULL, '2026-06-14 13:47:01', '2026-07-29 08:04:18'),
+(26, 25, 'header', 'E-Learning', NULL, 'route', NULL, NULL, '/elearning/login', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-14 13:47:31', '2026-08-05 07:54:14'),
+(27, 25, 'header', 'Job Carier', NULL, 'route', NULL, NULL, '/karir', NULL, NULL, 2, 1, 0, NULL, 1, 1, '2026-06-14 13:48:02', '2026-08-04 09:39:18'),
+(30, 2, 'header', 'Detail MOU', NULL, 'route', NULL, NULL, '/site/mitra-industri', NULL, NULL, 9, 1, 0, NULL, 1, 1, '2026-06-14 13:53:16', '2026-08-03 03:26:01'),
+(31, NULL, 'header', 'Alumni', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 7, 1, 0, NULL, 1, NULL, '2026-06-14 13:53:54', '2026-07-29 08:04:18'),
+(32, 31, 'header', 'Tracer Study', NULL, 'route', NULL, NULL, '/alumni', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-14 13:54:33', '2026-08-03 09:08:42'),
 (34, 31, 'header', 'Testimoni Alumni', NULL, 'route', NULL, NULL, '/testimoni_alumni', NULL, NULL, 3, 1, 0, NULL, 1, NULL, '2026-06-14 13:55:53', '2026-06-14 13:57:13'),
-(35, 31, 'header', 'Karir Alumni', NULL, 'page', NULL, NULL, NULL, NULL, NULL, 4, 1, 0, NULL, 1, NULL, '2026-06-14 13:56:55', '2026-06-14 13:57:13'),
-(36, NULL, 'header', 'Publikasi', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 7, 1, 0, NULL, 1, NULL, '2026-06-14 14:01:36', '2026-06-14 14:01:36'),
-(37, 36, 'header', 'Berita', NULL, 'route', NULL, NULL, '/berita', NULL, NULL, 1, 1, 0, NULL, 1, NULL, '2026-06-14 14:01:55', '2026-06-14 14:01:55'),
-(38, 36, 'header', 'Pengumuman', NULL, 'route', NULL, NULL, '/pengumuman', NULL, NULL, 2, 1, 0, NULL, 1, NULL, '2026-06-14 14:02:25', '2026-06-14 14:02:25'),
+(36, NULL, 'header', 'Publikasi', NULL, 'group', NULL, NULL, NULL, NULL, NULL, 8, 1, 0, NULL, 1, NULL, '2026-06-14 14:01:36', '2026-07-29 08:04:18'),
+(37, 36, 'header', 'Berita & Pengumuman', NULL, 'route', NULL, NULL, '/berita', NULL, NULL, 1, 1, 0, NULL, 1, 1, '2026-06-14 14:01:55', '2026-08-03 09:22:42'),
 (39, 36, 'header', 'Agenda & Event', NULL, 'route', NULL, NULL, '/agenda', NULL, NULL, 3, 1, 0, NULL, 1, NULL, '2026-06-14 14:02:47', '2026-06-14 14:02:47'),
 (40, 36, 'header', 'Prestasi', NULL, 'route', NULL, NULL, '/prestasi', NULL, NULL, 4, 1, 0, NULL, 1, NULL, '2026-06-14 14:03:24', '2026-06-14 14:03:24'),
 (41, 36, 'header', 'Gallery', NULL, 'route', NULL, NULL, '/gallery', NULL, NULL, 5, 1, 0, NULL, 1, 1, '2026-06-14 14:03:50', '2026-06-16 07:21:32'),
-(42, 36, 'header', 'Download', NULL, 'route', NULL, NULL, '/download', NULL, NULL, 6, 1, 0, NULL, 1, NULL, '2026-06-14 14:04:49', '2026-06-14 14:04:49'),
 (43, NULL, 'jurusan_pplg', 'Kurikulum', NULL, 'page', 1, NULL, NULL, NULL, NULL, 1, 1, 0, NULL, 1, NULL, '2026-06-17 20:09:48', '2026-06-17 20:09:48'),
-(44, NULL, 'header', 'Kontak', NULL, 'route', NULL, NULL, '/kontak', NULL, NULL, 8, 1, 0, NULL, 1, NULL, '2026-06-20 12:02:39', '2026-06-20 12:02:39');
+(45, NULL, 'header', 'Pelatihan Kerja', NULL, 'route', NULL, NULL, '/site/pelatihan-kerja', NULL, NULL, 5, 1, 0, NULL, 1, 1, '2026-07-29 07:59:55', '2026-08-03 08:24:07');
 
 -- --------------------------------------------------------
 
@@ -814,9 +1033,9 @@ INSERT INTO `menus` (`id`, `parent_id`, `location`, `title`, `slug`, `link_type`
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -873,7 +1092,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (48, '2026_06_19_055810_add_extended_fields_to_programs_table', 10),
 (49, '2026_06_19_064009_add_ppdb_link_to_settings_table', 11),
 (50, '2026_06_19_070500_insert_school_life_section', 12),
-(51, '2026_06_26_000001_create_social_media_settings_and_home_section', 13);
+(51, '2026_06_26_000001_create_social_media_settings_and_home_section', 13),
+(52, '2026_08_04_105944_create_registrations_table', 14),
+(53, '2026_08_05_092235_create_elearning_tables', 15);
 
 -- --------------------------------------------------------
 
@@ -882,29 +1103,29 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `news` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `content` longtext NOT NULL,
-  `excerpt` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `author` varchar(100) DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `period` varchar(50) DEFAULT NULL COMMENT 'Period (contoh: "2024-2029") - optional, jika NULL berarti berita bersifat umum',
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `excerpt` text COLLATE utf8mb4_general_ci,
+  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `author` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `period` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Period (contoh: "2024-2029") - optional, jika NULL berarti berita bersifat umum',
   `published_at` datetime DEFAULT NULL,
-  `status` enum('draft','published','archived') NOT NULL DEFAULT 'draft',
-  `tags` varchar(255) DEFAULT NULL,
-  `view_count` int(11) NOT NULL DEFAULT 0,
-  `share_count` int(11) NOT NULL DEFAULT 0,
-  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
-  `source` varchar(255) DEFAULT NULL,
-  `meta_title` varchar(255) DEFAULT NULL,
-  `meta_description` text DEFAULT NULL,
-  `is_have_file` tinyint(1) NOT NULL DEFAULT 0,
-  `file` varchar(255) DEFAULT NULL,
+  `status` enum('draft','published','archived') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'draft',
+  `tags` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `view_count` int NOT NULL DEFAULT '0',
+  `share_count` int NOT NULL DEFAULT '0',
+  `is_featured` tinyint(1) NOT NULL DEFAULT '0',
+  `source` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `meta_description` text COLLATE utf8mb4_general_ci,
+  `is_have_file` tinyint(1) NOT NULL DEFAULT '0',
+  `file` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -914,27 +1135,10 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `title`, `slug`, `content`, `excerpt`, `image`, `author`, `created_by`, `updated_by`, `category_id`, `jurusan_id`, `period`, `published_at`, `status`, `tags`, `view_count`, `share_count`, `is_featured`, `source`, `meta_title`, `meta_description`, `is_have_file`, `file`, `created_at`, `updated_at`) VALUES
-(1, 'Andika Raih Juara 1 Lomba Robot Line by Diskominfo', 'andika-raih-juara-1-lomba-robot-line-by-diskominfo', '<p>asdasdasd</p>', 'asdasd', 'news/dcr-result-andika_1781245614.png', 'Andika', 1, 1, 158, NULL, NULL, '2026-06-12 13:26:54', 'published', 'juara', 3, 0, 1, 'ass', 'Andika Raih Juara 1 Lomba Robot Line by Diskominfo', 'asd', 0, NULL, '2026-06-12 06:26:54', '2026-06-15 15:08:34'),
-(2, 'Pembukaan Masa Pengenalan Lingkungan Sekolah Tahun Ajaran 2026/2027', 'pembukaan-mpls-tahun-ajaran-2026-2027', '<p>SMK PGRI Subang secara resmi membuka kegiatan MPLS bagi peserta didik baru tahun ajaran 2026/2027.</p>', 'Pembukaan kegiatan MPLS peserta didik baru.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'mpls,sekolah', 0, 0, 0, NULL, 'Pembukaan Masa Pengenalan Lingkungan Sekolah Tahun Ajaran 2026/2027', 'Pembukaan kegiatan MPLS peserta didik baru.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(3, 'Tim Futsal SMK PGRI Subang Raih Juara Tingkat Kabupaten', 'tim-futsal-smk-pgri-subang-raih-juara-tingkat-kabupaten', '<p>Tim futsal berhasil meraih prestasi membanggakan dalam kompetisi tingkat kabupaten.</p>', 'Prestasi tim futsal tingkat kabupaten.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'futsal,prestasi', 2, 0, 0, NULL, 'Tim Futsal SMK PGRI Subang Raih Juara Tingkat Kabupaten', 'Prestasi tim futsal tingkat kabupaten.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 15:11:02'),
-(4, 'Workshop Digital Marketing Bersama Praktisi Industri', 'workshop-digital-marketing-bersama-praktisi-industri', '<p>Siswa mendapatkan wawasan langsung dari praktisi industri digital marketing.</p>', 'Workshop digital marketing untuk siswa.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'workshop,pemasaran', 0, 0, 0, NULL, 'Workshop Digital Marketing Bersama Praktisi Industri', 'Workshop digital marketing untuk siswa.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(5, 'Kunjungan Industri Siswa TJKT ke Data Center Nasional', 'kunjungan-industri-siswa-tjkt-ke-data-center-nasional', '<p>Siswa TJKT melakukan kunjungan industri untuk mempelajari infrastruktur jaringan modern.</p>', 'Kunjungan industri siswa TJKT.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'tjkt,industri', 0, 0, 0, NULL, 'Kunjungan Industri Siswa TJKT ke Data Center Nasional', 'Kunjungan industri siswa TJKT.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(6, 'PPLG Gelar Pelatihan Pembuatan Aplikasi Berbasis Web', 'pplg-gelar-pelatihan-pembuatan-aplikasi-berbasis-web', '<p>Peserta didik PPLG mengikuti pelatihan pengembangan aplikasi web modern.</p>', 'Pelatihan aplikasi web bagi siswa PPLG.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'pplg,web', 1, 0, 0, NULL, 'PPLG Gelar Pelatihan Pembuatan Aplikasi Berbasis Web', 'Pelatihan aplikasi web bagi siswa PPLG.', 0, NULL, '2026-06-14 22:49:12', '2026-06-20 13:22:40'),
-(7, 'TBSM Adakan Servis Gratis untuk Masyarakat', 'tbsm-adakan-servis-gratis-untuk-masyarakat', '<p>Kegiatan servis gratis menjadi bagian dari pembelajaran dan pengabdian kepada masyarakat.</p>', 'Servis gratis oleh jurusan TBSM.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'tbsm,bakti-sosial', 1, 0, 0, NULL, 'TBSM Adakan Servis Gratis untuk Masyarakat', 'Servis gratis oleh jurusan TBSM.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 12:58:09'),
-(8, 'AKL Mengadakan Seminar Literasi Keuangan', 'akl-mengadakan-seminar-literasi-keuangan', '<p>Siswa AKL mendapatkan pemahaman mengenai pengelolaan keuangan sejak dini.</p>', 'Seminar literasi keuangan bagi siswa.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'akl,keuangan', 0, 0, 0, NULL, 'AKL Mengadakan Seminar Literasi Keuangan', 'Seminar literasi keuangan bagi siswa.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(9, 'MPLB Tingkatkan Kompetensi Administrasi Digital', 'mplb-tingkatkan-kompetensi-administrasi-digital', '<p>Siswa MPLB mengikuti pelatihan administrasi berbasis teknologi digital.</p>', 'Pelatihan administrasi digital MPLB.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'mplb,administrasi', 0, 0, 0, NULL, 'MPLB Tingkatkan Kompetensi Administrasi Digital', 'Pelatihan administrasi digital MPLB.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(10, 'Perhotelan Praktik Front Office di Hotel Mitra', 'perhotelan-praktik-front-office-di-hotel-mitra', '<p>Siswa perhotelan melaksanakan praktik kerja lapangan di hotel mitra sekolah.</p>', 'Praktik front office siswa perhotelan.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'perhotelan,pkl', 0, 0, 0, NULL, 'Perhotelan Praktik Front Office di Hotel Mitra', 'Praktik front office siswa perhotelan.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(11, 'SMK PGRI Subang Gelar Job Fair Bersama Mitra Industri', 'smk-pgri-subang-gelar-job-fair-bersama-mitra-industri', '<p>Kegiatan job fair menghadirkan berbagai perusahaan mitra untuk rekrutmen lulusan.</p>', 'Job fair bersama perusahaan mitra.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'jobfair,bkk', 0, 0, 0, NULL, 'SMK PGRI Subang Gelar Job Fair Bersama Mitra Industri', 'Job fair bersama perusahaan mitra.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(12, 'Pelaksanaan Asesmen Sumatif Akhir Semester', 'pelaksanaan-asesmen-sumatif-akhir-semester', '<p>Asesmen sumatif akhir semester dilaksanakan sesuai jadwal akademik sekolah.</p>', 'Pelaksanaan asesmen akhir semester.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 159, NULL, NULL, '2026-06-15 05:49:12', 'published', 'akademik,ujian', 0, 0, 0, NULL, 'Pelaksanaan Asesmen Sumatif Akhir Semester', 'Pelaksanaan asesmen akhir semester.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 22:35:25'),
-(13, 'Ekstrakurikuler Paskibra Raih Prestasi Gemilang', 'ekstrakurikuler-paskibra-raih-prestasi-gemilang', '<p>Tim paskibra berhasil mengharumkan nama sekolah pada ajang kompetisi.</p>', 'Prestasi ekstrakurikuler paskibra.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'paskibra,prestasi', 0, 0, 0, NULL, 'Ekstrakurikuler Paskibra Raih Prestasi Gemilang', 'Prestasi ekstrakurikuler paskibra.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12'),
-(14, 'Program Teaching Factory Terus Dikembangkan', 'program-teaching-factory-terus-dikembangkan', '<p>Sekolah berkomitmen meningkatkan kualitas pembelajaran berbasis industri.</p>', 'Pengembangan teaching factory sekolah.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 159, NULL, NULL, '2026-06-15 05:49:12', 'published', 'tefa,industri', 0, 0, 0, NULL, 'Program Teaching Factory Terus Dikembangkan', 'Pengembangan teaching factory sekolah.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 22:34:35'),
-(15, 'Sosialisasi Keselamatan Berkendara untuk Siswa', 'sosialisasi-keselamatan-berkendara-untuk-siswa', '<p>Kegiatan edukasi keselamatan berkendara dilakukan bersama kepolisian.</p>', 'Sosialisasi keselamatan berkendara.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 159, NULL, NULL, '2026-06-15 05:49:12', 'published', 'keselamatan,siswa', 1, 0, 0, NULL, 'Sosialisasi Keselamatan Berkendara untuk Siswa', 'Sosialisasi keselamatan berkendara.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 22:34:23'),
-(16, 'Peringatan Hari Pendidikan Nasional 2026', 'peringatan-hari-pendidikan-nasional-2026', '<p>Seluruh warga sekolah mengikuti upacara dan kegiatan peringatan Hardiknas.</p>', 'Peringatan Hari Pendidikan Nasional.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'hardiknas,sekolah', 1, 0, 1, NULL, 'Peringatan Hari Pendidikan Nasional 2026', 'Peringatan Hari Pendidikan Nasional.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 15:49:37'),
-(17, 'BKK Laksanakan Rekrutmen Bersama Perusahaan Nasional', 'bkk-laksanakan-rekrutmen-bersama-perusahaan-nasional', '<p>BKK memfasilitasi proses rekrutmen lulusan bersama perusahaan nasional.</p>', 'Rekrutmen lulusan melalui BKK.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 159, NULL, NULL, '2026-06-15 05:49:12', 'published', 'bkk,karir', 1, 0, 1, NULL, 'BKK Laksanakan Rekrutmen Bersama Perusahaan Nasional', 'Rekrutmen lulusan melalui BKK.', 0, NULL, '2026-06-14 22:49:12', '2026-06-16 06:38:45'),
-(18, 'Penguatan Karakter Melalui Kegiatan Keagamaan', 'penguatan-karakter-melalui-kegiatan-keagamaan', '<p>Kegiatan keagamaan rutin dilaksanakan untuk membentuk karakter peserta didik.</p>', 'Pembinaan karakter melalui kegiatan keagamaan.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'karakter,keagamaan', 0, 0, 1, NULL, 'Penguatan Karakter Melalui Kegiatan Keagamaan', 'Pembinaan karakter melalui kegiatan keagamaan.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 15:33:56'),
-(19, 'SMK PGRI Subang Terima Kunjungan Sekolah Mitra', 'smk-pgri-subang-terima-kunjungan-sekolah-mitra', '<p>Kunjungan dilakukan untuk berbagi praktik baik dalam pengelolaan pendidikan.</p>', 'Kunjungan sekolah mitra.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'kunjungan,kerjasama', 0, 0, 1, NULL, 'SMK PGRI Subang Terima Kunjungan Sekolah Mitra', 'Kunjungan sekolah mitra.', 0, NULL, '2026-06-14 22:49:12', '2026-06-15 15:33:55'),
-(20, 'Persiapan Kompetensi Keahlian Tingkat Nasional', 'persiapan-kompetensi-keahlian-tingkat-nasional', '<p>Siswa terbaik dipersiapkan untuk mengikuti kompetisi tingkat nasional.</p>', 'Persiapan kompetisi tingkat nasional.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, 1, NULL, '2026-06-15 05:49:12', 'published', 'lks,kompetisi', 0, 0, 0, NULL, 'Persiapan Kompetensi Keahlian Tingkat Nasional', 'Persiapan kompetisi tingkat nasional.', 0, NULL, '2026-06-14 22:49:12', '2026-06-19 06:21:13'),
-(21, 'Rapat Evaluasi Program Kerja Semester Genap', 'rapat-evaluasi-program-kerja-semester-genap', '<p>Evaluasi dilakukan untuk meningkatkan kualitas layanan pendidikan sekolah.</p>', 'Evaluasi program kerja semester genap.', 'news/dummy-news.jpg', 'Admin SMK PGRI Subang', 1, 1, 158, NULL, NULL, '2026-06-15 05:49:12', 'published', 'rapat,evaluasi', 0, 0, 0, NULL, 'Rapat Evaluasi Program Kerja Semester Genap', 'Evaluasi program kerja semester genap.', 0, NULL, '2026-06-14 22:49:12', '2026-06-14 22:49:12');
+(16, 'Penerimaan Mahasiswa Baru', 'penerimaan-mahasiswa-baru', '<p>Pendaftaran penerimaan mahasiswa baru telah dibuka ayo segera daftarkan diri anda menjadi calon mahasiswa di Subang International Hotel Institute, pendidikan satu tahun siap kerja dan mampu bersaing di dunia kerja, biaya pendaftaran murah dan terjangkau, Free Wifi, ruangan praktek yang nyaman, TUNGGUU APALAGII AYOOO SEGERAA DAFTARRRR</p>', 'Penerimaan Mahasiswa Baru', 'news/f_1785471363.jpeg', 'Admin Subang International Hotel Institute', 1, 1, 157, NULL, 'Tahun Ajaran 2026/2027', '2026-06-15 05:49:12', 'published', NULL, 4, 0, 1, NULL, 'Penerimaan Mahasiswa Baru', 'Penerimaan Mahasiswa Baru', 0, NULL, '2026-06-14 22:49:12', '2026-08-12 03:01:37'),
+(22, 'Penyambutan Sekaligus Penempatan Ke Asrama Mahasiswa Baru Di Kampus LP3 SIHI', 'penyambutan-sekaligus-penempatan-ke-asrama-mahasiswa-baru-di-kampus-lp3-sihi', '<p>Pada hari Minggu jam 10.00-15.00 Kampus LP3 Sihi melakukan penyambutan kedatangan mahasiswa baru, sekaligus langsung mengarahkan mahasiswa baru ke asrama mereka untuk melakukan penyimpanan barnag bawaan mereka&nbsp;</p>', NULL, 'news/whatsapp-image-2026-08-09-at-194415-1_1786338498.jpeg', 'Admin Subang International Hotel Institute', 1, 1, 160, NULL, 'Tahun Ajaran 2026/2027', '2026-08-10 12:08:23', 'published', NULL, 1, 0, 1, NULL, 'Penyambutan Sekaligus Penempatan Ke Asrama Mahasiswa Baru Di Kampus LP3 SIHI', NULL, 0, NULL, '2026-08-10 05:08:23', '2026-08-10 09:17:13'),
+(23, 'Class English Camp Day one', 'class-english-camp-day-one', '<p>pada tanggal 10 agustus 2026, di kegiatan day one Class English Camp, para mahasiswa melakukan kegiatan belajar sekaligus perkenalan terhadap semua instruktur yang ada di sihi, dan pemaparan jadwal, profile dan tata tertib yang ada di sihi</p>', NULL, 'news/day-1_1786338872.jpeg', 'Admin Subang International Hotel Institute', 1, NULL, 159, NULL, 'Tahun Ajaran 2026/2027', '2026-08-10 12:14:32', 'published', NULL, 2, 0, 1, NULL, 'Class English Camp Day one', NULL, 0, NULL, '2026-08-10 05:14:32', '2026-08-11 03:20:54'),
+(25, 'Class English Camp Day 3', 'class-english-camp-day-3', '<p>Pada hari rabu tanggal 12 agustus 2026, mahasiswa baru sihi sedang melanjutkan kegiatan english camp yang dimana kegiatan dimulai dari olahraga pagi bersama, lalu dilanjut sholat dhuha dan kemudian dilanjut dengan pembelajaran dikelas dengan jadwal yang sudah diberikan.</p>', NULL, '[\"news\\/Z8aNbpCKErMINNBN9Dtt1K6ZPXwjdeJVMYPrPNvq.jpg\",\"news\\/EvgHOT4tnnJXzLaer8h2jaV6cQEn5Ez8EordWuDz.jpg\"]', 'Admin Subang International Hotel Institute', 1, NULL, 159, NULL, 'Tahun Ajaran 2026/2027', '2026-08-12 09:55:38', 'published', NULL, 2, 0, 1, NULL, 'Class English Camp Day 3', NULL, 0, NULL, '2026-08-12 02:55:38', '2026-08-12 02:55:49');
 
 -- --------------------------------------------------------
 
@@ -943,29 +1147,29 @@ INSERT INTO `news` (`id`, `title`, `slug`, `content`, `excerpt`, `image`, `autho
 --
 
 CREATE TABLE `pages` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(150) NOT NULL,
-  `page_type` varchar(50) NOT NULL DEFAULT 'page',
-  `structure_common_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `structure_type` varchar(100) DEFAULT NULL,
-  `period` varchar(50) DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `subtitle` varchar(255) DEFAULT NULL,
-  `content` longtext DEFAULT NULL,
-  `excerpt` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `banner` varchar(255) DEFAULT NULL,
-  `attachment` varchar(255) DEFAULT NULL,
-  `custom1` varchar(255) DEFAULT NULL,
-  `custom2` varchar(255) DEFAULT NULL,
-  `custom3` varchar(255) DEFAULT NULL,
-  `custom4` text DEFAULT NULL,
-  `custom5` text DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `is_public` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `slug` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `page_type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'page',
+  `structure_common_id` bigint UNSIGNED DEFAULT NULL,
+  `structure_type` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `period` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `subtitle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `content` longtext COLLATE utf8mb4_general_ci,
+  `excerpt` text COLLATE utf8mb4_general_ci,
+  `image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `banner` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `attachment` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom3` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom4` text COLLATE utf8mb4_general_ci,
+  `custom5` text COLLATE utf8mb4_general_ci,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `is_public` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -976,7 +1180,11 @@ CREATE TABLE `pages` (
 
 INSERT INTO `pages` (`id`, `slug`, `page_type`, `structure_common_id`, `structure_type`, `period`, `jurusan_id`, `title`, `subtitle`, `content`, `excerpt`, `image`, `banner`, `attachment`, `custom1`, `custom2`, `custom3`, `custom4`, `custom5`, `is_active`, `is_public`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'sambutan-kepala-sekolah', 'page', NULL, NULL, NULL, NULL, 'Sambutan Kepala Sekolah', NULL, '<h2>Assalamu\'alaikum Warahmatullahi Wabarakatuh<br>&nbsp;</h2><p style=\"text-align:justify;\">Puji syukur kita panjatkan ke hadirat Allah SWT atas segala rahmat dan karunia-Nya sehingga SMK PGRI Subang terus dapat berkontribusi dalam mencetak generasi yang unggul, berkarakter, dan siap menghadapi tantangan dunia kerja maupun pendidikan di masa depan.</p><p style=\"text-align:justify;\">Selamat datang di website resmi SMK PGRI Subang. Website ini hadir sebagai sarana informasi dan komunikasi bagi peserta didik, orang tua, alumni, dunia usaha dan dunia industri, serta masyarakat luas untuk mengenal lebih dekat profil, program, prestasi, dan berbagai kegiatan yang ada di sekolah kami.</p><p style=\"text-align:justify;\">Sebagai sekolah kejuruan yang berkomitmen pada peningkatan kualitas pendidikan, SMK PGRI Subang senantiasa berupaya menghadirkan pembelajaran yang relevan dengan perkembangan teknologi dan kebutuhan industri. Melalui berbagai program unggulan, kerja sama dengan dunia usaha dan dunia industri, serta dukungan tenaga pendidik yang profesional, kami bertekad menciptakan lulusan yang kompeten, berakhlak mulia, kreatif, inovatif, dan siap bersaing di era global.</p><p style=\"text-align:justify;\">Kami percaya bahwa pendidikan yang berkualitas tidak hanya membentuk kemampuan akademik dan keterampilan, tetapi juga karakter, kedisiplinan, dan tanggung jawab sebagai bekal kehidupan bermasyarakat.</p><p style=\"text-align:justify;\">Akhir kata, kami mengucapkan terima kasih atas kepercayaan dan dukungan semua pihak terhadap SMK PGRI Subang. Semoga website ini dapat memberikan manfaat dan menjadi media informasi yang efektif bagi seluruh pengunjung.</p><p style=\"text-align:justify;\">Wassalamu\'alaikum Warahmatullahi Wabarakatuh.</p><p>&nbsp;</p><p>&nbsp;</p><p><strong>Kepala SMK PGRI Subang</strong></p><p><strong>Andika Aulia</strong></p>', NULL, 'pages/screenshot-2026-05-29-215617_1781473032.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, '2026-06-14 21:37:12', '2026-06-14 21:37:12'),
-(2, 'osis-periode-20262027', 'structure', 35, 'organisasi', 'Tahun Ajaran 2026/2027', NULL, 'OSIS Periode 2026/2027', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, '2026-06-17 17:01:59', '2026-06-17 17:01:59');
+(2, 'Struktur Institusi', 'structure', 258, 'yayasan', 'Tahun Ajaran 2026/2027', NULL, 'Struktural Institusi', NULL, NULL, NULL, 'pages/backgroundd_1785483811.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-06-17 17:01:59', '2026-07-31 07:43:31'),
+(3, 'sejarah-sihi', 'page', NULL, NULL, NULL, NULL, 'Sejarah SIHI', NULL, '<p>Subang Internasional Hotel Institute (SIHI) merupakan lembaga pendidikan dan pelatihan di bawah naungan Yayasan Utomo Bhakti, didirikan pada tahun 2004 oleh Raden Sutijadi. Bertempat di jl. Ki Hajar Dewantara Gg. Bumisari Rt 042/Rw 005 Kel. Dangdeur Kec.Subang, Subang-Jawa Barat. Berfokus pada pengembangan pendidikan dan pelatihan perhotelan dan kapal pesiar, SIHI mencetak individu tenaga ahli di bidang perhotelan dan kapal pesiar berkepribadian disiplin dan religius serta memeiliki kesiapan untuk menghadapi persaingan industri global. SIHI telah mencetak ratusan tenaga ahli di bidang perhotelan dan kapal pesiar yang tersebar di dalam maupun luar negeri meliputi Asia, Eropa, dan Timur Tengah. SIHI telah terakreditasi dan juga bekerja sama dengan industri pariwisata, restoran, hotel dan agen kapal pesiar untuk menyelaraskan pendidikan dan pelatihan yang kami terapkan sesuai dengan kebutuhan industri yang di butuhkan berkelanjutan.</p>', NULL, 'pages/sejarah_1785471898.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, '2026-07-31 04:24:59', '2026-07-31 04:24:59'),
+(4, 'visi-misi-tujuan-sihi', 'page', NULL, NULL, NULL, NULL, 'Visi Misi & Tujuan SIHI', NULL, '<p><strong>VISI :</strong></p><p>Menjadikan pusat lembaga pendidikan dan pelatihan hotel dan kapal pesiar yang unggul di tingkat nasional dan internasional.</p><p>&nbsp;</p><p><strong>MISI :</strong></p><ol><li>Mendidik siswa yang siap pakai.</li><li>Menyiapkan tenaga kerja untuk merebut peluang kerja khususnya bidang perhotelan dan kapal pesiar nasional dan internasional</li></ol><p><strong>TUJUAN :</strong></p><p>Menciptakan lulusan yang memiliki kompetensi unggul dan handal di dunia kerja perhotelan dan kapal pesiar baik nasional maupun internasional</p>', NULL, 'pages/bg-visi-misi_1785472792.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, '2026-07-31 04:39:52', '2026-07-31 04:39:52'),
+(5, 'tim-manajemen-dan-instruktur', 'structure', NULL, 'yayasan', 'Tahun Ajaran 2026/2027', NULL, 'TIM manajemen DAN INSTRUKTUR', NULL, NULL, NULL, 'pages/backgroundd_1785919642.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-07-31 07:01:23', '2026-08-10 04:39:47'),
+(6, 'akreditasi-sihi', 'page', NULL, NULL, 'Tahun Ajaran 2026/2027', NULL, 'Akreditasi SIHI', NULL, '<p>Subang International Hotel Institute (SIHI) merupakan lembaga pendidikan dan pelatihan di bawah naungan Yayasan Utomo Bhakti yang telah memperoleh akreditasi resmi sebagai pengakuan atas mutu penyelenggaraan pendidikan. Akreditasi ini menjadi jaminan bahwa seluruh program pendidikan dan pelatihan yang diselenggarakan oleh SIHI telah memenuhi standar kualitas yang ditetapkan oleh badan akreditasi nasional.<br>Melalui proses akreditasi, SIHI terus melakukan evaluasi dan peningkatan berkelanjutan dalam aspek kurikulum, sarana prasarana, kualitas pengajar, serta tata kelola lembaga, demi menghasilkan lulusan yang kompeten dan diakui oleh dunia industri perhotelan dan kapal pesiar, Sebagai bentuk komitmen terhadap mutu pendidikan, SIHI telah meraih akreditasi yang mengakui kualitas penyelenggaraan pendidikan dan pelatihan di bidang perhotelan dan kapal pesiar. Akreditasi ini mencerminkan:<br>Kurikulum yang selaras dengan standar kompetensi industri nasional dan internasional<br>Tenaga pendidik profesional dan berpengalaman di bidang hospitality<br>Fasilitas praktik modern yang mendukung pembelajaran berbasis industri<br>Kerjasama strategis dengan hotel, restoran, dan agen kapal pesiar ternama<br>Dengan akreditasi ini, SIHI terus berupaya mencetak tenaga ahli perhotelan dan kapal pesiar yang siap kerja, berdaya saing global, dan tersebar di berbagai negara di Asia, Eropa, dan Timur Tengah.</p>', NULL, 'pages/foto-2_1785735524.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, '2026-08-03 05:36:02', '2026-08-03 05:38:44');
 
 -- --------------------------------------------------------
 
@@ -985,8 +1193,8 @@ INSERT INTO `pages` (`id`, `slug`, `page_type`, `structure_common_id`, `structur
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -997,12 +1205,12 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` text NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` text COLLATE utf8mb4_general_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_general_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1016,29 +1224,29 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `programs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(20) NOT NULL,
-  `singkatan` varchar(50) NOT NULL,
-  `nama` varchar(150) NOT NULL,
-  `ka_prodi` varchar(150) DEFAULT NULL,
-  `akreditasi` varchar(10) DEFAULT NULL,
-  `logo` varchar(255) DEFAULT NULL,
-  `banner` varchar(255) DEFAULT NULL,
-  `video_url` varchar(500) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone` varchar(30) DEFAULT NULL,
-  `tahun_berdiri` int(10) UNSIGNED DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `deskripsi_singkat` varchar(500) DEFAULT NULL,
-  `visi` text DEFAULT NULL,
-  `misi` text DEFAULT NULL,
-  `tujuan` text DEFAULT NULL,
-  `profil_lulusan` text DEFAULT NULL,
-  `kurikulum` varchar(100) DEFAULT NULL,
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `kode` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `singkatan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `ka_prodi` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `akreditasi` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `banner` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `video_url` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tahun_berdiri` int UNSIGNED DEFAULT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `deskripsi_singkat` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `visi` text COLLATE utf8mb4_general_ci,
+  `misi` text COLLATE utf8mb4_general_ci,
+  `tujuan` text COLLATE utf8mb4_general_ci,
+  `profil_lulusan` text COLLATE utf8mb4_general_ci,
+  `kurikulum` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1048,13 +1256,42 @@ CREATE TABLE `programs` (
 --
 
 INSERT INTO `programs` (`id`, `kode`, `singkatan`, `nama`, `ka_prodi`, `akreditasi`, `logo`, `banner`, `video_url`, `email`, `phone`, `tahun_berdiri`, `deskripsi`, `deskripsi_singkat`, `visi`, `misi`, `tujuan`, `profil_lulusan`, `kurikulum`, `order`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'PPLG', 'PPLG', 'Pengembangan Perangkat Lunak dan Gim', '1', 'A', 'programs/0Dj8g9vv1jjIb60328Pc8FoxhrvPdN8NaYdMeZgY.png', NULL, '', '', '', NULL, '<p><strong>Pengembangan Perangkat Lunak dan Gim (PPLG)</strong> adalah salah satu program keahlian pada bidang Teknologi Informasi di SMK yang berfokus pada pengembangan perangkat lunak (software), aplikasi, website, aplikasi mobile, basis data, hingga pembuatan gim. Program ini merupakan pengembangan dari jurusan Rekayasa Perangkat Lunak (RPL) yang mulai berganti nama menjadi PPLG sesuai kebijakan Kemendikbud.</p><h3>Tujuan Program Keahlian</h3><p>PPLG bertujuan menghasilkan lulusan yang:</p><ul><li>Menguasai logika dan algoritma pemrograman.</li><li>Mampu merancang, membuat, menguji, dan memelihara perangkat lunak.</li><li>Memiliki kemampuan pengembangan aplikasi web, desktop, mobile, dan gim.</li><li>Memahami kebutuhan pengguna serta konsep User Experience (UX).</li><li>Memiliki keterampilan kerja, komunikasi, kolaborasi, dan pemecahan masalah yang dibutuhkan industri digital.&nbsp;</li></ul><h2>Kompetensi yang Dipelajari</h2><h3>1. Dasar Pemrograman</h3><p>Siswa mempelajari:</p><ul><li>Logika algoritma</li><li>Flowchart</li><li>Struktur data</li><li>Pemrograman prosedural</li><li>Pemrograman berorientasi objek (OOP)</li><li>Debugging dan testing program</li></ul><p>Bahasa pemrograman yang umum digunakan antara lain:</p><ul><li>JavaScript</li><li>PHP</li><li>Python</li><li>Java</li><li>Kotlin</li><li>C++ (tergantung sekolah)&nbsp;</li></ul><h3>2. Pengembangan Website</h3><p>Materi meliputi:</p><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Framework Frontend</li><li>PHP / Node.js</li><li>Framework Backend</li><li>REST API</li><li>Deployment Website</li></ul><p>Siswa mampu membuat website dinamis dan sistem informasi berbasis web.</p><h3>3. Pengembangan Aplikasi Mobile</h3><p>Siswa belajar:</p><ul><li>Android Development</li><li>Kotlin / Java</li><li>UI Mobile</li><li>Konsumsi API</li><li>Database Mobile</li></ul><p>Sehingga mampu membuat aplikasi Android secara mandiri.</p><h3>4. Basis Data (Database)</h3><p>Materi meliputi:</p><ul><li>Perancangan database</li><li>ERD (Entity Relationship Diagram)</li><li>SQL</li><li>MySQL</li><li>PostgreSQL</li><li>Manajemen data</li></ul><p>Siswa belajar membangun sistem penyimpanan data yang efisien dan aman.</p><h3>5. Pengembangan Gim</h3><p>Materi yang dipelajari:</p><ul><li>Dasar game development</li><li>Game design</li><li>Animasi dan multimedia</li><li>Engine pengembangan gim</li><li>Pembuatan gim edukasi dan hiburan</li></ul><p>Siswa dapat membuat gim sederhana hingga menengah sesuai tingkat kompetensi.</p><h3>6. Rekayasa Perangkat Lunak</h3><p>Mempelajari:</p><ul><li>Software Development Life Cycle (SDLC)</li><li>Analisis kebutuhan sistem</li><li>Perancangan sistem</li><li>Dokumentasi</li><li>Quality Assurance (QA)</li><li>Pengujian perangkat lunak</li></ul><p>Siswa memahami proses pengembangan software yang digunakan di industri.</p><h2>Fasilitas Praktik</h2><p>Umumnya jurusan PPLG didukung oleh:</p><ul><li>Laboratorium komputer</li><li>Server lokal</li><li>Jaringan internet</li><li>Software development tools</li><li>Version control (Git)</li><li>Platform cloud dan hosting</li></ul><p>Sehingga pembelajaran lebih menekankan praktik dibanding teori.</p><h2>Peluang Karier Lulusan</h2><p>Lulusan PPLG dapat bekerja sebagai:</p><ul><li>Web Developer</li><li>Frontend Developer</li><li>Backend Developer</li><li>Fullstack Developer</li><li>Mobile Developer</li><li>Game Developer</li><li>Software Engineer</li><li>Programmer</li><li>Database Administrator</li><li>Quality Assurance (QA)</li><li>UI/UX Designer</li><li>IT Support</li><li>Freelancer Digital</li><li>Technopreneur (wirausaha bidang teknologi)&nbsp;</li></ul><h2>Peluang Melanjutkan Pendidikan</h2><p>Lulusan PPLG dapat melanjutkan ke perguruan tinggi pada bidang:</p><ul><li>Teknik Informatika</li><li>Ilmu Komputer</li><li>Sistem Informasi</li><li>Teknologi Informasi</li><li>Rekayasa Perangkat Lunak</li><li>Data Science</li><li>Cybersecurity</li><li>Artificial Intelligence</li></ul><h2>Profil Lulusan PPLG</h2><p>Lulusan PPLG diharapkan menjadi tenaga profesional yang mampu:</p><p>✓ Membuat website dan aplikasi modern<br>✓ Mengembangkan sistem informasi perusahaan<br>✓ Mengelola database skala kecil hingga besar<br>✓ Mengembangkan aplikasi mobile Android<br>✓ Membuat dan mengembangkan gim digital<br>✓ Beradaptasi dengan teknologi baru secara cepat<br>✓ Bekerja dalam tim pengembangan perangkat lunak profesional</p>', 'Mempelajari pengembangan aplikasi, website, basis data, dan teknologi perangkat lunak.', 'Menjadi program keahlian unggulan yang menghasilkan lulusan di bidang Pengembangan Perangkat Lunak dan Gim yang kompeten, kreatif, inovatif, berkarakter, serta mampu bersaing di dunia kerja, dunia usaha, dan dunia industri berbasis teknologi digital.', 'Menyelenggarakan pembelajaran berbasis kompetensi sesuai kebutuhan industri teknologi informasi.\nMeningkatkan kemampuan peserta didik dalam bidang pemrograman, pengembangan aplikasi, dan teknologi digital.\nMenumbuhkan kreativitas, inovasi, dan jiwa kewirausahaan di bidang teknologi informasi.\nMembekali peserta didik dengan keterampilan kerja, komunikasi, dan kolaborasi profesional.\nMenerapkan budaya kerja industri, disiplin, dan tanggung jawab dalam setiap kegiatan pembelajaran.\nMenjalin kerja sama dengan dunia usaha, dunia industri, dan perguruan tinggi untuk meningkatkan kualitas lulusan.\nMendorong peserta didik untuk menghasilkan karya perangkat lunak dan gim yang bermanfaat bagi masyarakat.', 'Menghasilkan lulusan yang memiliki kompetensi di bidang pemrograman dan pengembangan perangkat lunak.\nMembekali peserta didik dengan kemampuan membuat aplikasi berbasis web, desktop, dan mobile.\nMembentuk peserta didik yang mampu merancang, mengembangkan, menguji, dan memelihara perangkat lunak.\nMengembangkan kemampuan peserta didik dalam pengelolaan basis data dan integrasi sistem informasi.\nMembekali peserta didik dengan keterampilan pengembangan gim dan teknologi multimedia interaktif.\nMenyiapkan lulusan yang siap bekerja, berwirausaha, atau melanjutkan pendidikan ke jenjang yang lebih tinggi.\nMembentuk lulusan yang berkarakter, disiplin, adaptif, dan mampu mengikuti perkembangan teknologi.', 'Lulusan Program Keahlian Pengembangan Perangkat Lunak dan Gim (PPLG) memiliki kompetensi dalam analisis kebutuhan sistem, perancangan, pengembangan, pengujian, dan pemeliharaan perangkat lunak. Lulusan mampu mengembangkan aplikasi berbasis web, desktop, mobile, serta gim sederhana hingga menengah dengan memanfaatkan teknologi dan bahasa pemrograman terkini. Selain itu, lulusan memiliki kemampuan bekerja secara individu maupun tim, berkomunikasi secara profesional, serta siap bekerja di dunia industri, berwirausaha, maupun melanjutkan pendidikan ke perguruan tinggi.', 'Kurikulum Merdeka', 1, 1, NULL, 1, '2026-06-14 20:07:00', '2026-06-18 23:34:47'),
-(2, 'TJKT', 'TJKT', 'Teknik Jaringan Komputer dan Telekomunikasi', '2', 'A', 'programs/AVBILRuAWrjdY3ym4RmrvCqBBeE3YthFpgT8C9Cb.png', NULL, NULL, NULL, NULL, NULL, 'Mempelajari jaringan komputer, server, keamanan jaringan, dan telekomunikasi.', NULL, NULL, NULL, NULL, NULL, 'Kurikulum Merdeka', 2, 1, NULL, 1, '2026-06-14 20:07:00', '2026-06-16 09:00:52'),
-(3, 'TBSM', 'TBSM', 'Teknik dan Bisnis Sepeda Motor', NULL, 'A', 'programs/1FdnBrWJoFZK0tyrZ43NuFbKeVI8XjbsQU6ZEmpn.png', NULL, NULL, NULL, NULL, NULL, 'Mempelajari perawatan, perbaikan, dan manajemen bisnis sepeda motor modern.', NULL, NULL, NULL, NULL, NULL, 'Merdeka', 3, 1, NULL, 1, '2026-06-14 20:07:00', '2026-06-16 09:00:51'),
-(4, 'AKL', 'AKL', 'Akuntansi dan Keuangan Lembaga', NULL, 'A', 'programs/0H9Y171V4L3qTcqUVix9dK04RTGHlAid1vFa8lTe.png', NULL, NULL, NULL, NULL, NULL, 'Mempelajari akuntansi, perpajakan, laporan keuangan, dan administrasi keuangan.', NULL, NULL, NULL, NULL, NULL, 'Kurikulum Merdeka', 4, 1, NULL, 1, '2026-06-14 20:07:00', '2026-06-16 09:00:12'),
-(5, 'MPLB', 'MPLB', 'Manajemen Perkantoran dan Layanan Bisnis', NULL, 'A', 'programs/niHPXIRZuwVJKkliZM7I33PX17trmfB09VMuxz5K.png', NULL, NULL, NULL, NULL, NULL, 'Mempelajari administrasi perkantoran, layanan bisnis, dan komunikasi profesional.', NULL, NULL, NULL, NULL, NULL, 'Kurikulum Merdeka', 5, 1, NULL, 1, '2026-06-14 20:07:00', '2026-06-16 08:58:17'),
-(6, 'PM', 'PM', 'Pemasaran', NULL, 'A', 'programs/CldUaapLCPpTRJNgRDbo39ddeZEqQsSmW1qBNcfg.png', NULL, NULL, NULL, NULL, NULL, 'Mempelajari strategi pemasaran, penjualan, bisnis digital, dan kewirausahaan.', NULL, NULL, NULL, NULL, NULL, 'Kurikulum Merdeka', 6, 1, NULL, 1, '2026-06-14 20:07:00', '2026-06-14 13:34:16'),
-(7, 'PH', 'PH', 'Perhotelan', NULL, 'A', 'programs/gvXmpDZzcPhwanbDR3rXfab1KOb0QJ3S3gvUuhAi.png', NULL, NULL, NULL, NULL, NULL, 'Mempelajari pelayanan hotel, housekeeping, front office, dan industri pariwisata.', NULL, NULL, NULL, NULL, NULL, 'Kurikulum Merdeka', 7, 1, NULL, 1, '2026-06-14 20:07:00', '2026-06-14 13:36:26');
+(4, 'PP', 'D4PP', 'Diploma 4 Pengelolaan Perhotelan, gelar S.Tr.Par', NULL, 'A', 'programs/nmzPUdTGcpdZCGFuALHu76eZOQraQ4q5hTRblxyD.jpg', NULL, '', '', '', NULL, '', 'Menyiapkan tenaga profesional pariwisata konseptual yang dapat menggabungkan keterampilan teknis dan keterampilan manajerial dan etika perhotelan berdasarkan standar kompetensi untuk bidang Operasi Perhotelan.', '', '', '', '', 'Kurikulum Merdeka', 4, 1, NULL, 1, '2026-06-14 20:07:00', '2026-08-10 07:19:27'),
+(5, 'DPH', 'D3PH', ' Diploma 3 Perhotelan, gelar A.Md.Par', NULL, 'A', 'programs/01Hzag82vnlNkCrUVmf79tACmaM6i7CI0F5beiBg.jpg', NULL, '', '', '', NULL, '', 'Mencetak SDM profesional dalam hal manajerial yang mampu mensinergikan antara penguasaan manajemen dengan keahlian bidang operasional perhotelan dan usaha perjalanan wisata. Dijamin pendampingan karir sampai kerja di semester 4.', '', '', '', '', 'Kurikulum Merdeka', 5, 1, NULL, 1, '2026-06-14 20:07:00', '2026-08-10 07:18:20'),
+(6, 'LHT', 'LHT', 'Diploma 2 (Fastrack) Layanan Hotel Terapung, gelar', NULL, 'A', 'programs/e3EOhH1ybVQZAbr2FM8xGdnLcRKWQzud0jvMFSQQ.jpg', NULL, '', '', '', NULL, '', 'Lulusan dipersiapkan untuk cepat bekerja di industri dengan kompetensi layanan hotel dan kapal pesiar, solusi tepat untuk Anda yang berminat kerja di kapal pesiar', '', '', '', '', 'Kurikulum Merdeka', 6, 1, NULL, 1, '2026-06-14 20:07:00', '2026-08-10 07:15:39'),
+(7, 'PH', 'PH', 'Diploma 1 Perhotelan, gelar A.P.Par', NULL, 'A', 'programs/HC3tdtekd78MJKLBLbKqfZJ4Vn3Xd9ZmnOHThTcJ.jpg', 'programs/banners/Px5dFbgXoyJCkdxIK8jFBK7YawlwAt3jHKSqiNU2.jpg', '', '', '', NULL, '', 'Solusi untuk mahasiswa yang ingin supaya cepat bekerja di industri perhotelan, dijamin pendampingan karir sampai kerja setelah lulus.', '', '', '', '', 'Kurikulum Merdeka', 7, 1, NULL, 1, '2026-06-14 20:07:00', '2026-08-10 07:18:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registrations`
+--
+
+CREATE TABLE `registrations` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nama_lengkap` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `jenis_kelamin` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `tgl_lahir` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `asal_sekolah` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `alamat_rumah` text COLLATE utf8mb4_general_ci NOT NULL,
+  `tahun_lulus` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `jurusan_sekolah` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `no_whatsapp` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_ortu` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `program` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Baru',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registrations`
+--
+
+INSERT INTO `registrations` (`id`, `nama_lengkap`, `jenis_kelamin`, `tgl_lahir`, `asal_sekolah`, `alamat_rumah`, `tahun_lulus`, `jurusan_sekolah`, `no_whatsapp`, `no_ortu`, `email`, `program`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Riko Tegal', 'Perempuan', '1945-08-17', 'SMAN 1 KALIJATI', 'TEGAL KELAPA TAPI TIDAK ADA KELAPA', '2023', 'IPS', '08432942374287', '028340174921387', 'apaaja@gmail.com', 'Diploma 3 Perhotelan, gelar A.Md.Par', 'Diterima', '2026-08-04 04:19:52', '2026-08-04 04:48:51'),
+(2, 'sadd', 'Laki-laki', '2026-08-04', 'sdq', 'dada', '2026', 'ipa', '03402342034', '09349283492', 'naonwae@gmail.com', 'Diploma 1 Perhotelan, gelar A.P.Par', 'Baru', '2026-08-04 04:53:54', '2026-08-04 04:53:54');
 
 -- --------------------------------------------------------
 
@@ -1063,18 +1300,18 @@ INSERT INTO `programs` (`id`, `kode`, `singkatan`, `nama`, `ka_prodi`, `akredita
 --
 
 CREATE TABLE `secretariat` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `nip` varchar(30) DEFAULT NULL,
-  `position` varchar(100) DEFAULT NULL,
-  `division` varchar(100) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `contact` varchar(100) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nip` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `position` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `division` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contact` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1086,13 +1323,13 @@ CREATE TABLE `secretariat` (
 --
 
 CREATE TABLE `security_logs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) DEFAULT NULL,
-  `user_agent` text DEFAULT NULL,
-  `action` varchar(100) DEFAULT NULL,
-  `status` enum('allowed','blocked','suspicious') NOT NULL DEFAULT 'allowed',
-  `details` text DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_general_ci,
+  `action` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` enum('allowed','blocked','suspicious') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'allowed',
+  `details` text COLLATE utf8mb4_general_ci,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1104,10 +1341,10 @@ CREATE TABLE `security_logs` (
 --
 
 CREATE TABLE `security_settings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `key` varchar(100) NOT NULL,
-  `value` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `key` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `value` text COLLATE utf8mb4_general_ci,
+  `description` text COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1131,12 +1368,12 @@ INSERT INTO `security_settings` (`id`, `key`, `value`, `description`, `created_a
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) DEFAULT NULL,
-  `user_agent` text DEFAULT NULL,
-  `payload` longtext NOT NULL,
-  `last_activity` int(11) NOT NULL
+  `id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_general_ci,
+  `payload` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1155,32 +1392,33 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 --
 
 CREATE TABLE `settings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `institution_name` varchar(255) DEFAULT NULL,
-  `managed_by` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `office_hours` varchar(100) DEFAULT NULL,
-  `fax` varchar(50) DEFAULT NULL,
-  `website` varchar(100) DEFAULT NULL,
-  `google_map` text DEFAULT NULL,
-  `logo` varchar(255) DEFAULT NULL,
-  `logo_square` varchar(255) DEFAULT NULL,
-  `favicon` varchar(255) DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `instagram` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `linkedin` varchar(255) DEFAULT NULL,
-  `youtube` varchar(255) DEFAULT NULL,
-  `whatsapp` varchar(50) DEFAULT NULL,
-  `ppdb_link` varchar(255) DEFAULT NULL,
-  `vision` text DEFAULT NULL,
-  `mission` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `active_period` varchar(50) DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `institution_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `managed_by` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `office_hours` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fax` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `website` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `google_map` text COLLATE utf8mb4_general_ci,
+  `logo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `logo_square` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `favicon` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `linkedin` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `whatsapp` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tiktok` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ppdb_link` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `vision` text COLLATE utf8mb4_general_ci,
+  `mission` text COLLATE utf8mb4_general_ci,
+  `description` text COLLATE utf8mb4_general_ci,
+  `active_period` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1189,8 +1427,8 @@ CREATE TABLE `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `institution_name`, `managed_by`, `address`, `email`, `phone`, `office_hours`, `fax`, `website`, `google_map`, `logo`, `logo_square`, `favicon`, `facebook`, `instagram`, `twitter`, `linkedin`, `youtube`, `whatsapp`, `ppdb_link`, `vision`, `mission`, `description`, `active_period`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'SMK PGRI Subang', NULL, 'Jl. Marsinu No. 7, Cigadung, Kecamatan Subang, Dangdeur, Kec. Subang, Kabupaten Subang, Jawa Barat 41211', 'info@smkpgrisubang.sch.id', '(0260) 411420', NULL, '-', 'https://smkpgrisubang.sch.id', '<iframe src=\"https://embed.waze.com/iframe?zoom=16&lat=-6.549760&lon=107.761489&ct=livemap\" width=\"600\" height=\"450\" allowfullscreen></iframe>', 'settings/download_1781246303.jpg', NULL, NULL, 'https://facebook.com/smkpgrisubang', 'https://instagram.com/smkpgrisubang', 'https://twitter.com/smkpgrisubbang', NULL, 'https://youtube.com/smkpgrisubang', '-', 'https://smkal-wutsqo.sch.id/ppdb.html', 'Menjadi Sekolah Unggulan Wirausaha sesuai kompetensi keahlian', 'Senantiasa selalu meningkatkan keimanan dan ketaqwaan kepada Allah SWT.\nMemberdayakan semua potensi yang ada dalam membentuk jiwa wirausaha.\nPeningkatan mutu pendidikan melalui proses kegiatan pembelajaran yang sesuai dengan kebutuhan masyarakat dan pasar kerja.', 'Sekolah Menengah Kejuruan PGRI Subang adalah sekolah menengah tingkat atas berbasis kejuruan. SMK PGRI Subang sekolah yang menyelenggarakan pendidikan kejuruan kelompok teknologi, informasi dan industri', '2026-2027', 1, 1, '2026-06-11 21:12:52', '2026-06-18 23:57:02');
+INSERT INTO `settings` (`id`, `institution_name`, `managed_by`, `address`, `email`, `phone`, `office_hours`, `fax`, `website`, `google_map`, `logo`, `logo_square`, `favicon`, `facebook`, `instagram`, `twitter`, `linkedin`, `youtube`, `whatsapp`, `tiktok`, `ppdb_link`, `vision`, `mission`, `description`, `active_period`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Subang International Hotel Institute', NULL, 'Jl. DI.Panjaitan No.73, Karanganyar, Kec. Subang, Kabupaten Subang, Jawa Barat 41211', 'sihi.online@gmail.com', '(0260) 4247867', NULL, '-', 'https://smkpgrisubang.sch.id', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.6563537776665!2d107.76508517428738!3d-6.564986864175238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e693b633769f013%3A0xb75fb4a255b69bd5!2sSIHI%20-%20Subang%20International%20Hotel%20Institute!5e0!3m2!1sid!2sid!4v1785379602260!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>', 'settings/logo-sihi_1785379797.png', NULL, NULL, 'https://www.facebook.com/sihi.subang', 'https://instagram.com/sihi.subang', 'https://x.com/lp3sihi', NULL, 'https://www.youtube.com/@sihi.subang6609', '6282123230470', 'https://www.tiktok.com/@sihi.subang', '', 'Menjadikan pusat lembaga pendidikan dan pelatihan hotel dan kapal pesiar yang unggul di tingkat nasional dan internasional', '1. Mendidik siswa yang siap pakai\n2. Menyiapkan tenaga kerja untuk merebut peluang kerja khususnya bidang perhotelan dan kapal pesiar nasional dan internasional', 'Sihi merupakan lembaga Pendidikan dan Pelatihan Perhotelan dan Kapal pesiar dengan program pendidikan satu tahun. 6 bulan Materi dan 6 bulan On The Job Training.', '2026-2027', 1, 1, '2026-06-11 21:12:52', '2026-08-04 08:19:20');
 
 -- --------------------------------------------------------
 
@@ -1199,21 +1437,21 @@ INSERT INTO `settings` (`id`, `institution_name`, `managed_by`, `address`, `emai
 --
 
 CREATE TABLE `structural_members` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `gender` enum('male','female') NOT NULL DEFAULT 'male',
-  `birth_place` varchar(100) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` enum('male','female') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'male',
+  `birth_place` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `jabatan` varchar(100) NOT NULL,
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `description` text DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jabatan` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `description` text COLLATE utf8mb4_general_ci,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1223,17 +1461,27 @@ CREATE TABLE `structural_members` (
 --
 
 INSERT INTO `structural_members` (`id`, `name`, `photo`, `gender`, `birth_place`, `birth_date`, `address`, `phone`, `email`, `jabatan`, `order`, `is_active`, `description`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Drs. H. Mulyana, M.Pd.', 'structural/structural_6a2ba9cee5ad27.69841199.jpg', 'male', 'Bandung', '1965-03-24', 'Jl. Dago Asri No. 10, Bandung', '08112233445', 'mulyana@yayasan.org', 'Ketua Yayasan Pendidikan', 1, 1, 'Pendiri sekaligus pembina utama Yayasan Pendidikan yang menaungi sekolah.', 1, 1, '2026-06-11 21:12:53', '2026-06-11 23:40:14'),
-(2, 'Hj. Ratna Sari, S.E.', 'structural/dummy.jpg', 'female', 'Jakarta', '1972-07-12', 'Jl. Surya Sumantri No. 34, Bandung', '08112233446', 'ratna.sari@yayasan.org', 'Sekretaris Yayasan', 2, 1, 'Mengawasi jalannya administrasi umum dan tata kelola organisasi yayasan.', 1, 1, '2026-06-11 21:12:53', '2026-06-11 21:12:53'),
-(4, 'Drs. H. Ahmad Fauzi, M.Pd.', 'structural/dummy.jpg', 'male', 'Bandung', '1958-06-15', 'Jl. Raya Dago No. 55, Bandung', '08112233441', 'ahmad.fauzi@yayasan.org', 'Ketua Yayasan', 1, 1, 'Pendiri dan pemimpin utama Yayasan Pendidikan. Berpengalaman lebih dari 30 tahun di bidang pendidikan nasional.', 1, 1, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(5, 'Hj. Dewi Rahayu, S.H.', 'structural/dummy.jpg', 'female', 'Jakarta', '1965-11-22', 'Jl. Diponegoro No. 88, Bandung', '08112233442', 'dewi.rahayu@yayasan.org', 'Wakil Ketua Yayasan', 2, 1, 'Mengelola aspek hukum dan kelembagaan yayasan, serta mengawasi kepatuhan regulasi pendidikan.', 1, 1, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(6, 'Prof. Dr. H. Mulyana, M.Pd.', 'structural/dummy.jpg', 'male', 'Bandung', '1955-03-24', 'Jl. Dago Asri No. 10, Bandung', '08112233443', 'mulyana@yayasan.org', 'Ketua Dewan Pembina', 3, 1, 'Pembina utama yang memberikan arahan strategis pengembangan pendidikan dan kebijakan yayasan.', 1, 1, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(7, 'Dra. Hj. Sri Wulandari, M.M.', 'structural/dummy.jpg', 'female', 'Surabaya', '1963-08-17', 'Jl. Pasteur No. 45, Bandung', '08112233444', 'sri.wulandari@yayasan.org', 'Sekretaris Yayasan', 4, 1, 'Mengatur administrasi umum yayasan dan memastikan kelancaran tata kelola organisasi sehari-hari.', 1, 1, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(8, 'Ir. Bambang Suharto, M.T.', 'structural/dummy.jpg', 'male', 'Yogyakarta', '1961-04-30', 'Jl. Setia Budi No. 78, Bandung', '08112233446', 'bambang.s@yayasan.org', 'Anggota Dewan Pengawas', 6, 1, 'Mengawasi pelaksanaan program dan anggaran yayasan, serta memberikan rekomendasi pengembangan infrastruktur.', 1, 1, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(9, 'Prof. Dr. H. Mulyana Yusuf, M.Pd.', 'structural/dummy.jpg', 'male', 'Bandung', '1955-03-24', 'Jl. Dago Asri No. 10, Bandung', '08112233443', 'mulyana.yusuf@yayasan.org', 'Ketua Dewan Pembina', 3, 1, 'Pembina utama yang memberikan arahan strategis pengembangan pendidikan dan kebijakan yayasan.', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(10, 'H. Dedi Kurniawan, M.M.', 'structural/dummy.jpg', 'male', 'Sumedang', '1968-10-09', 'Jl. Kiara Condong No. 112, Bandung', '08112233445', 'dedi.kurniawan@yayasan.org', 'Bendahara Yayasan', 5, 1, 'Mengelola keuangan dan investasi yayasan serta memastikan transparansi laporan keuangan lembaga.', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(11, 'Ir. Bambang Hermawan, M.T.', 'structural/dummy.jpg', 'male', 'Yogyakarta', '1961-04-30', 'Jl. Setia Budi No. 78, Bandung', '08112233446', 'bambang.h@yayasan.org', 'Ketua Dewan Pengawas', 6, 1, 'Mengawasi pelaksanaan program dan anggaran yayasan, serta memberikan rekomendasi pengembangan.', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(12, 'Hj. Lina Marlina, S.E.', 'structural/dummy.jpg', 'female', 'Jakarta', '1972-07-12', 'Jl. Surya Sumantri No. 34, Bandung', '08112233447', 'lina.marlina@yayasan.org', 'Anggota Dewan Pengawas', 7, 1, 'Bertanggung jawab mengawasi administrasi dan tata kelola keuangan yayasan secara berkala.', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03');
+(1, 'ROSWANTI, SH', 'structural/structural_6a2ba9cee5ad27.69841199.jpg', 'female', '-', NULL, '-', '-', 'yayasaan@yayasan.org', 'Ketua Yayasan', 1, 1, '', 1, 1, '2026-06-11 21:12:53', '2026-08-05 08:59:16'),
+(2, 'DINAS TENAGA KERJA', 'structural/dummy.jpg', 'male', '-', NULL, '-', '-', 'pembina@yayasan.org', 'Pembina', 2, 1, '-', 1, 1, '2026-06-11 21:12:53', '2026-07-30 09:33:28'),
+(4, 'HIPKI', 'structural/dummy.jpg', 'male', '-', NULL, '-', '-', 'penasehat@gmail.com', 'Penasehat', 1, 1, '-', 1, 1, '2026-06-16 09:29:46', '2026-07-30 09:27:27'),
+(5, 'Asmi Putri Purwaningsih,S.I.Kom', 'structural/structural_6a793c884d3cb4.56894039.jpg', 'female', 'Madiun', '1995-06-07', 'Dangdeur,Subang', '', 'asmiputrip@gmail.com', 'Sekertaris Direktur', 2, 1, 'Lulus dari Universitas Pasundan Program Studi S1 Ilmu Komunikasi pada tahun 2017 dan saat ini menjabat sebagai Sekretaris Direktur dan aktif mengajar pada bidang Public Speaking dan Pendidikan Karakter.', 1, 1, '2026-06-16 09:29:46', '2026-08-10 02:50:48'),
+(6, 'Budi Sentosa', 'structural/dummy.jpg', 'male', '-', NULL, '-', '-', 'wadir@yayasan.org', 'Wakil Direktur Bidang Kemahasiswaan Dan Alumni', 3, 1, '-', 1, 1, '2026-06-16 09:29:46', '2026-07-30 09:37:22'),
+(7, 'Yushini Muliawanti, S.Pd', 'structural/structural_6a6b193ca80882.65772646.jpg', 'female', 'Subang', '1995-01-28', 'Cigadung,Subang', '0853-5315-5308', 'Yushi.sihisubang@gmail.com', 'Direktur Lembaga', 4, 1, 'Lulus dari STKIP Subang Program Studi S1 Pendidikan Bahasa Inggris pada tahun 2016 dan saat ini menjabat sebagai Direktur Lembaga SIHI periode 2024 - 2029.', 1, 1, '2026-06-16 09:29:46', '2026-08-10 02:41:00'),
+(8, 'Hemmy Nur Hamidah,S.PD', 'structural/structural_6a793cfc5a04e0.40057739.jpg', 'female', '-', '1991-02-09', 'Dangdeur,Subang', '-', 'wadir@yayasan.org', 'Wakil Direktur Bidang Akademik', 6, 1, 'Lulus dari Universitas Pendidikan Indonesia Program Studi S1 Pendidikan Bahasa Inggris pada tahun 2014 dan saat ini menjabat sebagai Wakil Direktur bidang akademik. Sebelumnya pernah menjadi pengajar bahasa inggris, translator, customer service, admin to personal manager, social media manager dan content creator.', 1, 1, '2026-06-16 09:29:46', '2026-08-10 02:52:44'),
+(9, 'Windu Yanuar, S.Tr.Par', 'structural/structural_6a793db3031bf4.24564458.jpg', 'female', 'Subang', '1982-01-10', 'Dangdeur,Subang', '-', 'wadir@yayasan.org', 'Wakil Direktur Bidang Marketing Dan Instruktur Bar', 3, 1, 'Merupakan lulusan D3 Usaha Akomodasi/Perhotelan di STIEPAR YAPARI AKTRIPA Bandung dan melanjutkan kuliah D4 Manajemen Perhotelan di Politeknik Sahid Jakarta. Saat ini masih berkarir di Virgin Voyages Cruiseline sebagai Bar dan juga aktif sebagai pengajar Bartender di LP3 SIHI', 1, 1, '2026-06-17 09:53:03', '2026-08-10 02:58:21'),
+(10, 'HILSI', 'structural/dummy.jpg', 'male', '-', NULL, '-', '-', 'penasehat@yayasan.org', 'Penasehat', 5, 1, '-', 1, 1, '2026-06-17 09:53:03', '2026-07-30 09:30:25'),
+(12, 'DINAS PENDIDIKAN', 'structural/dummy.jpg', 'male', '-', NULL, '-', '-', 'pembina@yayasan.org', 'Pembina', 7, 1, '', 1, 1, '2026-06-17 09:53:03', '2026-07-30 09:32:36'),
+(13, 'R. Utomo Hadi Sutijadi Putro', 'structural/structural_6a6b1be65d9f06.18946812.jpg', 'male', '-', NULL, '-', '-', 'asdir@yayasan.org', 'Asisten Wakil DIrektur', 0, 1, '-', 1, NULL, '2026-07-30 09:39:50', '2026-07-30 09:39:50'),
+(14, 'Yopsi Aprilika, S.Pd', 'structural/structural_6a6b1c1e16e881.54917704.jpg', 'male', '-', NULL, '-', '-', 'bidang@yayasan.org', 'Bidang Bahasa', 0, 1, '-', 1, NULL, '2026-07-30 09:40:46', '2026-07-30 09:40:46'),
+(15, 'Robi Surachman, S.Pd', 'structural/structural_6a6b1c45de3109.62481978.jpg', 'male', '-', NULL, '-', '-', 'bidang@yayasan.org', 'Bidang Bahasa', 0, 1, '-', 1, NULL, '2026-07-30 09:41:25', '2026-07-30 09:41:25'),
+(16, 'Anugrah J. S.', 'structural/structural_6a7941317717a3.39714698.jpg', 'male', '-', NULL, '-', '-', 'bidang@yayasan.org', 'Bidang Marketing', 0, 1, 'Saat ini aktif sebagai Praktisi Pariwisata sebagai Tour Planner dan Tour Leader yang telah memiliki sertifikasi BNSP. Sebelumnya pernah menjabat sebagai Manajer Marketing di Travel Cahaya Raudhah Subang selama 5 tahun. ', 1, 1, '2026-07-30 09:42:15', '2026-08-10 03:10:41'),
+(17, 'Soni Kusdinar', 'structural/structural_6a6b1cb8ba8c48.81857004.jpg', 'male', '-', NULL, '-', '-', 'bidang@yayasan.org', 'Bidang Bimbingan Karir', 0, 1, '-', 1, NULL, '2026-07-30 09:43:20', '2026-07-30 09:43:20'),
+(18, 'Ratni', 'structural/structural_6a6b1cf8e9e0c2.33660000.jpg', 'female', '-', NULL, '-', '-', 'bidang@yayasan.org', 'Pembantu Umum', 0, 1, '-', 1, NULL, '2026-07-30 09:44:24', '2026-07-30 09:44:24'),
+(19, 'Dian Lestari', 'structural/structural_6a79450f3d5014.07094920.jpg', 'female', 'Subang', '1972-10-06', 'Nyimpung,Subang', '-', 'bidang@yayasan.org', 'Bidang Kemitraan', 0, 1, 'Merupakan praktisi yang berpengalaman di bidang kecantikan di Kabupaten Subang. Selain itu, aktif menjalin relasi dengan pemerintahan daerhan, BUMD, dan lembaga lainnya.', 1, 1, '2026-07-30 09:45:33', '2026-08-10 03:27:11'),
+(20, 'Ryan Firmansyah', 'structural/structural_6a6b1d5abf6972.93612511.jpg', 'male', '-', NULL, '-', '-', 'bidang@yayasan.org', 'Bidang Digital Marketing', 0, 1, '-', 1, NULL, '2026-07-30 09:46:02', '2026-07-30 09:46:02'),
+(21, 'Zahra Fadla Amalia, A. Ma. Par', 'structural/structural_6a79409d2841c8.18613797.jpg', 'female', '-', NULL, '-', '-', 'menyusul@gmail.com', 'Staff Administrasi', 0, 1, 'Merupakan lulusan D2 Layanan Hotel Terapung, kolaborasi LP3 SIHI dan Politeknik Sahid. Memiliki pengalaman di hotel di La Berza Resort, Ciater sebagai Front Desk Agent dan room attendant. Selain itu memiliki pengalaman di Light Hotel Penang, Malaysia sebagai waitress dan room attendant. Saat ini berkarir sebagai staff administrasi di LP3 SIHI.', 1, NULL, '2026-08-10 03:08:13', '2026-08-10 03:08:13'),
+(22, 'DODDY P, S.E', 'structural/structural_6a7941d36ba012.47470879.jpg', 'male', '-', NULL, '-', '-', 'menyusul@gmail.com', 'Bidang Marketing', 0, 1, 'Merupakan praktisi di bidang Perekonomian dan dibidang Marketing, sebelumnya menjabat sebagai kepala cabang Travel Umroh PT Cahaya Raudah di Subang Utara.', 1, NULL, '2026-08-10 03:13:23', '2026-08-10 03:13:23'),
+(23, 'IIF MIFTAHUL KHOER., S.E', 'structural/structural_6a7c1dad4fe022.32093445.jpg', 'male', 'Subang', '1995-05-07', 'Soklat, Subang', '-', 'Iifmiftah76@gmail.com', 'WAKIL DIREKTUR BIDANG KEUANGAN', 0, 1, 'Adalah lulusan dari STIE Tribuana Bekasi yang memiliki pengalaman 5 tahun sebagai manager di beberapa perusahaan yang bergerak di bidang migas. Saat ini menjabat sebagai wakil direktur bagian keuangan di SIHI.', 1, 1, '2026-08-10 08:17:43', '2026-08-12 07:15:57');
 
 -- --------------------------------------------------------
 
@@ -1242,15 +1490,15 @@ INSERT INTO `structural_members` (`id`, `name`, `photo`, `gender`, `birth_place`
 --
 
 CREATE TABLE `structure_members` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `common_id` bigint(20) UNSIGNED NOT NULL COMMENT 'Reference ke common (structure: Dapil 1, Komisi A, dll)',
-  `section_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'FK to structure_sections',
-  `member_id` bigint(20) UNSIGNED NOT NULL COMMENT 'Reference ke members',
-  `member_type` varchar(100) NOT NULL DEFAULT 'AppModelsTeacher' COMMENT 'Polymorphic relation class name',
-  `period` varchar(50) DEFAULT NULL COMMENT 'Period (contoh: "2019-2024") - reference ke common atau string',
-  `position` varchar(100) DEFAULT NULL COMMENT 'Posisi di struktur (contoh: "Ketua", "Anggota", "Wakil Ketua")',
-  `order` int(11) NOT NULL DEFAULT 0 COMMENT 'Urutan tampil',
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint UNSIGNED NOT NULL,
+  `common_id` bigint UNSIGNED NOT NULL COMMENT 'Reference ke common (structure: Dapil 1, Komisi A, dll)',
+  `section_id` bigint UNSIGNED DEFAULT NULL COMMENT 'FK to structure_sections',
+  `member_id` bigint UNSIGNED NOT NULL COMMENT 'Reference ke members',
+  `member_type` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'AppModelsTeacher' COMMENT 'Polymorphic relation class name',
+  `period` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Period (contoh: "2019-2024") - reference ke common atau string',
+  `position` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Posisi di struktur (contoh: "Ketua", "Anggota", "Wakil Ketua")',
+  `order` int NOT NULL DEFAULT '0' COMMENT 'Urutan tampil',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1260,27 +1508,26 @@ CREATE TABLE `structure_members` (
 --
 
 INSERT INTO `structure_members` (`id`, `common_id`, `section_id`, `member_id`, `member_type`, `period`, `position`, `order`, `is_active`, `created_at`, `updated_at`) VALUES
-(3, 33, 1, 1, 'App\\Models\\Teacher', '', 'Ketua', 1, 1, '2026-06-12 18:58:45', '2026-06-12 18:58:45'),
-(4, 35, 4, 1, 'App\\Models\\Teacher', 'PD004', 'Pembina OSIS Utama', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(5, 35, 5, 1, 'App\\Models\\Student', 'PD004', 'Ketua OSIS', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(6, 35, 5, 2, 'App\\Models\\Student', 'PD004', 'Wakil Ketua OSIS', 2, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(7, 35, 5, 3, 'App\\Models\\Student', 'PD004', 'Bendahara Umum', 3, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(8, 35, 6, 2, 'App\\Models\\Student', 'PD004', 'Ketua Sekbid Keagamaan', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(9, 35, 7, 3, 'App\\Models\\Student', 'PD004', 'Ketua Sekbid IT & Publikasi', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(10, 37, 8, 2, 'App\\Models\\Teacher', 'PD004', 'Pembina Pramuka / Kamabigus', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(11, 37, 9, 3, 'App\\Models\\Student', 'PD004', 'Pradana (Ketua Dewan Ambalan)', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(12, 37, 9, 1, 'App\\Models\\Student', 'PD004', 'Kerani (Sekretaris)', 2, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(13, 38, 10, 3, 'App\\Models\\Teacher', 'PD004', 'Pembina Unit PMR Wira', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(14, 38, 11, 2, 'App\\Models\\Student', 'PD004', 'Komandan Unit PMR', 1, 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(16, 35, 7, 1, 'App\\Models\\Student', '', 'Anggota', 1, 1, '2026-06-16 09:32:39', '2026-06-16 09:32:39'),
-(17, 259, 15, 5, 'App\\Models\\Teacher', 'Tahun Ajaran 2025/2026', 'Guru Matematika (PPPK)', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(18, 259, 15, 7, 'App\\Models\\Teacher', 'Tahun Ajaran 2025/2026', 'Guru Bahasa Indonesia (PPPK)', 2, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(19, 259, 16, 2, 'App\\Models\\Teacher', 'Tahun Ajaran 2025/2026', 'Guru Produktif Basis Data (PPPK)', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(20, 259, 16, 6, 'App\\Models\\Teacher', 'Tahun Ajaran 2025/2026', 'Guru Produktif RPL (PPPK)', 2, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(21, 35, 4, 3, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Pembina', 1, 1, '2026-06-17 10:05:45', '2026-06-17 10:05:45'),
-(22, 35, 5, 1, 'App\\Models\\Student', 'Tahun Ajaran 2026/2027', 'Ketua', 2, 1, '2026-06-17 10:06:06', '2026-06-17 10:06:06'),
-(23, 35, 6, 2, 'App\\Models\\Student', 'Tahun Ajaran 2026/2027', 'Anggota', 3, 1, '2026-06-17 10:06:33', '2026-06-17 10:06:33'),
-(24, 35, 7, 3, 'App\\Models\\Student', 'Tahun Ajaran 2026/2027', 'Anggota', 4, 1, '2026-06-17 10:06:47', '2026-06-17 10:06:47');
+(28, 258, 13, 7, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Direktur Lembaga', 1, 1, '2026-07-30 09:50:51', '2026-07-30 09:50:51'),
+(33, 258, 18, 5, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Sekertaris Direktur', 2, 1, '2026-07-30 09:52:05', '2026-07-30 09:52:05'),
+(44, 258, 19, 8, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Wakil Direktur Bidang Akademik', 8, 1, '2026-07-31 02:52:39', '2026-07-31 02:52:39'),
+(45, 258, 19, 9, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Wakil Direktur Bidang Marketing Dan Instruktur Bar', 9, 1, '2026-07-31 02:53:01', '2026-08-10 02:58:59'),
+(78, 258, 27, 21, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Staff Administrasi', 10, 1, '2026-08-10 03:08:46', '2026-08-10 03:08:46'),
+(79, 258, 28, 22, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Bidang Marketing', 11, 1, '2026-08-10 03:14:09', '2026-08-10 03:14:09'),
+(80, 258, 28, 16, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Bidang Marketing', 12, 1, '2026-08-10 03:15:16', '2026-08-10 03:15:16'),
+(82, 258, 28, 19, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'Bidang Kemitraan', 13, 1, '2026-08-10 03:28:38', '2026-08-10 03:28:38'),
+(83, 258, 29, 21, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur Housekeeping', 14, 1, '2026-08-10 03:33:04', '2026-08-10 03:33:04'),
+(84, 258, 29, 24, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'INSTRUKTUR FRONT OFFICE', 15, 1, '2026-08-10 04:14:35', '2026-08-10 04:14:35'),
+(85, 258, 29, 13, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'INSTRUKTUR FRONT OFFICE', 16, 1, '2026-08-10 04:35:39', '2026-08-10 04:35:39'),
+(86, 258, 29, 27, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'INSTRUKTUR FRONT OFFICE', 17, 1, '2026-08-10 04:36:01', '2026-08-10 04:36:01'),
+(87, 258, 29, 23, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur Food And Beverage Service', 18, 1, '2026-08-10 04:36:11', '2026-08-10 04:36:11'),
+(88, 258, 29, 9, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur Food And Beverage Service', 19, 1, '2026-08-10 04:36:25', '2026-08-10 04:36:25'),
+(89, 258, 29, 26, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur General English', 20, 1, '2026-08-10 04:36:39', '2026-08-10 04:36:39'),
+(90, 258, 29, 12, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur Housekeeping', 21, 1, '2026-08-10 04:36:46', '2026-08-10 04:36:46'),
+(91, 258, 29, 25, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur Mata Ajar English Conversation', 22, 1, '2026-08-10 04:36:56', '2026-08-10 04:36:56'),
+(92, 258, 19, 23, 'App\\Models\\StructuralMember', 'Tahun Ajaran 2026/2027', 'WAKIL DIREKTUR BIDANG KEUANGAN', 23, 1, '2026-08-10 08:18:05', '2026-08-10 08:18:05'),
+(93, 258, 29, 28, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur Kitchen', 24, 1, '2026-08-10 08:34:35', '2026-08-10 08:34:35'),
+(94, 258, 29, 29, 'App\\Models\\Teacher', 'Tahun Ajaran 2026/2027', 'Instruktur Kitchen', 25, 1, '2026-08-10 08:34:44', '2026-08-10 08:34:44');
 
 -- --------------------------------------------------------
 
@@ -1289,10 +1536,10 @@ INSERT INTO `structure_members` (`id`, `common_id`, `section_id`, `member_id`, `
 --
 
 CREATE TABLE `structure_sections` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `common_id` bigint(20) UNSIGNED NOT NULL COMMENT 'FK to common (structure)',
-  `name` varchar(100) NOT NULL,
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `id` bigint UNSIGNED NOT NULL,
+  `common_id` bigint UNSIGNED NOT NULL COMMENT 'FK to common (structure)',
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1302,20 +1549,12 @@ CREATE TABLE `structure_sections` (
 --
 
 INSERT INTO `structure_sections` (`id`, `common_id`, `name`, `order`, `created_at`, `updated_at`) VALUES
-(1, 33, 'Struktur Inti', 1, '2026-06-12 18:51:22', '2026-06-12 18:51:22'),
-(4, 35, 'Majelis Pembimbing (Pembina)', 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(5, 35, 'Pengurus Harian OSIS', 2, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(6, 35, 'Seksi Bidang Keimanan & Ketaqwaan', 3, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(7, 35, 'Seksi Bidang Teknologi & Informasi', 4, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(8, 37, 'Majelis Pembimbing Gugus Depan (Kamabigus)', 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(9, 37, 'Dewan Ambalan (Penegak)', 2, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(10, 38, 'Pembina PMR', 1, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(11, 38, 'Pengurus Harian PMR', 2, '2026-06-16 09:07:24', '2026-06-16 09:07:24'),
-(12, 258, 'Dewan Pembina', 1, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(13, 258, 'Dewan Pengawas', 2, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(14, 258, 'Pengurus Harian', 3, '2026-06-16 09:29:46', '2026-06-16 09:29:46'),
-(15, 259, 'Guru Mata Pelajaran Umum', 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(16, 259, 'Guru Produktif', 2, '2026-06-17 09:53:03', '2026-06-17 09:53:03');
+(13, 258, 'Direktur Lembaga', 2, '2026-06-16 09:29:46', '2026-07-30 09:19:50'),
+(18, 258, 'Sekretaris Direktur', 5, '2026-07-30 09:20:49', '2026-07-30 09:20:49'),
+(19, 258, 'Wakil Direktur', 6, '2026-07-30 09:21:05', '2026-07-30 09:21:05'),
+(27, 258, 'Staff Administrasi', 7, '2026-08-10 03:03:53', '2026-08-10 03:03:53'),
+(28, 258, 'Bidang', 8, '2026-08-10 03:04:22', '2026-08-10 03:04:22'),
+(29, 258, 'Instruktur', 9, '2026-08-10 03:29:25', '2026-08-10 03:29:25');
 
 -- --------------------------------------------------------
 
@@ -1324,24 +1563,24 @@ INSERT INTO `structure_sections` (`id`, `common_id`, `name`, `order`, `created_a
 --
 
 CREATE TABLE `students` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `nis` varchar(20) DEFAULT NULL,
-  `nisn` varchar(20) DEFAULT NULL,
-  `photo` varchar(255) NOT NULL,
-  `gender` enum('male','female') NOT NULL DEFAULT 'male',
-  `birth_place` varchar(100) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nis` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nisn` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` enum('male','female') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'male',
+  `birth_place` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `kelas_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `description` text DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kelas_id` bigint UNSIGNED DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL,
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `description` text COLLATE utf8mb4_general_ci,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1362,27 +1601,27 @@ INSERT INTO `students` (`id`, `name`, `nis`, `nisn`, `photo`, `gender`, `birth_p
 --
 
 CREATE TABLE `teachers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `nip` varchar(30) DEFAULT NULL COMMENT 'Nomor Induk Pegawai',
-  `photo` varchar(255) DEFAULT NULL,
-  `gender` enum('male','female') DEFAULT NULL,
-  `birth_place` varchar(100) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nip` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Nomor Induk Pegawai',
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gender` enum('male','female') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `birth_place` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `jabatan` varchar(100) DEFAULT NULL,
-  `jenis` enum('guru','tendik') NOT NULL DEFAULT 'guru' COMMENT 'guru = Guru, tendik = Tenaga Kependidikan',
-  `bidang_studi` varchar(150) DEFAULT NULL COMMENT 'Mata pelajaran atau bidang keahlian',
-  `pendidikan` varchar(100) DEFAULT NULL COMMENT 'Pendidikan terakhir: S1, S2, dll',
-  `status_kepegawaian` enum('PNS','PPPK','Honorer','GTT') DEFAULT NULL,
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'FK ke common.id (table_name=jurusan), untuk guru yang terikat jurusan',
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Urutan tampil',
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `description` text DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jabatan` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jenis` enum('guru','tendik') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'guru' COMMENT 'guru = Guru, tendik = Tenaga Kependidikan',
+  `bidang_studi` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Mata pelajaran atau bidang keahlian',
+  `pendidikan` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Pendidikan terakhir: S1, S2, dll',
+  `status_kepegawaian` enum('PNS','PPPK','Honorer','DTT','DTY') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL COMMENT 'FK ke common.id (table_name=jurusan), untuk guru yang terikat jurusan',
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Urutan tampil',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `description` text COLLATE utf8mb4_general_ci,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1392,12 +1631,26 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `nip`, `photo`, `gender`, `birth_place`, `birth_date`, `address`, `phone`, `email`, `jabatan`, `jenis`, `bidang_studi`, `pendidikan`, `status_kepegawaian`, `jurusan_id`, `order`, `is_active`, `description`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Budi Santoso, S.Pd., M.Kom.', '198005152005011001', 'teachers/teacher_6a336a632bab50.68730765.jpg', 'male', 'Bandung', '1980-05-15', 'Jl. Merdeka No. 123, Bandung', '081234567890', 'budi.santoso@smk.sch.id', 'Kepala Kompetensi Keahlian RPL', 'guru', 'Pemrograman Web dan Perangkat Bergerak', 'S2 Ilmu Komputer', 'PNS', NULL, 0, 1, 'Guru Produktif RPL', 1, 1, '2026-06-11 21:12:53', '2026-06-17 20:47:47'),
-(2, 'Siti Aminah, S.Kom.', '198508202010012002', NULL, 'female', 'Jakarta', '1985-08-20', 'Jl. Gatot Subroto No. 45, Bandung', '081234567891', 'siti.aminah@smk.sch.id', 'Guru Produktif', 'guru', 'Basis Data', 'S1 Teknik Informatika', 'PPPK', NULL, 0, 1, 'Wali Kelas X RPL 1', 1, 1, '2026-06-11 21:12:53', '2026-06-11 21:29:50'),
-(3, 'Deni Ramdhani', '', NULL, 'male', 'Cimahi', '1978-03-10', 'Jl. Ahmad Yani No. 67, Cimahi', '081234567892', 'deni.ramdhani@smk.sch.id', 'Kepala Tata Usaha', 'tendik', '', 'D3 Administrasi Bisnis', 'Honorer', NULL, 0, 1, 'Staf Tata Usaha Bidang Kepegawaian', 1, 1, '2026-06-11 21:12:53', '2026-06-11 21:29:50'),
-(5, 'Rini Susanti, S.Pd.', '198706122019032001', 'teachers/dummy.jpg', 'female', 'Bandung', '1987-06-12', 'Jl. Kopo Permai No. 34, Bandung', '081334567890', 'rini.susanti@smk.sch.id', 'Guru Mapel Matematika', 'guru', 'Matematika', 'S1 Pendidikan Matematika', 'PPPK', NULL, 0, 1, 'Guru PPPK bidang Matematika', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(6, 'Eko Prasetyo, S.Kom.', '199003182019031002', 'teachers/dummy.jpg', 'male', 'Surabaya', '1990-03-18', 'Jl. Antapani No. 56, Bandung', '081334567891', 'eko.prasetyo@smk.sch.id', 'Guru Produktif RPL', 'guru', 'Rekayasa Perangkat Lunak', 'S1 Teknik Informatika', 'PPPK', NULL, 0, 1, 'Guru PPPK Produktif RPL', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03'),
-(7, 'Nur Hidayah, S.Pd.', '199201052020012001', 'teachers/dummy.jpg', 'female', 'Bogor', '1992-01-05', 'Jl. Pasteur Permai Blok A2, Bandung', '081334567892', 'nur.hidayah@smk.sch.id', 'Guru Bahasa Indonesia', 'guru', 'Bahasa Indonesia', 'S1 Pendidikan Bahasa Indonesia', 'PPPK', NULL, 0, 1, 'Guru PPPK bidang Bahasa Indonesia', 1, 1, '2026-06-17 09:53:03', '2026-06-17 09:53:03');
+(9, 'TONI SUHARDIMAN', '-', 'teachers/teacher_6a798b6a46b6b6.01044226.jpg', 'male', 'Majalengka', '1975-08-18', 'Desa Mekarwangi, Kec.Argapura, Kab.Majalengka', '-', 'apaaja@gmail.com', 'Instruktur Food And Beverage Service', 'tendik', '', 'Diploma III (Bahasa Inggis), STBA-ABA YAPARI Bandung', 'DTY', NULL, 0, 1, 'Merupakan alumni SIHI tahun 2006. Saat ini aktif menjadi waiter di Holland America Cruise Line dan aktif menjadi instruktur F&B Service di SIHI.', 1, 1, '2026-08-03 04:02:20', '2026-08-10 08:27:22'),
+(11, 'ABDUL MALIK KAOKAB, ST', '201606014', 'teachers/teacher_6a72f161d2e3a2.76588664.jpg', 'male', '-', NULL, '', '-', 'aku@gmail.com', 'apa', 'tendik', '', '-', 'DTY', NULL, 0, 1, '', 1, 1, '2026-08-05 08:16:33', '2026-08-06 06:20:32'),
+(12, 'SONI KUSDINAR', '201607012', 'teachers/teacher_6a79510172b174.34382908.jpg', 'male', 'Subang', '1985-06-18', 'Desa Cimanglid, Kec.Kasomalang, Subang', '-', 'aku@gmail.com', 'Instruktur Housekeeping', 'tendik', '', 'MA Al- Husna', 'DTY', NULL, 0, 1, 'Merupakan salah satu alumni SIHI Tahun 2005 yang berkarir di Kapal pesiar sejak tahun 2013 hingga saat ini di Holland America Line. Satt ini beliau mengajar Housekeeping di SIHI dan telah mendapatkan sertifikasi kompetensi dari LSK di bidang yang sama.', 1, 1, '2026-08-05 08:20:17', '2026-08-10 04:18:09'),
+(13, 'DEBI FITRIA DEWI OKTAPIANI, SE.Par', '201307010', 'teachers/teacher_6a795236321657.71726507.jpg', 'male', 'Subang', '1984-10-09', 'Desa Gandasoli, Kec.Tanjungsiang, Subang', '-', 'aku@gmail.com', 'INSTRUKTUR FRONT OFFICE', 'tendik', '', 'S1 (Manajemen Pariwisata) STMP ARS Internasional', 'DTY', NULL, 0, 1, 'Merupakan lulusan S1 - Manajemen Pariwisata di STP ARS International Bandung. Beliau aktif di dunia pendidikan vokasi LPP MH Yasin, SMK Bina Nusantara, dan SIHI. Beliau mengajar mata diklat Front Office. Beliau juga telah mendapatkan sertifikat kompetensi bidang Metode Penelitian dari BNSP, Sertifikat penguji uji kompetensi Front Office jenjang II, hingga sertifikat pelatihan metodologi instruktur kualifikasi III dari kemnaker', 1, 1, '2026-08-05 08:22:01', '2026-08-10 04:23:18'),
+(14, 'DIAN LESTARI', '201207009', 'teachers/teacher_6a72f2e1181b72.86444658.jpg', 'male', '-', NULL, '', '-', 'aku@gmail.com', '', 'tendik', '', '-', 'DTY', NULL, 0, 1, '', 1, NULL, '2026-08-05 08:22:57', '2026-08-05 08:22:57'),
+(15, 'YOHAN SAMBO, S.Pd', '201907017', 'teachers/teacher_6a72f31e3910b7.09777219.jpg', 'male', '', NULL, '', '', '', '', 'guru', '', '-', NULL, NULL, 0, 1, '', 1, NULL, '2026-08-05 08:23:58', '2026-08-05 08:23:58'),
+(16, 'REISA LAKSMI RIANI, S.Pd', '201808015', 'teachers/teacher_6a72f369bd9d00.65472423.jpg', 'male', '-', NULL, '', '', 'ku@gmail.com', '', 'tendik', '', '-', 'DTY', NULL, 0, 1, '', 1, NULL, '2026-08-05 08:25:13', '2026-08-05 08:25:13'),
+(17, 'Dra. POPPY PERWATIAH', '201907018', 'teachers/teacher_6a72f39947be80.79768455.jpg', 'male', '', NULL, '', '', 'ku@gmail.com', '', 'tendik', '', '-', 'DTY', NULL, 0, 1, '', 1, NULL, '2026-08-05 08:26:01', '2026-08-05 08:26:01'),
+(18, 'ANDIKA AULIA, S.Kom', '202006020', 'teachers/teacher_6a72f3ba4f72c5.22621395.jpg', 'male', '', NULL, '', '', 'ku@gmail.com', '', 'guru', '', '', NULL, NULL, 0, 1, '', 1, NULL, '2026-08-05 08:26:34', '2026-08-05 08:26:34'),
+(19, 'BUDI SENTOSA', '201107011', 'teachers/teacher_6a72f3d94d36b3.81919514.jpg', 'male', '', NULL, '', '', 'ku@gmail.com', '', 'guru', '', '', NULL, NULL, 0, 1, '', 1, NULL, '2026-08-05 08:27:05', '2026-08-05 08:27:05'),
+(20, 'EGI GINANJAR', '202008008', 'teachers/teacher_6a72f40521b5c7.49607735.jpg', 'male', '', NULL, '', '', 'ku@gmail.com', '', 'tendik', '', '', 'DTY', NULL, 0, 1, '', 1, NULL, '2026-08-05 08:27:49', '2026-08-05 08:27:49'),
+(21, 'DENA SOLIHIN GARNIDA ROSYADI', '201810008', 'teachers/teacher_6a7946e6bbdf23.41103627.jpg', 'male', 'Sumedang', '1982-07-19', '', '', 'ku@gmail.com', '', 'tendik', '', '', NULL, NULL, 0, 1, 'Merupakan salah satu alumni SIHI 2007 yang berkarir di kapal pesiar sejak tahun 2010 hingga saat ini di Holland America Line sebagai Stateroom Attendant. Saat ini beliau mengajar Housekeeping di SIHI.', 1, 1, '2026-08-05 08:28:26', '2026-08-10 03:35:02'),
+(22, 'WINDU YANUAR, A.Md', '201909009', 'teachers/teacher_6a72f4518b1857.68626647.jpg', 'male', '', NULL, '', '', 'ku@gmail.com', '', 'tendik', '', '', 'DTY', NULL, 0, 1, '', 1, NULL, '2026-08-05 08:29:05', '2026-08-05 08:29:05'),
+(23, 'IWAN SETIAWAN', '202505025', 'teachers/teacher_6a7953cb729558.89475396.jpg', 'male', '-', NULL, '', '-', 'ku@gmail.com', 'Instruktur Food And Beverage Service', 'tendik', '', '', NULL, NULL, 0, 1, 'Lulusan Wisakti Jakarta tahun 1991, memiliki pengalaman sebagai F&B Supervisor di hotel Hilton Jakarta selama 11 tahun dan berkarir di kapal pesiar Carnival sebagai Head Waiter selama 14 tahun.', 1, 1, '2026-08-05 08:29:36', '2026-08-10 04:30:03'),
+(24, 'REGGY RIZQIARTA DWIRACHFI', '202007007', 'teachers/teacher_6a794ffd6bc3d9.76302714.jpg', 'male', 'Bandung', '1997-12-02', 'Pasirkareumbi subang', '', '', '', 'tendik', '', 'SMAN 1 SUBANG', NULL, NULL, 0, 1, 'Merupakan salah satu alumni SIHI tahun 2020 yang berkarir di hotel Harper by Aston, Purwakarta, Jawa Barat tahun 2021 - 2023 di departemen Front Office. Saat ini sedang bekerja sebagai front officer di Golden Sun Hotel Turkiye. Di SIHI diamanahkan sebagai pengajar Front Office.', 1, NULL, '2026-08-10 04:13:49', '2026-08-10 04:13:49'),
+(25, 'YOPSI APRILIKA, S.Pd', '201207007', 'teachers/teacher_6a7952b854ac15.16373480.jpg', 'female', '-', NULL, '-', '-', 'menyusul@gmail.com', 'Instruktur Mata Ajar English Conversation', 'tendik', '', 'S1(Bahasa Inggris) UNSUB', 'DTY', NULL, 0, 1, 'Merupakan alumni SIHI 2009 dan mengajar di SIHI dari 2012 dan Instruktur Bahasa Inggris di LPK Hospitality Education Institute pada tahun 2023 - 2024. Saat ini aktif mengajar Bahasa Inggris di SDIT Bahrul Ulum.', 1, 1, '2026-08-10 04:25:28', '2026-08-10 04:34:32'),
+(26, 'ROBI SURACHMAN, S.Pd', '202504014', 'teachers/teacher_6a79536aa9a448.45244407.jpg', 'male', 'Subang', '1988-11-10', 'Pamanukan Subang', '-', 'menyusul@gmail.com', 'Instruktur General English', 'tendik', '', 'S1(Bahasa Inggris) UNSUB', 'DTY', NULL, 0, 1, 'Lulusan STKIP Subang Jurusan Bahasa Inggris dan memiliki pengalaman kerja di Beachwalk Resto Bali sebagai Waiter dan sebagai Barista di CBTL’s SINGAPURA. Saat ini sedang aktif berkarir di bidang FB Service di Golden Sun Hotel Turkey. Di SIHI diberikan amanah sebagai Instruktur.', 1, 1, '2026-08-10 04:28:26', '2026-08-10 04:34:50'),
+(27, 'Fadillah Wulansari., M.Pd', '1415049503', 'teachers/teacher_6a7954a7d30276.59782036.jpg', 'male', 'Jayapura', '1995-04-15', 'Pasirkareumbi,Subang', '-', 'menyusul@gmail.com', 'INSTRUKTUR FRONT OFFICE', 'tendik', '', 'S2(Pendidikan Bahasa Inggris) Universitas Cenderawasih', NULL, NULL, 0, 1, 'Merupakan lulusan S2 di Universitas Cendrawasih. Saat ini sedang aktif menjadi dosen Bahasa Inggris di Universitas Doktor Husni Ingratubun Papua. Saat ini mengajar juga di SIHI sebagai instruktur Bahasa Inggris.\n', 1, 1, '2026-08-10 04:33:43', '2026-08-10 04:38:00'),
+(28, 'ALIP MAULANA', '-', 'teachers/teacher_6a798caf63cf80.55439087.jpg', 'male', '', NULL, '', '', '', 'Instruktur Kitchen', 'tendik', '', '', NULL, NULL, 0, 1, 'Merupakan alumni SIHI tahun 2021. Saat ini aktif menjadi tim cook di P&O Cruise Line dan diamani menjadi instruktur kitchen di SIHI.', 1, 1, '2026-08-10 08:32:47', '2026-08-10 08:34:14'),
+(29, 'ARYAPUTRA BIJAKSANA', '-', 'teachers/teacher_6a798cfd988a11.67467181.jpg', 'male', '', NULL, '', '', '', 'Instruktur Kitchen', 'tendik', '', '', NULL, NULL, 0, 1, 'Merupakan alumni SIHI tahun 2024. Memiliki pengalaman bekerja di hotel Johor Bahru Malaysia, dan akan bergabung dengan AIDA Cruise line. Saat ini diamani menjadi instruktur di SIHI.', 1, NULL, '2026-08-10 08:34:05', '2026-08-10 08:34:05');
 
 -- --------------------------------------------------------
 
@@ -1406,16 +1659,16 @@ INSERT INTO `teachers` (`id`, `name`, `nip`, `photo`, `gender`, `birth_place`, `
 --
 
 CREATE TABLE `testimonials` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `role` varchar(100) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 5,
-  `content` text NOT NULL,
-  `order` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rating` tinyint UNSIGNED NOT NULL DEFAULT '5',
+  `content` text COLLATE utf8mb4_general_ci NOT NULL,
+  `order` smallint UNSIGNED NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1425,21 +1678,10 @@ CREATE TABLE `testimonials` (
 --
 
 INSERT INTO `testimonials` (`id`, `name`, `role`, `photo`, `rating`, `content`, `order`, `is_active`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Prof. Dr. Ir. H. Herman Subarjah, M.Si.', 'Guru Besar Universitas Pendidikan Indonesia', 'testimonials/testimonial_6a37009ba918f3.66046648.jpg', 5, 'Kerjasama riset dan pengabdian masyarakat kami dengan sekolah ini menunjukkan bahwa kompetensi teknis dan karakter siswa sangat unggul dan berstandar nasional.', 1, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-20 14:05:31'),
-(2, 'Ir. Budi Rahardjo, M.Sc., Ph.D.', 'Praktisi IT & Dosen Sekolah Teknik Elektro dan Informatika ITB', 'testimonials/testimonial-02.png', 5, 'Lulusan dari program Rekayasa Perangkat Lunak sekolah ini memiliki logika pemrograman yang matang dan sangat siap menghadapi dinamika perkuliahan IT.', 2, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(3, 'H. Rahmat Hidayat, M.B.A.', 'Orang Tua Siswa (Kelas XII RPL 1)', 'testimonials/testimonial-03.png', 5, 'Fasilitas belajar yang sangat modern dan lingkungan sekolah yang religius membuat saya sangat yakin menyekolahkan anak saya di sini. Terbukti anak saya sudah bisa magang di startup ternama.', 3, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(4, 'Sofia Lestari, S.E.', 'Manager HRD PT GoTo Gojek Tokopedia Tbk', 'testimonials/testimonial-04.png', 5, 'Kami telah merekrut beberapa alumni dari jurusan Akuntansi dan RPL. Mereka memiliki etos kerja yang tinggi, cepat beradaptasi, dan skill teknis yang mumpuni.', 4, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(5, 'Drs. H. Wahyudin, M.Pd.', 'Pengawas SMK Dinas Pendidikan Provinsi Jawa Barat', 'testimonials/testimonial-05.png', 5, 'Sekolah ini konsisten menjadi role model bagi sekolah kejuruan lainnya di Jawa Barat dalam penerapan kurikulum merdeka dan link and match dengan dunia industri.', 5, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(6, 'Anita Wulandari, S.Psi.', 'Orang Tua Siswa (Kelas XI TJKT)', 'testimonials/testimonial-06.png', 5, 'Sistem pendidikan karakter dan kedisiplinan di sekolah ini sangat luar biasa. Anak saya menunjukkan perubahan sikap yang lebih mandiri, sopan, dan bertanggung jawab sejak masuk ke sini.', 6, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(7, 'Hendra Wijaya, S.T.', 'Chief Technology Officer PT Telkom Sigma', 'testimonials/testimonial-07.png', 5, 'Siswa prakerin dari kompetensi keahlian Teknik Jaringan Komputer dan Telekomunikasi di sini memiliki pemahaman infrastruktur jaringan yang sangat baik dan bersertifikasi industri.', 7, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(8, 'Dr. Kartika Sari, M.Si.', 'Ketua Komite Sekolah', 'testimonials/testimonial-08.png', 5, 'Transparansi tata kelola sekolah dan sinergi yang harmonis antara sekolah, komite, dan orang tua menjadi pilar penting keberhasilan berbagai program unggulan.', 8, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(9, 'M. Yusuf Firmansyah', 'Alumni Angkatan 2017 / Owner Start-Up \"Creative Studio\"', 'testimonials/testimonial-09.png', 5, 'Pendidikan kewirausahaan di SMK ini memberikan saya keberanian dan bekal operasional untuk merintis bisnis kreatif sendiri langsung setelah lulus sekolah.', 9, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(10, 'Farida Nuraini, Ak.', 'Senior Auditor Kantor Akuntan Publik (KAP) Tanubrata', 'testimonials/testimonial-10.png', 5, 'Kemampuan praktis siswa jurusan Akuntansi dalam mengoperasikan software akuntansi Accurate dan MYOB sangat rapi dan sesuai dengan standar kebutuhan industri keuangan saat ini.', 10, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(11, 'Rian Hidayat, M.Kom.', 'Alumni Angkatan 2019 / Senior Engineer Shopee', 'testimonials/testimonial-11.png', 5, 'Saya mendapatkan bekal pondasi coding yang sangat kokoh dari guru-guru hebat di sekolah ini. Pengalaman praktek kerjanya membuka wawasan industri sejak dini.', 11, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(12, 'Dr. H. Ahmad Dahlan, M.Ag.', 'Tokoh Masyarakat & Komite Bidang Keagamaan', 'testimonials/testimonial-12.png', 5, 'Program pembiasaan keagamaan seperti shalat dhuha berjamaah dan tahfidz Quran di sekolah ini berhasil mencetak lulusan yang cerdas secara intelektual dan berakhlak mulia.', 12, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(13, 'Diana Putri, S.E.', 'Orang Tua Siswa (Kelas X AKL 2)', 'testimonials/testimonial-01.png', 4, 'Sangat puas dengan pelayanan administrasi sekolah dan cara guru berkomunikasi memantau perkembangan belajar anak lewat buku penghubung online.', 13, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(14, 'Taufik Hidayat, S.Kom.', 'IT Infrastructure Specialist PT Indosat Ooredoo Hutchison', 'testimonials/testimonial-02.png', 5, 'Kurikulum jaringan Cisco dan Mikrotik yang diintegrasikan dengan materi sekolah benar-benar memberikan percepatan karir bagi siswa lulusan TJKT.', 14, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16'),
-(15, 'Sri Wahyuni, M.Pd.', 'Kepala Balai Penjaminan Mutu Pendidikan (BPMP) Jabar', 'testimonials/testimonial-03.png', 5, 'Sekolah ini secara konsisten menunjukkan rapor pendidikan dengan predikat sangat baik dan meraih berbagai penghargaan inovasi pembelajaran di tingkat regional.', 15, 1, 1, 1, '2026-06-16 08:31:16', '2026-06-16 08:31:16');
+(16, 'DANDI ARIPUDIN', 'Almuni SIHI 2020, Room Attendant  Taaktana a Luxury Collection Resort and Spa Labuan Bajo', 'testimonials/testimonial_6a79714e3fd7c7.09850642.jpg', 5, 'OJT pada saat COVID 19 magang dari Aston Marina Ancol sehingga sempat terhenti. Tapi SIHI terus mendampingi saya hingga akhirnya saya melanjutkan ke GH Universal dan mendapatkan pekerjaan di le Meridien Fairways Dubai dan saat ini di Labuan Bajo', 1, 1, 1, NULL, '2026-08-10 06:35:58', '2026-08-10 06:35:58'),
+(17, 'HERMAWAN', 'Alumni SIHI 2020, Room Attendant - Le Meridien Hotel Dubai', 'testimonials/testimonial_6a79719c5f3947.70175916.jpg', 5, 'Terima kasih SIHI! ini tahun ketiga saya di Le Meridien Hotel Dubai sebelum tahun depan lanjut ke Kapal Pesiar :)', 2, 1, 1, 1, '2026-08-10 06:36:55', '2026-08-10 06:37:16'),
+(18, 'SEPTIANA PRATAMA', 'Alumni SIHI 2018, Reservation Supervisor - Movenpick Hotel Jakarta', 'testimonials/testimonial_6a7972022974a6.41572182.jpg', 5, 'Setelah 5 tahun lulus dari SIHI saya diamanahi untuk menjadi seorang supervisor di hotel bintang 5. Terima kasih yang sebesar-besarnya kepada SIHI yang sudah membimbing saya.', 3, 1, 1, 1, '2026-08-10 06:38:31', '2026-08-10 06:38:58'),
+(19, 'WIDANINGSIH', 'Alumni SIHI 2021', 'testimonials/testimonial_6a79727fdc02f3.26309593.jpg', 5, 'Belajar di SIHI itu menyenangkan banget ~ Saat saya magang, saya ditempatkan di Holiday Inn Jababeka Cikarang dan tidak lama ditarik kerja dan mendapatkan Best Employee. Saya saat ini fokus bimbingan karir untuk ke Kapal Pesiar dan Hotel Luar Negeri. Sambil menunggu, saya melanjutkan karir di Pullman Ciawi Vimala Hills Hotel and Resort di Bogor', 4, 1, 1, NULL, '2026-08-10 06:41:03', '2026-08-10 06:41:03');
 
 -- --------------------------------------------------------
 
@@ -1448,20 +1690,20 @@ INSERT INTO `testimonials` (`id`, `name`, `role`, `photo`, `rating`, `content`, 
 --
 
 CREATE TABLE `transparency` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `type` enum('anggaran','kinerja') NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `file` varchar(255) NOT NULL,
-  `year` int(11) DEFAULT NULL,
-  `period` varchar(50) DEFAULT NULL,
-  `is_public` tinyint(1) NOT NULL DEFAULT 1,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `custom1` varchar(255) DEFAULT NULL,
-  `custom2` varchar(255) DEFAULT NULL,
-  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `type` enum('anggaran','kinerja') COLLATE utf8mb4_general_ci NOT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `file` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `year` int DEFAULT NULL,
+  `period` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_public` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `custom1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `custom2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_by` bigint UNSIGNED DEFAULT NULL,
+  `updated_by` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1473,18 +1715,18 @@ CREATE TABLE `transparency` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `role` enum('SuperAdmin','Admin','Operator') NOT NULL DEFAULT 'Operator',
-  `jurusan_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'FK ke common.id (table_name=jurusan) — diisi jika role = Admin',
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint UNSIGNED NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `role` enum('SuperAdmin','Admin','Operator') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Operator',
+  `jurusan_id` bigint UNSIGNED DEFAULT NULL COMMENT 'FK ke common.id (table_name=jurusan) — diisi jika role = Admin',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `last_login` datetime DEFAULT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1494,8 +1736,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `phone`, `photo`, `role`, `jurusan_id`, `is_active`, `last_login`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Andhika', '$2y$12$z5gPTJ9HbWLmaKMeZsUkmuSYej.lhf49y4wjxO7vwGUSuCj.pQiqW', 'Andhika Aulia', 'admin@smk.sch.id', '6281312901432', 'users/avatar_6a2b8899a86636.03657490.jpg', 'SuperAdmin', NULL, 1, '2026-06-26 12:19:53', 'NOdsIX4avAEUfCI5U3xX5wBqNhq0lVMy4GyCOr2ZpPsHzJmOODl22iACOJBn', '2026-06-11 21:12:52', '2026-06-26 05:19:53'),
-(2, 'Agus', '$2y$12$EalvZ1nJPZjmTP9aWZyAJ.FQ08LO/LQtis8BRL2dEzoiY.XBWYGre', 'Agus Sudrajat', 'agus@smkpgrisubang.sch.id', '0817676546532', 'users/avatar_6a2bfeee748e98.20017469.jpg', 'Admin', 1, 1, '2026-06-13 12:25:15', 'vKNKy3nPYr3GPIKIWwhYxLXQFgq7MJz9474yruiRM5bklflgvSTDHGNs9Pdh', '2026-06-12 05:43:26', '2026-06-13 05:25:15');
+(1, 'Andhika', '$2y$12$z5gPTJ9HbWLmaKMeZsUkmuSYej.lhf49y4wjxO7vwGUSuCj.pQiqW', 'Andhika Aulia', 'admin@smk.sch.id', '6281312901432', 'users/avatar_6a2b8899a86636.03657490.jpg', 'SuperAdmin', NULL, 1, '2026-08-13 11:36:47', 'NOdsIX4avAEUfCI5U3xX5wBqNhq0lVMy4GyCOr2ZpPsHzJmOODl22iACOJBn', '2026-06-11 21:12:52', '2026-08-13 04:36:47');
 
 --
 -- Indexes for dumped tables
@@ -1563,6 +1804,75 @@ ALTER TABLE `downloads`
   ADD KEY `downloads_jurusan_id_foreign` (`jurusan_id`),
   ADD KEY `downloads_created_by_foreign` (`created_by`),
   ADD KEY `downloads_updated_by_foreign` (`updated_by`);
+
+--
+-- Indexes for table `elearning_attendances`
+--
+ALTER TABLE `elearning_attendances`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `elearning_attendances_user_id_date_unique` (`user_id`,`date`);
+
+--
+-- Indexes for table `elearning_courses`
+--
+ALTER TABLE `elearning_courses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `elearning_courses_owner_id_foreign` (`owner_id`);
+
+--
+-- Indexes for table `elearning_documents`
+--
+ALTER TABLE `elearning_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_docs_student` (`student_id`);
+
+--
+-- Indexes for table `elearning_exams`
+--
+ALTER TABLE `elearning_exams`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `elearning_exams_course_id_foreign` (`course_id`);
+
+--
+-- Indexes for table `elearning_exam_submissions`
+--
+ALTER TABLE `elearning_exam_submissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `elearning_exam_submissions_exam_id_foreign` (`exam_id`),
+  ADD KEY `elearning_exam_submissions_student_id_foreign` (`student_id`);
+
+--
+-- Indexes for table `elearning_job_applications`
+--
+ALTER TABLE `elearning_job_applications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `elearning_job_postings`
+--
+ALTER TABLE `elearning_job_postings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `elearning_materials`
+--
+ALTER TABLE `elearning_materials`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `elearning_materials_course_id_foreign` (`course_id`);
+
+--
+-- Indexes for table `elearning_payments`
+--
+ALTER TABLE `elearning_payments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `elearning_payments_student_id_foreign` (`student_id`);
+
+--
+-- Indexes for table `elearning_users`
+--
+ALTER TABLE `elearning_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `elearning_users_email_unique` (`email`);
 
 --
 -- Indexes for table `events`
@@ -1678,6 +1988,12 @@ ALTER TABLE `programs`
   ADD UNIQUE KEY `programs_kode_unique` (`kode`);
 
 --
+-- Indexes for table `registrations`
+--
+ALTER TABLE `registrations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `secretariat`
 --
 ALTER TABLE `secretariat`
@@ -1787,169 +2103,235 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `achievements`
 --
 ALTER TABLE `achievements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `alumni`
 --
 ALTER TABLE `alumni`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `common`
 --
 ALTER TABLE `common`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=319;
 
 --
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `elearning_attendances`
+--
+ALTER TABLE `elearning_attendances`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `elearning_courses`
+--
+ALTER TABLE `elearning_courses`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `elearning_documents`
+--
+ALTER TABLE `elearning_documents`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `elearning_exams`
+--
+ALTER TABLE `elearning_exams`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `elearning_exam_submissions`
+--
+ALTER TABLE `elearning_exam_submissions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `elearning_job_applications`
+--
+ALTER TABLE `elearning_job_applications`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `elearning_job_postings`
+--
+ALTER TABLE `elearning_job_postings`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `elearning_materials`
+--
+ALTER TABLE `elearning_materials`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `elearning_payments`
+--
+ALTER TABLE `elearning_payments`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `elearning_users`
+--
+ALTER TABLE `elearning_users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `gallery_images`
 --
 ALTER TABLE `gallery_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `registrations`
+--
+ALTER TABLE `registrations`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `secretariat`
 --
 ALTER TABLE `secretariat`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `security_logs`
 --
 ALTER TABLE `security_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `security_settings`
 --
 ALTER TABLE `security_settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `structural_members`
 --
 ALTER TABLE `structural_members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `structure_members`
 --
 ALTER TABLE `structure_members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `structure_sections`
 --
 ALTER TABLE `structure_sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `transparency`
 --
 ALTER TABLE `transparency`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -1989,6 +2371,49 @@ ALTER TABLE `downloads`
   ADD CONSTRAINT `downloads_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `downloads_jurusan_id_foreign` FOREIGN KEY (`jurusan_id`) REFERENCES `programs` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `downloads_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `elearning_attendances`
+--
+ALTER TABLE `elearning_attendances`
+  ADD CONSTRAINT `elearning_attendances_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `elearning_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `elearning_courses`
+--
+ALTER TABLE `elearning_courses`
+  ADD CONSTRAINT `elearning_courses_owner_id_foreign` FOREIGN KEY (`owner_id`) REFERENCES `elearning_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `elearning_documents`
+--
+ALTER TABLE `elearning_documents`
+  ADD CONSTRAINT `fk_docs_student` FOREIGN KEY (`student_id`) REFERENCES `elearning_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `elearning_exams`
+--
+ALTER TABLE `elearning_exams`
+  ADD CONSTRAINT `elearning_exams_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `elearning_courses` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `elearning_exam_submissions`
+--
+ALTER TABLE `elearning_exam_submissions`
+  ADD CONSTRAINT `elearning_exam_submissions_exam_id_foreign` FOREIGN KEY (`exam_id`) REFERENCES `elearning_exams` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `elearning_exam_submissions_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `elearning_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `elearning_materials`
+--
+ALTER TABLE `elearning_materials`
+  ADD CONSTRAINT `elearning_materials_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `elearning_courses` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `elearning_payments`
+--
+ALTER TABLE `elearning_payments`
+  ADD CONSTRAINT `elearning_payments_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `elearning_users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `events`
@@ -2065,7 +2490,6 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `structure_members`
   ADD CONSTRAINT `structure_members_common_id_foreign` FOREIGN KEY (`common_id`) REFERENCES `common` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `structure_members_member_id_foreign` FOREIGN KEY (`member_id`) REFERENCES `teachers` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `structure_members_section_id_foreign` FOREIGN KEY (`section_id`) REFERENCES `structure_sections` (`id`) ON DELETE SET NULL;
 
 --

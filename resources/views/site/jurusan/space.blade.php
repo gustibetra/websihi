@@ -1468,74 +1468,74 @@ body.rbt-header-sticky .rbt-header-wrapper.rbt-sticky {
         </div>
     @endif
 
-    {{-- Project Siswa Jurusan --}}
-    @if(isset($projectJurusan) && $projectJurusan->count() > 0)
-        <div class="rbt-blog-area bg-color-white rbt-section-gap" id="project">
-            <div class="container">
-                <div class="row g-5 align-items-end mb--40">
-                    <div class="col-lg-8 col-md-8 col-12">
-                        <div class="section-title text-start">
-                            <span class="subtitle bg-primary-opacity justify-content-start">Karya Kreatif</span>
-                            <h2 class="title">Project Siswa Jurusan</h2>
-                            <p class="description">Kumpulan karya, portfolio aplikasi, dan project nyata yang diciptakan oleh siswa-siswi program keahlian {{ $program->nama }}.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="load-more-btn text-start text-md-end">
-                            <a class="rbt-btn btn-gradient hover-icon-reverse" href="{{ url('/project') }}">
-                                <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">Lihat Semua Project</span>
-                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                </span>
-                            </a>
-                        </div>
+    {{-- Skill / Project Siswa Jurusan --}}
+@if(isset($projectJurusan) && $projectJurusan->count() > 0)
+    <div class="rbt-blog-area bg-color-white rbt-section-gap" id="skill">
+        <div class="container">
+            <div class="row g-5 align-items-end mb--40">
+                <div class="col-lg-8 col-md-8 col-12">
+                    <div class="section-title text-start">
+                        <span class="subtitle bg-primary-opacity justify-content-start">Karya Kreatif</span>
+                        <h2 class="title">Skill & Project Siswa Jurusan</h2>
+                        <p class="description">Kumpulan karya, portfolio aplikasi, dan project nyata yang diciptakan oleh siswa-siswi program keahlian {{ $program->nama }}.</p>
                     </div>
                 </div>
-
-                <div class="row g-4">
-                    @foreach($projectJurusan as $project)
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
-                            <div class="rbt-card variation-02 rbt-hover h-100 d-flex flex-column justify-content-between" style="border: 1px solid var(--color-border); box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white);">
-                                <div>
-                                    <div class="rbt-card-img" style="height: 220px; overflow: hidden; position: relative;">
-                                        @if($project->data2)
-                                            <img src="{{ asset('storage/' . $project->data2) }}" alt="{{ $project->data1 }}" style="width: 100%; height: 100%; object-fit: cover;">
-                                        @else
-                                            <div class="bg-light d-flex align-items-center justify-content-center h-100" style="height: 220px;">
-                                                <i class="feather-monitor fs-1 text-muted"></i>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="p-3">
-                                        <h5 class="rbt-card-title mb-2" style="font-size: 15px; font-weight: 700; line-height: 1.4;">
-                                            <a href="{{ route('project.show', $project->id) }}" style="color: var(--color-heading); transition: 0.3s; text-decoration: none;">{{ Str::limit($project->data1, 60) }}</a>
-                                        </h5>
-                                        <p class="text-muted small mb-0">{{ Str::limit($project->text1, 120) }}</p>
-                                    </div>
-                                </div>
-                                <div class="p-3 pt-0">
-                                    @if($project->data4)
-                                        @php
-                                            $linkedNews = \App\Models\News::find($project->data4);
-                                        @endphp
-                                        @if($linkedNews)
-                                            <div class="rbt-card-bottom" style="border-top: 1px solid var(--color-border); padding-top: 10px;">
-                                                <a class="transparent-button" href="{{ route('berita.show', $linkedNews->slug) }}" style="font-size: 12px; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 4px; text-decoration: none;">
-                                                    Baca Berita
-                                                    <i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-primary)" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M0 6h15M11 1l5 5-5 5"/></g></svg></i>
-                                                </a>
-                                            </div>
-                                        @endif
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="load-more-btn text-start text-md-end">
+                        <a class="rbt-btn btn-gradient hover-icon-reverse" href="{{ route('skill.index') }}">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Lihat Semua Skill</span>
+                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <div class="row g-4">
+                @foreach($projectJurusan as $project)
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="rbt-card variation-02 rbt-hover h-100 d-flex flex-column justify-content-between" style="border: 1px solid var(--color-border); box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white);">
+                            <div>
+                                <div class="rbt-card-img" style="height: 220px; overflow: hidden; position: relative;">
+                                    @if($project->data2)
+                                        <img src="{{ asset('storage/' . $project->data2) }}" alt="{{ $project->data1 }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                    @else
+                                        <div class="bg-light d-flex align-items-center justify-content-center h-100" style="height: 220px;">
+                                            <i class="feather-monitor fs-1 text-muted"></i>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="p-3">
+                                    <h5 class="rbt-card-title mb-2" style="font-size: 15px; font-weight: 700; line-height: 1.4;">
+                                        <a href="{{ route('skill.show', $project->id) }}" style="color: var(--color-heading); transition: 0.3s; text-decoration: none;">{{ Str::limit($project->data1, 60) }}</a>
+                                    </h5>
+                                    <p class="text-muted small mb-0">{{ Str::limit($project->text1, 120) }}</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                @if($project->data4)
+                                    @php
+                                        $linkedNews = \App\Models\News::find($project->data4);
+                                    @endphp
+                                    @if($linkedNews)
+                                        <div class="rbt-card-bottom" style="border-top: 1px solid var(--color-border); padding-top: 10px;">
+                                            <a class="transparent-button" href="{{ route('berita.show', $linkedNews->slug) }}" style="font-size: 12px; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 4px; text-decoration: none;">
+                                                Baca Berita
+                                                <i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-primary)" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M0 6h15M11 1l5 5-5 5"/></g></svg></i>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-    @endif
+    </div>
+@endif
 
     {{-- Gallery Jurusan --}}
     @if(isset($galleryJurusan) && $galleryJurusan->count() > 0)

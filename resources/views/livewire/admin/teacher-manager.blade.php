@@ -31,7 +31,8 @@
                 <option value="PNS">PNS</option>
                 <option value="PPPK">PPPK</option>
                 <option value="Honorer">Honorer</option>
-                <option value="GTT">GTT</option>
+                <option value="DTT">DTT</option>
+                <option value="DTS">DTS</option>
             </select>
         </div>
         <div class="col-md-2">
@@ -343,8 +344,8 @@
                                             <option value="">Pilih Status</option>
                                             <option value="PNS">PNS</option>
                                             <option value="PPPK">PPPK</option>
-                                            <option value="GTY">GTY (Guru Tetap Yayasan)</option>
-                                            <option value="GTT">GTT (Guru Tidak Tetap)</option>
+                                            <option value="DTY">DTY (Dosen Tetap Yayasan)</option>
+                                            <option value="DTT">DTT (Dosen Tidak Tetap)</option>
                                             <option value="PTY">PTY (Pegawai Tetap Yayasan)</option>
                                             <option value="PTT">PTT (Pegawai Tidak Tetap)</option>
                                             <option value="Honorer">Honorer</option>

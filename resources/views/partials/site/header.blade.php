@@ -23,11 +23,25 @@
                         </div>
                     </div>
                 </div>
-
+                
+                
                 <div class="rbt-header-sec-col rbt-header-right">
                     <div class="rbt-header-content">
                         <div class="header-info">
                             <ul class="social-share-transparent version-02">
+                                @if($settings && $settings->whatsapp)
+    @php
+        $waRaw  = $settings->whatsapp;
+        $waLink = (str_starts_with($waRaw, 'http') || str_starts_with($waRaw, '//'))
+                ? $waRaw
+                : 'https://wa.me/' . preg_replace('/[^0-9]/', '', $waRaw);
+    @endphp
+    <li>
+        <a href="{{ $waLink }}" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </li>
+@endif
                                 @if($settings && $settings->facebook)
                                     <li>
                                         <a href="{{ $settings->facebook }}" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
@@ -41,6 +55,13 @@
                                 @if($settings && $settings->instagram)
                                     <li>
                                         <a href="{{ $settings->instagram }}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                @endif
+                                @if($settings && $settings->tiktok)
+                                    <li>
+                                        <a href="{{ $settings->tiktok }}" target="_blank" rel="noopener">
+                                            <i class="ri-tiktok-fill"></i>
+                                        </a>
                                     </li>
                                 @endif
                                 @if($settings && $settings->youtube)
@@ -64,9 +85,9 @@
                     <div class="logo logo-dark">
                         <a href="{{ route('home') }}">
                             @if($settings && $settings->logo)
-                                <img src="{{ asset('storage/' . $settings->logo) }}" alt="{{ $settings->institution_name ?? 'Sekolah' }}" style="max-height: 55px; width: auto;">
+                                <img src="{{ asset('storage/' . $settings->logo) }}" alt="{{ $settings->institution_name ?? 'Sekolah' }}" style="max-height: 40px; width: auto;">
                             @else
-                                <img src="{{ asset('assets/site/images/logo/logo.png') }}" alt="logo">
+                                <img src="{{ asset('assets/site/images/logo/sihi.png') }}" alt="logo">
                             @endif
                         </a>
                     </div>
@@ -80,21 +101,6 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="header-right">
-                    <!-- Navbar Icons -->
-                    <ul class="quick-access">
-                        <li class="access-icon">
-                            <a class="search-trigger-active rbt-round-btn" href="#">
-                                <i class="feather-search"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-                     <div class="rbt-separator d-none d-xl-block"></div>
-
-                    <div class="rbt-btn-wrapper d-none d-xl-block ms-4">
-                        <a class="rbt-btn btn-gradient btn-xs" href="{{ ($settings && $settings->ppdb_link) ? $settings->ppdb_link : '#' }}" {!! ($settings && $settings->ppdb_link) ? 'target="_blank" rel="noopener"' : '' !!}>PPDB</a>
-                    </div>
                     <!-- Start Mobile-Menu-Bar -->
                     <div class="mobile-menu-bar d-block d-xl-none">
                         <div class="hamberger">
@@ -108,21 +114,4 @@
             </div>
         </div>
     </div>
-    
-    <!-- Start Search Dropdown  -->
-    <div class="rbt-search-dropdown">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <form action="{{ route('berita.index') }}" method="GET">
-                        <input type="text" name="search" placeholder="Cari berita, agenda, pengumuman..." value="{{ request('search') }}">
-                        <div class="submit-btn">
-                            <button class="rbt-btn btn-gradient btn-md" type="submit">Cari</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Search Dropdown  -->
 </header>

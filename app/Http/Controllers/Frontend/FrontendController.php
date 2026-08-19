@@ -748,32 +748,58 @@ class FrontendController extends Controller
     }
 
     /**
-     * Public Projects (Karya Siswa) Page
-     */
-    public function projectIndex(Request $request)
-    {
-        $query = Common::where('table_name', 'karya_siswa')->where('is_active', true);
+ * Public Skills (Karya Siswa) Page
+ */
+public function skillIndex(Request $request)
+{
+    $query = \App\Models\Common::where('table_name', 'karya_siswa')->where('is_active', true);
 
-        // Filter by search
-        if ($request->filled('search')) {
-            $query->where(function($q) use ($request) {
-                $q->where('data1', 'like', '%' . $request->search . '%')
-                  ->orWhere('text1', 'like', '%' . $request->search . '%');
-            });
-        }
-
-        // Filter by jurusan
-        if ($request->filled('jurusan')) {
-            $query->where('data3', $request->jurusan);
-        }
-
-        $projects = $query->orderBy('id', 'desc')->paginate(9);
-
-        // Fetch programs/jurusans for filter
-        $jurusans = Program::where('is_active', true)->orderBy('order')->get();
-
-        return view('site.project.index', compact('projects', 'jurusans'));
+    // Filter by search
+    if ($request->filled('search')) {
+        $query->where(function($q) use ($request) {
+            $q->where('data1', 'like', '%' . $request->search . '%')
+              ->orWhere('text1', 'like', '%' . $request->search . '%');
+        });
     }
+
+    // Filter by jurusan
+    if ($request->filled('jurusan')) {
+        $query->where('data3', $request->jurusan);
+    }
+
+    // PENTING: Ubah nama variabel menjadi $projects agar sesuai dengan view
+    $projects = $query->orderBy('id', 'desc')->paginate(9);
+
+    // Fetch programs/jurusans for filter
+    $jurusans = \App\Models\Program::where('is_active', true)->orderBy('order')->get();
+
+    return view('site.skill.index', compact('projects', 'jurusans'));
+}
+
+/**
+ * Public Skill Detail
+ */
+public function skillShow($id)
+{
+    // PENTING: Ubah nama variabel menjadi $project agar sesuai dengan view
+    $project = \App\Models\Common::where('table_name', 'karya_siswa')
+        ->where('is_active', true)
+        ->findOrFail($id);
+
+    // Get program/jurusan if exists
+    $jurusan = null;
+    if ($project->data3) {
+        $jurusan = \App\Models\Program::find($project->data3);
+    }
+
+    // Get linked news if exists
+    $news = null;
+    if ($project->data4) {
+        $news = \App\Models\News::find($project->data4);
+    }
+
+    return view('site.skill.show', compact('project', 'jurusan', 'news'));
+}
 
     /**
      * Public Project Detail
@@ -796,7 +822,7 @@ class FrontendController extends Controller
             $news = News::find($project->data4);
         }
 
-        return view('site.project.show', compact('project', 'jurusan', 'news'));
+        return view('site.skill.show', compact('project', 'jurusan', 'news'));
     }
 
     /**
@@ -1057,6 +1083,220 @@ class FrontendController extends Controller
 
         return view('site.jurusan.space', compact('program', 'jurusanMenu', 'page'));
     }
+
+        /**
+     * Fasilitas Index (Daftar Semua Fasilitas)
+     */
+    public function fasilitasIndex()
+    {
+        // Mengambil data fasilitas dari tabel common
+        $fasilitas = Common::where('table_name', 'fasilitas')
+            ->where('is_active', true)
+            ->orderBy('order', 'asc')
+            ->get();
+
+        return view('site.fasilitas.index', compact('fasilitas'));
+    }
+
+    /**
+     * Fasilitas Show (Detail Satu Fasilitas)
+     */
+    public function fasilitasShow($slug)
+    {
+        // Mengambil detail fasilitas berdasarkan slug (key1)
+        $fasilitas = Common::where('table_name', 'fasilitas')
+            ->where('key1', $slug) 
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        return view('site.fasilitas.show', compact('fasilitas'));
+    }
+
+    /**
+ * Halaman Daftar Mitra Industri
+ */
+public function mitraIndex(Request $request)
+{
+    try {
+        $mitras = \App\Models\Common::where('table_name', 'mitra_industri')
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get();
+
+        return view('site.mitra.index', compact('mitras'));
+    } catch (\Exception $e) {
+        // Debug mode - hapus ini setelah berhasil
+        dd('Error mitraIndex: ' . $e->getMessage());
+    }
+}
+
+/**
+ * Halaman Detail MOU Mitra Industri
+ */
+public function mitraDetail($slug)
+{
+    try {
+        // Coba cari berdasarkan key1 dulu (slug), jika tidak ada cari berdasarkan ID
+        $mitra = \App\Models\Common::where('table_name', 'mitra_industri')
+            ->where('is_active', true)
+            ->where(function($query) use ($slug) {
+                $query->where('key1', $slug)
+                      ->orWhere('id', $slug);
+            })
+            ->firstOrFail();
+
+        return view('site.mitra.detail', compact('mitra'));
+    } catch (\Exception $e) {
+        dd('Error mitraDetail: ' . $e->getMessage() . ' - Slug: ' . $slug);
+    }
+}
+
+/**
+ * Halaman Pelatihan Kerja (dari program_unggulan)
+ */
+public function pelatihanKerjaIndex(Request $request)
+{
+    $query = \App\Models\Common::where('table_name', 'program_unggulan')
+        ->where('is_active', true);
+
+    // Filter kategori -> kolom data4
+    if ($request->filled('kategori')) {
+        $query->where('data4', $request->kategori);
+    }
+
+    if ($request->filled('search')) {
+        $query->where(function($q) use ($request) {
+            $q->where('data1', 'like', '%' . $request->search . '%')
+              ->orWhere('text1', 'like', '%' . $request->search . '%');
+        });
+    }
+
+    $programs = $query->orderBy('order')->get();
+
+    // Daftar kategori untuk filter -> pluck data4
+    $kategoris = \App\Models\Common::where('table_name', 'program_unggulan')
+        ->where('is_active', true)
+        ->whereNotNull('data4')
+        ->where('data4', '!=', '')
+        ->distinct()
+        ->pluck('data4');
+
+    return view('site.pelatihan-kerja.index', compact('programs', 'kategoris'));
+}
+
+/**
+ * Halaman Detail Pelatihan Kerja
+ */
+public function pelatihanKerjaDetail($key1)
+{
+    $program = \App\Models\Common::where('table_name', 'program_unggulan')
+        ->where('key1', $key1)
+        ->where('is_active', true)
+        ->firstOrFail();
+
+    $otherPrograms = \App\Models\Common::where('table_name', 'program_unggulan')
+        ->where('is_active', true)
+        ->where('key1', '!=', $key1)
+        ->orderBy('order')
+        ->limit(4)
+        ->get();
+
+    return view('site.pelatihan-kerja.detail', compact('program', 'otherPrograms'));
+}
+
+/**
+ * Halaman Pendaftaran Siswa Baru (Form)
+ */
+public function pendaftaranIndex()
+{
+    $programs = Program::where('is_active', true)->orderBy('order')->get();
+    return view('site.pendaftaran.index', compact('programs'));
+}
+
+/**
+ * Simpan Data Pendaftaran
+ */
+public function pendaftaranStore(Request $request)
+{
+    $request->validate([
+        'nama_lengkap'    => 'required|string|max:255',
+        'jenis_kelamin'   => 'required|string|max:20',
+        'tgl_lahir'       => 'required|string|max:50',
+        'asal_sekolah'    => 'required|string|max:255',
+        'alamat_rumah'    => 'required|string',
+        'tahun_lulus'     => 'required|string|max:10',
+        'jurusan_sekolah' => 'nullable|string|max:255',
+        'no_whatsapp'     => 'required|string|max:20',
+        'no_ortu'         => 'nullable|string|max:20',
+        'email'           => 'required|email|max:255',
+        'program'         => 'required|string|max:255',
+    ]);
+
+    \App\Models\Registration::create($request->only([
+        'nama_lengkap', 'jenis_kelamin', 'tgl_lahir', 'asal_sekolah',
+        'alamat_rumah', 'tahun_lulus', 'jurusan_sekolah', 'no_whatsapp',
+        'no_ortu', 'email', 'program',
+    ]));
+
+    return redirect()->route('site.pendaftaran.index')->with('success',
+        'Terima kasih! Pendaftaran Anda berhasil terkirim. Tim admisi kami akan menghubungi Anda melalui WhatsApp/Email untuk proses selanjutnya.');
+}
+
+/**
+ * Halaman Karir / Lowongan Kerja
+ */
+public function karirIndex()
+{
+    try {
+        $postings = \App\Models\ElearningJobPosting::where('status', 'open')
+            ->orderByDesc('created_at')->get();
+    } catch (\Throwable $e) {
+        \Illuminate\Support\Facades\Log::error('karirIndex error: ' . $e->getMessage());
+        $postings = collect(); // halaman tetap tampil walau tabel/model bermasalah
+    }
+
+    // ✅ PERBAIKAN: nama view sesuai lokasi file
+    // File Anda di: resources/views/site/karir/index.blade.php
+    // Maka nama view-nya: 'site.karir.index'
+    return view('site.karir.index', compact('postings'));
+}
+
+public function karirApply(Request $request)
+{
+    $request->validate([
+        'name'           => 'required|string|max:255',
+        'email'          => 'required|email|max:255',
+        'whatsapp'       => 'required|string|max:50',
+        'drive_link'     => 'required|url',
+        'job_posting_id' => 'nullable|exists:elearning_job_postings,id',
+        'intro'          => 'nullable|string|max:2000',
+    ], [
+        'drive_link.required' => 'Link Google Drive wajib diisi.',
+        'drive_link.url'      => 'Format link tidak valid. Pastikan diawali https://',
+    ]);
+
+    try {
+        $posting = \App\Models\ElearningJobPosting::find($request->job_posting_id);
+
+        \App\Models\ElearningJobApplication::create([
+            'name'           => $request->name,
+            'email'          => $request->email,
+            'whatsapp'       => $request->whatsapp,
+            'position'       => $posting ? $posting->position . ' — ' . $posting->company_name : 'Lamaran Umum (Talent Pool)',
+            'job_posting_id' => $request->job_posting_id,
+            'cv_path'        => null,
+            'drive_link'     => $request->drive_link,   // ✅ via Google Drive
+            'intro'          => $request->intro,
+            'status'         => 'Baru',
+        ]);
+
+        return back()->with('success', 'Lamaran berhasil dikirim! Tim HR akan menghubungi Anda via email/WhatsApp. 🎉');
+    } catch (\Throwable $e) {
+        \Illuminate\Support\Facades\Log::error('karirApply error: ' . $e->getMessage());
+        return back()->with('error', 'Gagal mengirim lamaran. Silakan coba lagi.');
+    }
+}
+
 
     /**
      * Contact Info Page

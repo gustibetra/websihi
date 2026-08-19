@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-inner text-center">
                     <h2 class="title">Prestasi</h2>
-                    <p class="mb--20" style="color: var(--color-body); font-size: 16px;">Galeri Prestasi dan Penghargaan Sekolah & Siswa</p>
+                    <p class="mb--20" style="color: var(--color-body); font-size: 16px;">Galeri Prestasi dan Penghargaan Institute & Mahasiswa/i</p>
                     <ul class="page-list">
                         <li class="rbt-breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li>
@@ -61,8 +61,8 @@
                                         <!-- Icon over Image (No Background) -->
                                         <img src="{{ asset('assets/site/images/icons/card-icon-1.png') }}" alt="Award Icon" style="position: absolute; top: 15px; right: 15px; z-index: 10; width: 42px; height: 42px; object-fit: contain; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));">
                                         
-                                        <span class="rbt-badge-card position-absolute top-0 start-0 m-3 {{ $item->type === 'siswa' ? 'bg-color-primary color-white' : 'bg-color-secondary color-white' }}" style="z-index: 10; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px;">
-                                            {{ $item->type === 'siswa' ? 'Siswa' : 'Sekolah' }}
+                                        <span class="rbt-badge-card position-absolute top-0 start-0 m-3 {{ $item->type === 'Mahasiswa' ? 'bg-color-primary color-white' : 'bg-color-secondary color-white' }}" style="z-index: 10; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px;">
+                                            {{ $item->type === 'siswa' ? 'Mahasiswa/i' : 'Institute' }}
                                         </span>
                                     </div>
                                     <div class="rbt-card-body p--25">
@@ -176,13 +176,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('prestasi.index', array_merge(request()->all(), ['type' => 'siswa'])) }}" class="{{ request('type') === 'siswa' ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ request('type') === 'siswa' ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ request('type') === 'siswa' ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
-                                        Siswa / Individu & Tim
+                                    <a href="{{ route('prestasi.index', array_merge(request()->all(), ['type' => 'Mahasiswa/i'])) }}" class="{{ request('type') === 'Mahasiswa/i' ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ request('type') === 'Mahasiswa/i' ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ request('type') === 'Mahasiswa/i' ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
+                                        Mahasiswa / Individu & Tim
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('prestasi.index', array_merge(request()->all(), ['type' => 'sekolah'])) }}" class="{{ request('type') === 'sekolah' ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ request('type') === 'sekolah' ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ request('type') === 'sekolah' ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
-                                        Sekolah / Lembaga
+                                    <a href="{{ route('prestasi.index', array_merge(request()->all(), ['type' => 'Institute'])) }}" class="{{ request('type') === 'Institute' ? 'active' : '' }}" style="display: flex; justify-content: space-between; color: {{ request('type') === 'Institute' ? 'var(--color-primary) !important' : 'var(--color-body)' }}; font-weight: {{ request('type') === 'Institute' ? '600 !important' : '500' }}; text-decoration: none; font-size: 14px !important; padding: 2px 0 !important;">
+                                        Institute / Yayasan
                                     </a>
                                 </li>
                             </ul>

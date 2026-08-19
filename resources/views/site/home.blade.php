@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'Beranda - Portal Resmi Sekolah')
+@section('title', 'Beranda - SIHI')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/site/css/home.css') }}">
@@ -36,13 +36,13 @@
                         <div class="swiper-wrapper">
                             @forelse($heroBanners as $banner)
                                 <div class="swiper-slide">
-                                    <div class="rbt-banner-item bg_image" style="background-image: url('{{ $banner->data2 ? asset('storage/' . $banner->data2) : asset('assets/site/images/banner/default.jpg') }}'); background-size: cover; background-position: center;">
+                                    <div class="rbt-banner-item bg_image" style="background-image: url('{{ $banner->data2 ? asset('storage/' . $banner->data2) : asset('assets/site/images/banner/.jpg') }}'); background-size: cover; background-position: center;">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="inner text-start">
                                                         <h6 class="subtitle">
-                                                            <span>PORTAL RESMI SEKOLAH</span>
+                                                            <span>WELCOME TO SIHI</span>
                                                         </h6>
                                                         <h1 class="title color-white">{{ $banner->data1 }}</h1>
                                                         @if($banner->text1)
@@ -73,10 +73,10 @@
                                                 <div class="col-12">
                                                     <div class="inner text-start">
                                                         <h6 class="subtitle">
-                                                            <span>PORTAL RESMI SEKOLAH</span>
+                                                            <span>WELCOME TO SIHI</span>
                                                         </h6>
                                                         <h1 class="title color-white">Mewujudkan Generasi Unggul</h1>
-                                                        <p class="description color-white">Selamat datang di portal resmi sekolah kami.</p>
+                                                        <p class="description color-white">Selamat datang di website sihi.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,76 +108,56 @@
             </div>
 
         @elseif($section->key1 === 'sambutan')
-            <!-- ==================== SAMBUTAN KEPALA SEKOLAH SECTION ==================== -->
-            <div class="rbt-about-area rbt-section-gapTop overflow-hidden">
-                <div class="about-style-4">
-                    <div class="container">
-                        <div class="row row--40 mt_dec--40">
-                            <div class="col-xl-6 col-12 mt--40">
-                                <div class="content">
-                                    <div class="section-title">
-                                        <h6 class="b2 mb--15">
-                                            <span class="theme-gradient">{{ $section->data5 ?? 'Sambutan Kepala Sekolah' }}</span>
-                                        </h6>
-                                        <h2 class="title w-600">Selamat Datang di Portal Kami</h2>
-                                        <p class="mt--20" style="text-align: justify;">{!! nl2br(e($section->text1)) !!}</p>
-                                        <!-- <ul class="mt--30 mb--50">
-                                            @if($section->data6)
-                                                <li>
-                                                    <span class="text-primary-opacity">
-                                                        <i class="feather-heart"></i>
-                                                    </span>
-                                                    <span class="text">{{ $section->data6 }}</span>
-                                                </li>
-                                            @endif
-                                            @if($section->data7)
-                                                <li>
-                                                    <span class="text-secondary-opacity">
-                                                        <i class="feather-book"></i>
-                                                    </span>
-                                                    <span class="text">{{ $section->data7 }}</span>
-                                                </li>
-                                            @endif
-                                        </ul> -->
-                                        <div class="d-flex align-items-center gap-5 flex-wrap">
-                                            <a class="rbt-btn btn-gradient hover-icon-reverse" href="/page/sambutan-kepala-sekolah">
-                                                <span class="icon-reverse-wrapper">
-                                                    <span class="btn-text">Explore More</span>
-                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-12 mt--40">
-                                <div class="about-thumb">
-                                    <div class="shape-1">
-                                        <img src="{{ asset('assets/site/images/shape/mf-shape-01.png') }}" alt="Shape">
-                                    </div>
-                                    <div class="shape-2">
-                                        <img src="{{ asset('assets/site/images/shape/v-union.png') }}" alt="Shape">
-                                    </div>
-                                    <!-- <div class="since">
-                                        <span>
-                                            <img src="{{ asset('assets/site/images/icons/award-01.png') }}" alt="Award Icon">
+    <!-- ==================== SAMBUTAN KEPALA SEKOLAH SECTION ==================== -->
+    <div class="rbt-about-area rbt-section-gapTop overflow-hidden">
+        <div class="about-style-4">
+            <div class="container">
+                <div class="row row--40 mt_dec--40 align-items-center">
+                    <!-- Kolom Kiri: Teks Sambutan -->
+                    <div class="col-xl-6 col-12 mt--40">
+                        <div class="content">
+                            <div class="section-title">
+                                <h6 class="b2 mb--15">
+                                    <span class="theme-gradient">{{ $section->data5 ?? 'Sambutan Kepala Sekolah' }}</span>
+                                </h6>
+                                <h2 class="title w-600">WELCOME TO SIHI</h2>
+                                <p class="mt--20 sambutan-text" style="text-align: justify;">
+                                    {!! nl2br(e($section->text1)) !!}
+                                </p>
+                                <div class="d-flex align-items-center gap-5 flex-wrap mt--30">
+                                    <a class="rbt-btn btn-gradient hover-icon-reverse" href="/page/sambutan-kepala-sekolah">
+                                        <span class="icon-reverse-wrapper">
+                                            <span class="btn-text">Explore More</span>
+                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                         </span>
-                                        <div class="title-wrap">
-                                            <h4 class="number"><span class="odometer rbt-font-primary" data-count="{{ $settings->since_year ?? '2010' }}">0000</span></h4>
-                                            <h6 class="subtitle">Since</h6>
-                                        </div>
-                                    </div> -->
-                                    <div class="thumb-1">
-                                        <img src="{{ $section->data2 ? asset('storage/' . $section->data2) : asset('assets/site/images/others/m-banner-men.png') }}" alt="{{ $section->data3 ?? 'Kepala Sekolah' }}">
-                                    </div>
-                                    <h6 class="title">{{ $section->data3 ?? 'Kepala Sekolah' }} ({{ $section->data4 ?? 'Kepala Sekolah' }})</h6>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Kolom Kanan: Foto Kepala Sekolah -->
+                    <div class="col-xl-6 col-12 mt--40">
+                        <div class="about-thumb text-center">
+                            <div class="shape-1">
+                                <img src="{{ asset('assets/site/images/shape/mf-shape-01.png') }}" alt="Shape">
+                            </div>
+                            <div class="shape-2">
+                                <img src="{{ asset('assets/site/images/shape/v-union.png') }}" alt="Shape">
+                            </div>
+                            <div class="thumb-1">
+                                <img src="{{ $section->data2 ? asset('storage/' . $section->data2) : asset('assets/site/images/others/m-banner-men.png') }}" 
+                                     alt="{{ $section->data3 ?? 'Kepala Sekolah' }}"
+                                     class="img-fluid rounded shadow">
+                            </div>
+                            <h6 class="title mt--20">{{ $section->data3 ?? 'Kepala Sekolah' }} ({{ $section->data4 ?? 'Kepala Sekolah' }})</h6>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
 
         @elseif($section->key1 === 'program_keahlian')
             <!-- ==================== PROGRAM KEAHLIAN SECTION ==================== -->
@@ -296,573 +276,214 @@
                 </div>
             </div>
 
-        @elseif($section->key1 === 'statistik')
-            <!-- ==================== STATISTIK SEKOLAH SECTION ==================== -->
-            <div class="rbt-counterup-area bt-sec-cir-shadow-1 bg-color-extra2 rbt-section-gap rbt-section-box">
-            <div class="gradient-shape-top"></div>
-            <div class="gradient-shape-bottom"></div>    
-            <div class="conter-style-2">
-                    <div class="container">
-                        <div class="row g-5 align-items-center">
-                            <div class="col-lg-6 order-2 order-lg-1">
-                                <div class="row row--30">
-                                    <!-- Start Single Counter  -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="rbt-counterup rbt-hover-03">
-                                            <div class="inner">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets/site/images/icons/counter-01.png') }}" alt="Icons Images">
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="counter"><span class="odometer" data-count="{{ $section->data3 ?? '500' }}">00</span></h3>
-                                                    <span class="subtitle">{{ $section->data2 ?? 'Siswa Aktif' }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Counter  -->
-
-                                    <!-- Start Single Counter  -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt--60">
-                                        <div class="rbt-counterup rbt-hover-03">
-                                            <div class="inner">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets/site/images/icons/counter-02.png') }}" alt="Icons Images">
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="counter"><span class="odometer" data-count="{{ $section->data5 ?? '80' }}">00</span></h3>
-                                                    <span class="subtitle">{{ $section->data4 ?? 'Guru & Staf' }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Counter  -->
-
-                                    <!-- Start Single Counter  -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--40">
-                                        <div class="rbt-counterup rbt-hover-03 transform-sm-none" data-parallax='{"x": 0, "y": -60}'>
-                                            <div class="inner">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets/site/images/icons/counter-03.png') }}" alt="Icons Images">
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="counter"><span class="odometer" data-count="{{ $section->data7 ?? '8' }}">00</span></h3>
-                                                    <span class="subtitle">{{ $section->data6 ?? 'Kompetensi Keahlian' }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Counter  -->
-
-                                    <!-- Start Single Counter  -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt--60 mt_mobile--40">
-                                        <div class="rbt-counterup rbt-hover-03 transform-sm-none" data-parallax='{"x": 0, "y": 60}'>
-                                            <div class="inner">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets/site/images/icons/counter-04.png') }}" alt="Icons Images">
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="counter"><span class="odometer" data-count="{{ $section->data9 ?? '50' }}">00</span></h3>
-                                                    <span class="subtitle">{{ $section->data8 ?? 'Mitra Industri / DU-DI' }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Counter  -->
-                                </div>
-                            </div>
-                            <div class="col-lg-6 order-1 order-lg-2">
-                                <div class="inner pl--50 pl_sm--0 pl_md--0">
-                                    <div class="section-title text-start">
-                                        <span class="subtitle bg-pink-opacity">Mengapa Memilih Kami</span>
-                                        <h2 class="title">Membangun Generasi Unggul & Berkarakter.</h2>
-                                        <p class="description has-medium-font-size mt--20 mb--0">Sekolah kami berkomitmen untuk menyediakan pendidikan berkualitas tinggi, memadukan kurikulum nasional yang relevan dengan pembelajaran berbasis industri untuk membimbing siswa meraih masa depan cemerlang.</p>
-                                    </div>
-
-                                    <div class="rbt-feature-wrapper mt--30">
-                                        <div class="rbt-feature feature-style-1 align-items-center">
-                                            <div class="icon bg-primary-opacity">
-                                                <i class="feather-heart"></i>
-                                            </div>
-                                            <div class="feature-content">
-                                                <h6 class="feature-title">Kelas Praktik Lengkap & Modern</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="rbt-feature feature-style-1 align-items-center">
-                                            <div class="icon bg-secondary-opacity">
-                                                <i class="feather-book"></i>
-                                            </div>
-                                            <div class="feature-content">
-                                                <h6 class="feature-title">Kerjasama Luas dengan Industri Nasional</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="rbt-feature feature-style-1 align-items-center">
-                                            <div class="icon bg-pink-opacity">
-                                                <i class="feather-aperture"></i>
-                                            </div>
-                                            <div class="feature-content">
-                                                <h6 class="feature-title">Pembinaan Karakter & Kreativitas Siswa</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        @elseif($section->key1 === 'program_unggulan')
-            <!-- ==================== PROGRAM UNGGULAN SECTION ==================== -->
-            <div class="rbt-service-area rbt-section-gap">
-                <div class="container">
-                    <div class="row mb--60">
-                        <div class="col-lg-12">
-                            <div class="section-title text-center">
-                                {{-- <h2 class="title">{{ $section->data2 ?? 'Program Unggulan Kami' }}</h2> --}}
-                                <h2 class="title">Program<span class="theme-gradient"> Unggulan</span> Sekolah</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Start Card Area -->
-                    <div class="row row--15 mt_dec--30">
-                        <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12 mt--30">
-                            <div class="section-title text-start h-100 d-flex flex-column justify-content-between">
-                                <div>
-                                    <h2 class="title"><span class="theme-gradient">Keunggulan</span> Pendidikan di Sekolah Kami.</h2>
-                                    <p class="description mt--20">{{ $section->text1 ?? 'Daftar program unggulan yang mempersiapkan siswa bersaing di dunia industri global.' }}</p>
-                                </div>
-                                <div class="read-more-btn mt--20">
-                                    <a class="rbt-btn btn-gradient radius rbt-marquee-btn marquee-text-y" href="#">
-                                        <span data-text="Lihat Selengkapnya">Lihat Selengkapnya</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        @forelse($programUnggulan->take(7) as $pu)
-                            <!-- Start Service Grid  -->
-                            <div class="col-lg-4 col-xl-4 col-md-6 col-sm-6 col-12 mt--30">
-                                <div class="service-card service-card-6 bg-color bg-card-color-{{ ($loop->index % 5) + 1 }} h-100">
-                                    <div class="inner">
-                                        <div class="icon">
-                                            <img src="{{ asset('assets/site/images/shape/service-0' . (($loop->index % 5) + 1) . '.png') }}" alt="Shape Images">
-                                            <img class="opacity_image" src="{{ asset('assets/site/images/shape/service-0' . (($loop->index % 5) + 1) . '.png') }}" alt="Shape Images">
-                                        </div>
-                                        <div class="content mt--15">
-                                            <h6 class="title"><a href="#">{{ $pu->data1 }}</a></h6>
-                                            <p class="description">{{ Str::limit($pu->text1, 150) }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Service Grid  -->
-                        @empty
-                            <div class="col-12 text-center text-muted">Belum ada Program Unggulan.</div>
-                        @endforelse
-                    </div>
-                </div>
-            </div>
-
         @elseif($section->key1 === 'prestasi_siswa')
-            <!-- ==================== COMBINED PRESTASI SECTION ==================== -->
-            <div class="rbt-course-area rbt-sec-cir-shadow-1 bg-color-extra2 rbt-section-gap rbt-section-box">
-                <div class="gradient-shape-top"></div>
-                <div class="gradient-shape-bottom"></div>
-                <div class="container">
-                    <div class="row mb--30">
-                        <div class="col-lg-12">
-                            <div class="section-title text-center">
-                                <span class="subtitle bg-primary-opacity justify-content-center">Prestasi & Penghargaan</span>
-                                <h2 class="title w-600"><span class="theme-gradient">Prestasi</span> Sekolah & Siswa</h2>
-                                <p class="description">Daftar pencapaian luar biasa yang berhasil diraih oleh siswa-siswi dan institusi kami di berbagai bidang.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb--40">
-                        <div class="col-lg-12">
-                            <div class="rbt-course-tab-button-wrap">
-                                <ul class="rbt-course-tab-button nav nav-tabs" id="rbt-myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="active" id="siswa-tab" data-bs-toggle="tab" data-bs-target="#siswa-pane" type="button" role="tab" aria-controls="siswa-pane" aria-selected="true">
-                                            <span class="filter-text">Prestasi Siswa</span>
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button id="sekolah-tab" data-bs-toggle="tab" data-bs-target="#sekolah-pane" type="button" role="tab" aria-controls="sekolah-pane" aria-selected="false">
-                                            <span class="filter-text">Prestasi Sekolah</span>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="tab-content" id="rbt-myTabContent">
-                                
-                                <!-- Siswa Tab Pane -->
-                                <div class="tab-pane fade active show" id="siswa-pane" role="tabpanel" aria-labelledby="siswa-tab">
-                                    @if($prestasiSiswa->count() > 0)
-                                        @php
-                                            $firstSiswa = $prestasiSiswa->first();
-                                            $otherSiswa = $prestasiSiswa->skip(1)->take(3);
-                                        @endphp
-                                        <div class="row row--15 d-flex align-items-stretch">
-                                            <!-- Large Card (Left) -->
-                                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30 d-flex">
-                                                <div class="rbt-card variation-02 rbt-hover h-100 d-flex flex-column justify-content-between w-100" style="border: none; box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white); flex-grow: 1;">
-                                                    <div>
-                                                        <div class="rbt-card-img" style="height: 280px; overflow: hidden; position: relative; background: linear-gradient(135deg, rgba(31, 95, 237, 0.1) 0%, rgba(228, 18, 114, 0.1) 100%); display: flex; align-items: center; justify-content: center;">
-                                                            @php
-                                                                $photosSiswa = $firstSiswa->photo_urls;
-                                                            @endphp
-                                                            @if(count($photosSiswa) > 1)
-                                                                <div id="carouselSiswa-{{ $firstSiswa->id }}" class="carousel slide" data-bs-ride="carousel" style="width: 100%; height: 100%;">
-                                                                    <div class="carousel-inner" style="width: 100%; height: 100%;">
-                                                                        @foreach($photosSiswa as $idx => $url)
-                                                                            <div class="carousel-item {{ $idx === 0 ? 'active' : '' }}" style="width: 100%; height: 100%;">
-                                                                                <img src="{{ $url }}" alt="{{ $firstSiswa->title }}" style="width: 100%; height: 100%; object-fit: cover;">
-                                                                            </div>
-                                                                        @endforeach
-                                                                    </div>
-                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselSiswa-{{ $firstSiswa->id }}" data-bs-slide="prev" style="border: none; background: none;">
-                                                                        <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.5));"></span>
-                                                                        <span class="visually-hidden">Previous</span>
-                                                                    </button>
-                                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselSiswa-{{ $firstSiswa->id }}" data-bs-slide="next" style="border: none; background: none;">
-                                                                        <span class="carousel-control-next-icon" aria-hidden="true" style="filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.5));"></span>
-                                                                        <span class="visually-hidden">Next</span>
-                                                                    </button>
-                                                                </div>
-                                                            @elseif(count($photosSiswa) === 1)
-                                                                <img src="{{ $photosSiswa[0] }}" alt="{{ $firstSiswa->title }}" style="width: 100%; height: 100%; object-fit: cover;">
-                                                            @else
-                                                                <div class="text-center p-4">
-                                                                    <img src="{{ asset('assets/site/images/icons/trophy.png') }}" alt="Trophy" style="width: 80px; height: auto; animation: pulse 2s infinite; opacity: 0.9;">
-                                                                </div>
-                                                            @endif
-                                                            
-                                                            <!-- Icon over Image (No Background) -->
-                                                            <img src="{{ asset('assets/site/images/icons/card-icon-1.png') }}" alt="Award Icon" style="position: absolute; top: 15px; right: 15px; z-index: 10; width: 48px; height: 48px; object-fit: contain; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));">
-                                                            
-                                                            <span class="rbt-badge-card position-absolute top-0 start-0 m-3 bg-color-primary color-white" style="z-index: 10; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px;">
-                                                                Siswa
-                                                            </span>
-                                                        </div>
-                                                        
-                                                        <div class="rbt-card-body p--30">
-                                                            <div class="rbt-card-top mb--10 d-flex justify-content-between align-items-center">
-                                                                <div class="rbt-review" style="font-size: 13px; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 5px;">
-                                                                    <i class="feather-award text-warning" style="font-size: 16px;"></i>
-                                                                    <span>{{ $firstSiswa->achiever }}</span>
-                                                                </div>
-                                                                @if($firstSiswa->tingkat)
-                                                                    <span class="rbt-badge-5 bg-color-secondary-opacity color-secondary" style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; border: none; line-height: 1;">
-                                                                        {{ $firstSiswa->tingkat->data1 }}
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                            <h3 class="rbt-card-title mb--15" style="font-size: 20px; line-height: 1.4; font-weight: 700;">
-                                                                <a href="{{ route('prestasi.show', $firstSiswa->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ $firstSiswa->title }}</a>
-                                                            </h3>
-                                                            <ul class="rbt-meta mb--10" style="font-size: 12px; color: var(--color-body); list-style: none; padding: 0; display: flex; gap: 15px; margin: 0 0 15px 0;">
-                                                                <li><i class="feather-calendar"></i> {{ $firstSiswa->date ? $firstSiswa->date->format('d M Y') : '-' }}</li>
-                                                                @if($firstSiswa->organizer)
-                                                                    <li><i class="feather-globe"></i> {{ $firstSiswa->organizer }}</li>
-                                                                @endif
-                                                            </ul>
-                                                            <p class="rbt-card-text" style="font-size: 14px; color: var(--color-body); line-height: 1.6; margin-bottom: 0;">{{ Str::limit(strip_tags($firstSiswa->description), 130) }}</p>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="rbt-card-body p--30 pt--0">
-                                                        <div class="rbt-card-bottom" style="border-top: 1px solid var(--color-border); padding-top: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                                                            <a class="transparent-button" href="{{ route('prestasi.show', $firstSiswa->id) }}" style="font-size: 13px; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 6px;">
-                                                                Detail Prestasi
-                                                                <i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-primary)" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M0 6h15M11 1l5 5-5 5"/></g></svg></i>
-                                                            </a>
-                                                            @if($firstSiswa->news)
-                                                                <a class="rbt-btn-link" href="{{ route('berita.show', $firstSiswa->news->slug) }}" style="font-size: 12px; font-weight: 600;"><i class="feather-link"></i> Berita Terkait</a>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- List Cards (Right) -->
-                                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30 d-flex flex-column justify-content-between">
-                                                <div class="d-flex flex-column gap-3 h-100">
-                                                    @foreach($otherSiswa as $item)
-                                                        <div class="rbt-card card-list variation-02 rbt-hover" style="border: none; box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white); padding: 16px 20px; margin-top: 0 !important; display: flex; align-items: center; gap: 15px; flex: 1; height: 100%; max-height: none !important; position: relative;">
-                                                            <div class="rbt-card-img" style="width: 130px; height: 100px; flex-shrink: 0; overflow: hidden; border-radius: 6px; position: relative; background: linear-gradient(135deg, rgba(31, 95, 237, 0.1) 0%, rgba(228, 18, 114, 0.1) 100%); display: flex; align-items: center; justify-content: center;">
-                                                                @php
-                                                                    $itemPhotosSiswa = $item->photo_urls;
-                                                                @endphp
-                                                                @if(count($itemPhotosSiswa) > 1)
-                                                                    <div id="carouselItem-{{ $item->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="width: 100%; height: 100%;">
-                                                                        <div class="carousel-inner" style="width: 100%; height: 100%;">
-                                                                            @foreach($itemPhotosSiswa as $idx => $url)
-                                                                                <div class="carousel-item {{ $idx === 0 ? 'active' : '' }}" style="width: 100%; height: 100%;">
-                                                                                    <img src="{{ $url }}" alt="{{ $item->title }}" style="width: 100% !important; height: 100% !important; min-width: 100% !important; max-width: 100% !important; object-fit: cover;">
-                                                                                </div>
-                                                                            @endforeach
-                                                                        </div>
-                                                                    </div>
-                                                                @elseif(count($itemPhotosSiswa) === 1)
-                                                                    <img src="{{ $itemPhotosSiswa[0] }}" alt="{{ $item->title }}" style="width: 100% !important; height: 100% !important; min-width: 100% !important; max-width: 100% !important; object-fit: cover;">
-                                                                @else
-                                                                    <img src="{{ asset('assets/site/images/icons/trophy.png') }}" alt="Trophy" style="width: 50px !important; height: auto !important; min-width: auto !important; max-width: 100% !important; opacity: 0.8; margin: auto; display: block;">
-                                                                @endif
-                                                            </div>
-                                                            <div class="rbt-card-body" style="padding: 0 45px 0 0 !important; margin: 0 !important; display: flex; flex-direction: column; justify-content: center; height: 100%; border: none; background: none;">
-                                                                <div class="d-flex align-items-center gap-2 mb--5">
-                                                                    <span class="rbt-badge-5 bg-color-primary-opacity color-primary" style="font-size: 10px; padding: 2px 6px; font-weight: 600; border-radius: 3px; line-height: 1;">
-                                                                        {{ $item->kategori->data1 ?? 'Kejuaraan' }}
-                                                                    </span>
-                                                                    @if($item->tingkat)
-                                                                        <span class="rbt-badge-5 bg-color-secondary-opacity color-secondary" style="font-size: 10px; padding: 2px 6px; font-weight: 600; border-radius: 3px; line-height: 1;">
-                                                                            {{ $item->tingkat->data1 }}
-                                                                        </span>
-                                                                    @endif
-                                                                </div>
-                                                                <h5 class="rbt-card-title" style="font-size: 16px; line-height: 1.3; font-weight: 600; margin-bottom: 4px;">
-                                                                    <a href="{{ route('prestasi.show', $item->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ Str::limit($item->title, 55) }}</a>
-                                                                </h5>
-                                                                <div style="font-size: 12px; color: var(--color-body); display: flex; flex-direction: column; gap: 1px; margin-bottom: 5px;">
-                                                                    <span><i class="feather-user text-warning me-1"></i> {{ Str::limit($item->achiever, 25) }}</span>
-                                                                    <span><i class="feather-calendar me-1"></i> {{ $item->date ? $item->date->format('d M Y') : '-' }}</span>
-                                                                </div>
-                                                                <div class="rbt-card-bottom">
-                                                                    <a class="transparent-button" href="{{ route('prestasi.show', $item->id) }}" style="font-size: 12px; font-weight: 600; color: var(--color-primary); display: flex; align-items: center; gap: 3px;">
-                                                                        Detail<i><svg width="14" height="10" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-primary)" fill="none" fill-rule="evenodd"><path d="M0 5h12M9 1l4 4-4 4"/></g></svg></i>
-                                                                    </a>
-                                                                </div>
-                                                                
-                                                                <!-- Absolute Right Icon with No Background -->
-                                                                <img src="{{ asset('assets/site/images/icons/card-icon-1.png') }}" alt="Award Icon" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 10; width: 42px; height: 42px; object-fit: contain; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.08));">
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="rbt-info-panel text-center p--50" style="background: var(--color-white); border-radius: 10px; box-shadow: var(--shadow-1);">
-                                                    <i class="feather-award text-warning mb--15" style="font-size: 48px;"></i>
-                                                    <h5 class="mb--5">Belum Ada Prestasi Siswa</h5>
-                                                    <p class="mb--0 text-muted">Belum ada data prestasi siswa yang diterbitkan saat ini.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                                
-                                <!-- Sekolah Tab Pane -->
-                                <div class="tab-pane fade" id="sekolah-pane" role="tabpanel" aria-labelledby="sekolah-tab">
-                                    @if($prestasiSekolah->count() > 0)
-                                        @php
-                                            $firstSekolah = $prestasiSekolah->first();
-                                            $otherSekolah = $prestasiSekolah->skip(1)->take(3);
-                                        @endphp
-                                        <div class="row row--15 d-flex align-items-stretch">
-                                            <!-- Large Card (Left) -->
-                                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30 d-flex">
-                                                <div class="rbt-card variation-02 rbt-hover h-100 d-flex flex-column justify-content-between w-100" style="border: none; box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white); flex-grow: 1;">
-                                                    <div>
-                                                        <div class="rbt-card-img" style="height: 280px; overflow: hidden; position: relative; background: linear-gradient(135deg, rgba(228, 18, 114, 0.1) 0%, rgba(31, 95, 237, 0.1) 100%); display: flex; align-items: center; justify-content: center;">
-                                                            @php
-                                                                $photosSekolah = $firstSekolah->photo_urls;
-                                                            @endphp
-                                                            @if(count($photosSekolah) > 1)
-                                                                <div id="carouselSekolah-{{ $firstSekolah->id }}" class="carousel slide" data-bs-ride="carousel" style="width: 100%; height: 100%;">
-                                                                    <div class="carousel-inner" style="width: 100%; height: 100%;">
-                                                                        @foreach($photosSekolah as $idx => $url)
-                                                                            <div class="carousel-item {{ $idx === 0 ? 'active' : '' }}" style="width: 100%; height: 100%;">
-                                                                                <img src="{{ $url }}" alt="{{ $firstSekolah->title }}" style="width: 100%; height: 100%; object-fit: cover;">
-                                                                            </div>
-                                                                        @endforeach
-                                                                    </div>
-                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselSekolah-{{ $firstSekolah->id }}" data-bs-slide="prev" style="border: none; background: none;">
-                                                                        <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.5));"></span>
-                                                                        <span class="visually-hidden">Previous</span>
-                                                                    </button>
-                                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselSekolah-{{ $firstSekolah->id }}" data-bs-slide="next" style="border: none; background: none;">
-                                                                        <span class="carousel-control-next-icon" aria-hidden="true" style="filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.5));"></span>
-                                                                        <span class="visually-hidden">Next</span>
-                                                                    </button>
-                                                                </div>
-                                                            @elseif(count($photosSekolah) === 1)
-                                                                <img src="{{ $photosSekolah[0] }}" alt="{{ $firstSekolah->title }}" style="width: 100%; height: 100%; object-fit: cover;">
-                                                            @else
-                                                                <div class="text-center p-4">
-                                                                    <img src="{{ asset('assets/site/images/icons/trophy.png') }}" alt="Trophy" style="width: 80px; height: auto; animation: pulse 2s infinite; opacity: 0.9;">
-                                                                </div>
-                                                            @endif
-                                                            
-                                                            <!-- Icon over Image (No Background) -->
-                                                            <img src="{{ asset('assets/site/images/icons/card-icon-1.png') }}" alt="Award Icon" style="position: absolute; top: 15px; right: 15px; z-index: 10; width: 48px; height: 48px; object-fit: contain; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));">
-                                                            
-                                                            <span class="rbt-badge-card position-absolute top-0 start-0 m-3 bg-color-secondary color-white" style="z-index: 10; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px;">
-                                                                Sekolah
-                                                            </span>
-                                                        </div>
-                                                        
-                                                        <div class="rbt-card-body p--30">
-                                                            <div class="rbt-card-top mb--10 d-flex justify-content-between align-items-center">
-                                                                <div class="rbt-review" style="font-size: 13px; font-weight: 600; color: var(--color-secondary); display: flex; align-items: center; gap: 5px;">
-                                                                    <i class="feather-award text-warning" style="font-size: 16px;"></i>
-                                                                    <span>{{ $firstSekolah->achiever }}</span>
-                                                                </div>
-                                                                @if($firstSekolah->tingkat)
-                                                                    <span class="rbt-badge-5 bg-color-secondary-opacity color-secondary" style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; border: none; line-height: 1;">
-                                                                        {{ $firstSekolah->tingkat->data1 }}
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                            <h3 class="rbt-card-title mb--15" style="font-size: 20px; line-height: 1.4; font-weight: 700;">
-                                                                <a href="{{ route('prestasi.show', $firstSekolah->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ $firstSekolah->title }}</a>
-                                                            </h3>
-                                                            <ul class="rbt-meta mb--10" style="font-size: 12px; color: var(--color-body); list-style: none; padding: 0; display: flex; gap: 15px; margin: 0 0 15px 0;">
-                                                                <li><i class="feather-calendar"></i> {{ $firstSekolah->date ? $firstSekolah->date->format('d M Y') : '-' }}</li>
-                                                                @if($firstSekolah->organizer)
-                                                                    <li><i class="feather-globe"></i> {{ $firstSekolah->organizer }}</li>
-                                                                @endif
-                                                            </ul>
-                                                            <p class="rbt-card-text" style="font-size: 14px; color: var(--color-body); line-height: 1.6; margin-bottom: 0;">{{ Str::limit(strip_tags($firstSekolah->description), 130) }}</p>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="rbt-card-body p--30 pt--0">
-                                                        <div class="rbt-card-bottom" style="border-top: 1px solid var(--color-border); padding-top: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                                                            <a class="transparent-button" href="{{ route('prestasi.show', $firstSekolah->id) }}" style="font-size: 13px; font-weight: 600; color: var(--color-secondary); display: flex; align-items: center; gap: 6px;">
-                                                                Detail Prestasi
-                                                                <i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-secondary)" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M0 6h15M11 1l5 5-5 5"/></g></svg></i>
-                                                            </a>
-                                                            @if($firstSekolah->news)
-                                                                <a class="rbt-btn-link" href="{{ route('berita.show', $firstSekolah->news->slug) }}" style="font-size: 12px; font-weight: 600;"><i class="feather-link"></i> Berita Terkait</a>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- List Cards (Right) -->
-                                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30 d-flex flex-column justify-content-between">
-                                                <div class="d-flex flex-column gap-3 h-100">
-                                                    @foreach($otherSekolah as $item)
-                                                        <div class="rbt-card card-list variation-02 rbt-hover" style="border: none; box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white); padding: 16px 20px; margin-top: 0 !important; display: flex; align-items: center; gap: 15px; flex: 1; height: 100%; max-height: none !important; position: relative;">
-                                                            <div class="rbt-card-img" style="width: 130px; height: 100px; flex-shrink: 0; overflow: hidden; border-radius: 6px; position: relative; background: linear-gradient(135deg, rgba(228, 18, 114, 0.1) 0%, rgba(31, 95, 237, 0.1) 100%); display: flex; align-items: center; justify-content: center;">
-                                                                @php
-                                                                    $itemPhotosSekolah = $item->photo_urls;
-                                                                @endphp
-                                                                @if(count($itemPhotosSekolah) > 1)
-                                                                    <div id="carouselItem-{{ $item->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="width: 100%; height: 100%;">
-                                                                        <div class="carousel-inner" style="width: 100%; height: 100%;">
-                                                                            @foreach($itemPhotosSekolah as $idx => $url)
-                                                                                <div class="carousel-item {{ $idx === 0 ? 'active' : '' }}" style="width: 100%; height: 100%;">
-                                                                                    <img src="{{ $url }}" alt="{{ $item->title }}" style="width: 100% !important; height: 100% !important; min-width: 100% !important; max-width: 100% !important; object-fit: cover;">
-                                                                                </div>
-                                                                            @endforeach
-                                                                        </div>
-                                                                    </div>
-                                                                @elseif(count($itemPhotosSekolah) === 1)
-                                                                    <img src="{{ $itemPhotosSekolah[0] }}" alt="{{ $item->title }}" style="width: 100% !important; height: 100% !important; min-width: 100% !important; max-width: 100% !important; object-fit: cover;">
-                                                                @else
-                                                                    <img src="{{ asset('assets/site/images/icons/trophy.png') }}" alt="Trophy" style="width: 50px !important; height: auto !important; min-width: auto !important; max-width: 100% !important; opacity: 0.8; margin: auto; display: block;">
-                                                                @endif
-                                                            </div>
-                                                            <div class="rbt-card-body" style="padding: 0 45px 0 0 !important; margin: 0 !important; display: flex; flex-direction: column; justify-content: center; height: 100%; border: none; background: none;">
-                                                                <div class="d-flex align-items-center gap-2 mb--5">
-                                                                    <span class="rbt-badge-5 bg-color-primary-opacity color-primary" style="font-size: 10px; padding: 2px 6px; font-weight: 600; border-radius: 3px; line-height: 1;">
-                                                                        {{ $item->kategori->data1 ?? 'Penghargaan' }}
-                                                                    </span>
-                                                                    @if($item->tingkat)
-                                                                        <span class="rbt-badge-5 bg-color-secondary-opacity color-secondary" style="font-size: 10px; padding: 2px 6px; font-weight: 600; border-radius: 3px; line-height: 1;">
-                                                                            {{ $item->tingkat->data1 }}
-                                                                        </span>
-                                                                    @endif
-                                                                </div>
-                                                                <h5 class="rbt-card-title" style="font-size: 16px; line-height: 1.3; font-weight: 600; margin-bottom: 4px;">
-                                                                    <a href="{{ route('prestasi.show', $item->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ Str::limit($item->title, 55) }}</a>
-                                                                </h5>
-                                                                <div style="font-size: 12px; color: var(--color-body); display: flex; flex-direction: column; gap: 1px; margin-bottom: 5px;">
-                                                                    <span><i class="feather-award text-warning me-1"></i> {{ Str::limit($item->achiever, 25) }}</span>
-                                                                    <span><i class="feather-calendar me-1"></i> {{ $item->date ? $item->date->format('d M Y') : '-' }}</span>
-                                                                </div>
-                                                                <div class="rbt-card-bottom">
-                                                                    <a class="transparent-button" href="{{ route('prestasi.show', $item->id) }}" style="font-size: 12px; font-weight: 600; color: var(--color-secondary); display: flex; align-items: center; gap: 4px;">
-                                                                        Detail<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-secondary)" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i>
-                                                                    </a>
-                                                                </div>
-                                                                
-                                                                <!-- Absolute Right Icon with No Background -->
-                                                                <img src="{{ asset('assets/site/images/icons/card-icon-1.png') }}" alt="Award Icon" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 10; width: 42px; height: 42px; object-fit: contain; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.08));">
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="rbt-info-panel text-center p--50" style="background: var(--color-white); border-radius: 10px; box-shadow: var(--shadow-1);">
-                                                    <i class="feather-award text-warning mb--15" style="font-size: 48px;"></i>
-                                                    <h5 class="mb--5">Belum Ada Prestasi Sekolah</h5>
-                                                    <p class="mb--0 text-muted">Belum ada data prestasi sekolah yang diterbitkan saat ini.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Button 'View All' -->
-                    <div class="row mt--60">
-                        <div class="col-lg-12">
-                            <div class="load-more-btn text-center">
-                                <a class="rbt-btn btn-gradient btn-lg btn-mobile hover-icon-reverse" href="{{ route('prestasi.index') }}">
-                                    <span class="icon-reverse-wrapper">
-                                        <span class="btn-text">Lihat Semua Prestasi</span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
+    <!-- ==================== PRESTASI YAYASAN SECTION ==================== -->
+    <div class="rbt-course-area rbt-sec-cir-shadow-1 bg-color-extra2 rbt-section-gap rbt-section-box">
+        <div class="gradient-shape-top"></div>
+        <div class="gradient-shape-bottom"></div>
+        <div class="container">
+            <div class="row mb--30">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <span class="subtitle bg-primary-opacity justify-content-center">Prestasi & Penghargaan</span>
+                        <h2 class="title w-600"><span class="theme-gradient">Prestasi</span> Yayasan</h2>
+                        <p class="description">Daftar pencapaian luar biasa yang berhasil diraih oleh institusi kami di berbagai bidang.</p>
                     </div>
                 </div>
             </div>
-            
-            <style>
-                @keyframes pulse {
-                    0% { transform: scale(1); }
-                    50% { transform: scale(1.05); }
-                    100% { transform: scale(1); }
-                }
-                .rbt-card.card-list.variation-02 {
-                    transition: all 0.3s ease;
-                }
-                .rbt-card.card-list.variation-02:hover .animate-icon {
-                    transform: translateY(-5px);
-                }
-                .animate-icon {
-                    transition: transform 0.3s ease;
-                }
-            </style>
 
-        @elseif($section->key1 === 'prestasi_sekolah')
-            <!-- Skip since it is combined inside prestasi_siswa -->
+            @if($prestasiSekolah->count() > 0)
+                @php
+                    $firstSekolah = $prestasiSekolah->first();
+                    $otherSekolah = $prestasiSekolah->skip(1)->take(3);
+                @endphp
+                <div class="row row--15 d-flex align-items-stretch">
+                    <!-- Large Card (Left) -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30 d-flex">
+                        <div class="rbt-card variation-02 rbt-hover h-100 d-flex flex-column justify-content-between w-100" style="border: none; box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white); flex-grow: 1;">
+                            <div>
+                                <div class="rbt-card-img" style="height: 280px; overflow: hidden; position: relative; background: linear-gradient(135deg, rgba(228, 18, 114, 0.1) 0%, rgba(31, 95, 237, 0.1) 100%); display: flex; align-items: center; justify-content: center;">
+                                    @php
+                                        $photosSekolah = $firstSekolah->photo_urls;
+                                    @endphp
+                                    @if(count($photosSekolah) > 1)
+                                        <div id="carouselSekolah-{{ $firstSekolah->id }}" class="carousel slide" data-bs-ride="carousel" style="width: 100%; height: 100%;">
+                                            <div class="carousel-inner" style="width: 100%; height: 100%;">
+                                                @foreach($photosSekolah as $idx => $url)
+                                                    <div class="carousel-item {{ $idx === 0 ? 'active' : '' }}" style="width: 100%; height: 100%;">
+                                                        <img src="{{ $url }}" alt="{{ $firstSekolah->title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselSekolah-{{ $firstSekolah->id }}" data-bs-slide="prev" style="border: none; background: none;">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.5));"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselSekolah-{{ $firstSekolah->id }}" data-bs-slide="next" style="border: none; background: none;">
+                                                <span class="carousel-control-next-icon" aria-hidden="true" style="filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.5));"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                    @elseif(count($photosSekolah) === 1)
+                                        <img src="{{ $photosSekolah[0] }}" alt="{{ $firstSekolah->title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                    @else
+                                        <div class="text-center p-4">
+                                            <img src="{{ asset('assets/site/images/icons/trophy.png') }}" alt="Trophy" style="width: 80px; height: auto; animation: pulse 2s infinite; opacity: 0.9;">
+                                        </div>
+                                    @endif
+                                    
+                                    <!-- Icon over Image -->
+                                    <img src="{{ asset('assets/site/images/icons/card-icon-1.png') }}" alt="Award Icon" style="position: absolute; top: 15px; right: 15px; z-index: 10; width: 48px; height: 48px; object-fit: contain; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));">
+                                    
+                                    <span class="rbt-badge-card position-absolute top-0 start-0 m-3 bg-color-secondary color-white" style="z-index: 10; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 4px;">
+                                        Yayasan
+                                    </span>
+                                </div>
+                                
+                                <div class="rbt-card-body p--30">
+                                    <div class="rbt-card-top mb--10 d-flex justify-content-between align-items-center">
+                                        <div class="rbt-review" style="font-size: 13px; font-weight: 600; color: var(--color-secondary); display: flex; align-items: center; gap: 5px;">
+                                            <i class="feather-award text-warning" style="font-size: 16px;"></i>
+                                            <span>{{ $firstSekolah->achiever }}</span>
+                                        </div>
+                                        @if($firstSekolah->tingkat)
+                                            <span class="rbt-badge-5 bg-color-secondary-opacity color-secondary" style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; border: none; line-height: 1;">
+                                                {{ $firstSekolah->tingkat->data1 }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <h3 class="rbt-card-title mb--15" style="font-size: 20px; line-height: 1.4; font-weight: 700;">
+                                        <a href="{{ route('prestasi.show', $firstSekolah->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ $firstSekolah->title }}</a>
+                                    </h3>
+                                    <ul class="rbt-meta mb--10" style="font-size: 12px; color: var(--color-body); list-style: none; padding: 0; display: flex; gap: 15px; margin: 0 0 15px 0;">
+                                        <li><i class="feather-calendar"></i> {{ $firstSekolah->date ? $firstSekolah->date->format('d M Y') : '-' }}</li>
+                                        @if($firstSekolah->organizer)
+                                            <li><i class="feather-globe"></i> {{ $firstSekolah->organizer }}</li>
+                                        @endif
+                                    </ul>
+                                    <p class="rbt-card-text" style="font-size: 14px; color: var(--color-body); line-height: 1.6; margin-bottom: 0;">{{ Str::limit(strip_tags($firstSekolah->description), 130) }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="rbt-card-body p--30 pt--0">
+                                <div class="rbt-card-bottom" style="border-top: 1px solid var(--color-border); padding-top: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                                    <a class="transparent-button" href="{{ route('prestasi.show', $firstSekolah->id) }}" style="font-size: 13px; font-weight: 600; color: var(--color-secondary); display: flex; align-items: center; gap: 6px;">
+                                        Detail Prestasi
+                                        <i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-secondary)" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M0 6h15M11 1l5 5-5 5"/></g></svg></i>
+                                    </a>
+                                    @if($firstSekolah->news)
+                                        <a class="rbt-btn-link" href="{{ route('berita.show', $firstSekolah->news->slug) }}" style="font-size: 12px; font-weight: 600;"><i class="feather-link"></i> Berita Terkait</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- List Cards (Right) -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30 d-flex flex-column justify-content-between">
+                        <div class="d-flex flex-column gap-3 h-100">
+                            @foreach($otherSekolah as $item)
+                                <div class="rbt-card card-list variation-02 rbt-hover" style="border: none; box-shadow: var(--shadow-1); border-radius: 10px; overflow: hidden; background: var(--color-white); padding: 16px 20px; margin-top: 0 !important; display: flex; align-items: center; gap: 15px; flex: 1; height: 100%; max-height: none !important; position: relative;">
+                                    <div class="rbt-card-img" style="width: 130px; height: 100px; flex-shrink: 0; overflow: hidden; border-radius: 6px; position: relative; background: linear-gradient(135deg, rgba(228, 18, 114, 0.1) 0%, rgba(31, 95, 237, 0.1) 100%); display: flex; align-items: center; justify-content: center;">
+                                        @php
+                                            $itemPhotosSekolah = $item->photo_urls;
+                                        @endphp
+                                        @if(count($itemPhotosSekolah) > 1)
+                                            <div id="carouselItem-{{ $item->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="width: 100%; height: 100%;">
+                                                <div class="carousel-inner" style="width: 100%; height: 100%;">
+                                                    @foreach($itemPhotosSekolah as $idx => $url)
+                                                        <div class="carousel-item {{ $idx === 0 ? 'active' : '' }}" style="width: 100%; height: 100%;">
+                                                            <img src="{{ $url }}" alt="{{ $item->title }}" style="width: 100% !important; height: 100% !important; min-width: 100% !important; max-width: 100% !important; object-fit: cover;">
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @elseif(count($itemPhotosSekolah) === 1)
+                                            <img src="{{ $itemPhotosSekolah[0] }}" alt="{{ $item->title }}" style="width: 100% !important; height: 100% !important; min-width: 100% !important; max-width: 100% !important; object-fit: cover;">
+                                        @else
+                                            <img src="{{ asset('assets/site/images/icons/trophy.png') }}" alt="Trophy" style="width: 50px !important; height: auto !important; min-width: auto !important; max-width: 100% !important; opacity: 0.8; margin: auto; display: block;">
+                                        @endif
+                                    </div>
+                                    <div class="rbt-card-body" style="padding: 0 45px 0 0 !important; margin: 0 !important; display: flex; flex-direction: column; justify-content: center; height: 100%; border: none; background: none;">
+                                        <div class="d-flex align-items-center gap-2 mb--5">
+                                            <span class="rbt-badge-5 bg-color-primary-opacity color-primary" style="font-size: 10px; padding: 2px 6px; font-weight: 600; border-radius: 3px; line-height: 1;">
+                                                {{ $item->kategori->data1 ?? 'Penghargaan' }}
+                                            </span>
+                                            @if($item->tingkat)
+                                                <span class="rbt-badge-5 bg-color-secondary-opacity color-secondary" style="font-size: 10px; padding: 2px 6px; font-weight: 600; border-radius: 3px; line-height: 1;">
+                                                    {{ $item->tingkat->data1 }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <h5 class="rbt-card-title" style="font-size: 16px; line-height: 1.3; font-weight: 600; margin-bottom: 4px;">
+                                            <a href="{{ route('prestasi.show', $item->id) }}" style="color: var(--color-heading); transition: 0.3s;">{{ Str::limit($item->title, 55) }}</a>
+                                        </h5>
+                                        <div style="font-size: 12px; color: var(--color-body); display: flex; flex-direction: column; gap: 1px; margin-bottom: 5px;">
+                                            <span><i class="feather-award text-warning me-1"></i> {{ Str::limit($item->achiever, 25) }}</span>
+                                            <span><i class="feather-calendar me-1"></i> {{ $item->date ? $item->date->format('d M Y') : '-' }}</span>
+                                        </div>
+                                        <div class="rbt-card-bottom">
+                                            <a class="transparent-button" href="{{ route('prestasi.show', $item->id) }}" style="font-size: 12px; font-weight: 600; color: var(--color-secondary); display: flex; align-items: center; gap: 4px;">
+                                                Detail<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--color-secondary)" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i>
+                                            </a>
+                                        </div>
+                                        
+                                        <!-- Absolute Right Icon -->
+                                        <img src="{{ asset('assets/site/images/icons/card-icon-1.png') }}" alt="Award Icon" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 10; width: 42px; height: 42px; object-fit: contain; pointer-events: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.08));">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="rbt-info-panel text-center p--50" style="background: var(--color-white); border-radius: 10px; box-shadow: var(--shadow-1);">
+                            <i class="feather-award text-warning mb--15" style="font-size: 48px;"></i>
+                            <h5 class="mb--5">Belum Ada Prestasi Yayasan</h5>
+                            <p class="mb--0 text-muted">Belum ada data prestasi yayasan yang diterbitkan saat ini.</p>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <!-- Button 'View All' -->
+            <div class="row mt--60">
+                <div class="col-lg-12">
+                    <div class="load-more-btn text-center">
+                        <a class="rbt-btn btn-gradient btn-lg btn-mobile hover-icon-reverse" href="{{ route('prestasi.index') }}">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Lihat Semua Prestasi</span>
+                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .rbt-card.card-list.variation-02 {
+            transition: all 0.3s ease;
+        }
+        .rbt-card.card-list.variation-02:hover .animate-icon {
+            transform: translateY(-5px);
+        }
+        .animate-icon {
+            transition: transform 0.3s ease;
+        }
+    </style>
+
+@elseif($section->key1 === 'prestasi_sekolah')
+    <!-- Skip since it is combined inside prestasi_siswa -->
 
         @elseif($section->key1 === 'karya_siswa')
             <!-- ==================== KARYA & PROJEK SISWA SECTION ==================== -->
@@ -871,8 +492,8 @@
                     <div class="row mb--60">
                         <div class="col-lg-12">
                             <div class="section-title text-center">
-                                <span class="subtitle bg-primary-opacity justify-content-center">Karya Kreatif</span>
-                                <h2 class="title"><span class="theme-gradient">Projek & Karya </span> Siswa</h2>
+                                <span class="subtitle bg-primary-opacity justify-content-center">Skill & Keahlian</span>
+                                <h2 class="title"><span class="theme-gradient">Keterampilan </span> Skill</h2>
                                 <p class="description">{{ $section->text1 }}</p>
                             </div>
                         </div>
@@ -928,7 +549,7 @@
                         <div class="row mt--60">
                             <div class="col-lg-12">
                                 <div class="load-more-btn text-center">
-                                    <a class="rbt-btn btn-gradient btn-lg btn-mobile hover-icon-reverse" href="{{ url('/project') }}">
+                                    <a class="rbt-btn btn-gradient btn-lg btn-mobile hover-icon-reverse" href="{{ url('/skill') }}">
                                         <span class="icon-reverse-wrapper">
                                             <span class="btn-text">Lihat Lainnya</span>
                                             <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -1130,7 +751,7 @@
                         <div class="col-lg-12">
                             <div class="section-title text-center">
                                 <span class="subtitle bg-primary-opacity justify-content-center">Agenda</span>
-                                <h2 class="title"><span class="theme-gradient">Agenda & Event</span> Sekolah</h2>
+                                <h2 class="title"><span class="theme-gradient">Agenda & Event</span> Yayasan</h2>
                                 <p class="description">{{ $section->text1 }}</p>
                             </div>
                         </div>

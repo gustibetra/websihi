@@ -29,6 +29,7 @@ class Setting extends Model
         'linkedin',
         'youtube',
         'whatsapp',
+        'tiktok',
         'ppdb_link',
         'vision',
         'mission',

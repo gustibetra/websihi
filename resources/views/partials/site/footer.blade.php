@@ -21,6 +21,19 @@
                             @endif
 
                             <ul class="social-icon social-default justify-content-start mt--20">
+                                @if($settings && $settings->whatsapp)
+    @php
+        $waRaw  = $settings->whatsapp;
+        $waLink = (str_starts_with($waRaw, 'http') || str_starts_with($waRaw, '//'))
+                ? $waRaw
+                : 'https://wa.me/' . preg_replace('/[^0-9]/', '', $waRaw);
+    @endphp
+    <li>
+        <a href="{{ $waLink }}" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </li>
+@endif
                                 @if($settings && $settings->facebook)
                                     <li>
                                         <a href="{{ $settings->facebook }}" target="_blank" rel="noopener">
@@ -39,6 +52,13 @@
                                     <li>
                                         <a href="{{ $settings->instagram }}" target="_blank" rel="noopener">
                                             <i class="feather-instagram"></i>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if($settings && $settings->tiktok)
+                                    <li>
+                                        <a href="{{ $settings->tiktok }}" target="_blank" rel="noopener">
+                                            <i class="ri-tiktok-fill"></i>
                                         </a>
                                     </li>
                                 @endif
@@ -66,9 +86,8 @@
                                     @endforeach
                                 @else
                                     <li><a href="{{ route('home') }}">Beranda</a></li>
-                                    <li><a href="{{ route('berita.index') }}">Berita & Artikel</a></li>
+                                    <li><a href="{{ route('berita.index') }}">Berita & Pengumuman</a></li>
                                     <li><a href="{{ route('agenda.index') }}">Agenda Sekolah</a></li>
-                                    <li><a href="{{ route('pengumuman.index') }}">Pengumuman</a></li>
                                 @endif
                             </ul>
                         </div>

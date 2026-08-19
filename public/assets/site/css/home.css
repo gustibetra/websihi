@@ -1,1 +1,41 @@
 /* Custom CSS for Home Page */
+<style>
+    /* Membuat teks dan foto sejajar vertikal */
+    .about-style-4 .row {
+        align-items: center;
+    }
+    
+    /* Batasi tinggi teks agar tidak terlalu panjang */
+    .sambutan-text {
+        padding-right: 15px;
+        line-height: 1.8;
+        font-size: 15px;
+    }
+    
+    /* Perbaiki ukuran foto */
+    .thumb-1 img {
+        max-height: 500px;
+        width: 70%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    
+    /* Jarak antara foto dan nama */
+    .about-thumb .title {
+        margin-top: 20px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    /* Responsif untuk mobile */
+    @media (max-width: 768px) {
+        .sambutan-text {
+            max-height: none;
+            overflow-y: visible;
+        }
+        
+        .thumb-1 img {
+            max-height: 350px;
+        }
+    }
+</style>

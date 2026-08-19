@@ -20,7 +20,7 @@
                         <li>
                             <div class="icon-right"><i class="feather-chevron-right"></i></div>
                         </li>
-                        <li class="rbt-breadcrumb-item"><a href="{{ route('project.index') }}">Karya Siswa</a></li>
+                        <li class="rbt-breadcrumb-item"><a href="{{ route('skill.index') }}">Skill Dan Keahlian</a></li>
                         <li>
                             <div class="icon-right"><i class="feather-chevron-right"></i></div>
                         </li>
@@ -58,7 +58,7 @@
                                         <i class="feather-cpu" style="font-size: 18px;"></i>
                                     </div>
                                     <div>
-                                        <h6 class="mb--0" style="font-size: 11px; text-transform: uppercase; color: var(--color-body); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 3px; line-height: 1.1;">Nama Projek / Karya</h6>
+                                        <h6 class="mb--0" style="font-size: 11px; text-transform: uppercase; color: var(--color-body); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 3px; line-height: 1.1;">Nama Skill</h6>
                                         <p class="mb--0" style="font-size: 15px; font-weight: 700; color: var(--color-heading); line-height: 1.3;">{{ $project->data1 }}</p>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                     </div>
                                     <div>
                                         <h6 class="mb--0" style="font-size: 11px; text-transform: uppercase; color: var(--color-body); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 3px; line-height: 1.1;">Kategori</h6>
-                                        <p class="mb--0" style="font-size: 15px; font-weight: 700; color: var(--color-heading); line-height: 1.3;">Karya Siswa</p>
+                                        <p class="mb--0" style="font-size: 15px; font-weight: 700; color: var(--color-heading); line-height: 1.3;">Skill Dan Keahlian</p>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                     <!-- Actions Panel -->
                     <div class="d-flex justify-content-between align-items-center mb--30 pb--15" style="border-bottom: 1px solid var(--color-border); flex-wrap: wrap; gap: 15px;">
                         <span class="rbt-badge-card px-3 py-2 bg-color-primary-opacity color-primary" style="font-weight: 600; font-size: 13px;">
-                            Karya & Projek Kreatif
+                            Skill Dan Keahlian
                         </span>
                         
                         <div class="text-size-controls d-flex gap-2">
@@ -178,7 +178,7 @@
                     <div class="rbt-single-widget rbt-widget-recent-post" style="margin-top: 15px !important;">
                         <div class="d-flex justify-content-between align-items-center mb--8" style="margin-bottom: 8px !important;">
                             <h4 class="title mb--0" style="font-size: 15px !important; font-weight: 600; color: var(--color-heading); margin-bottom: 0 !important;">Projek Lainnya</h4>
-                            <a href="{{ route('project.index') }}" class="rbt-btn btn-sm btn-border" style="font-size: 11px; padding: 5px 12px; height: auto;"><i class="feather-arrow-left"></i> Kembali</a>
+                            <a href="{{ route('skill.index') }}" class="rbt-btn btn-sm btn-border" style="font-size: 11px; padding: 5px 12px; height: auto;"><i class="feather-arrow-left"></i> Kembali</a>
                         </div>
                         
                         @php
@@ -195,7 +195,7 @@
                                     <li style="display: flex; gap: 10px; align-items: center;">
                                         @if($other->data2)
                                             <div class="thumbnail" style="width: 55px; height: 55px; flex-shrink: 0; overflow: hidden; border-radius: 6px;">
-                                                <a href="{{ route('project.show', $other->id) }}">
+                                                <a href="{{ route('skill.show', $other->id) }}">
                                                     <img src="{{ asset('storage/' . $other->data2) }}" alt="{{ $other->data1 }}" style="width: 100%; height: 100%; object-fit: cover;">
                                                 </a>
                                             </div>
@@ -206,7 +206,7 @@
                                         @endif
                                         <div class="content">
                                             <h6 class="title" style="font-size: 13px !important; font-weight: 600; line-height: 1.3; margin-bottom: 2px !important;">
-                                                <a href="{{ route('project.show', $other->id) }}" style="color: var(--color-heading); text-decoration: none;">{{ Str::limit($other->data1, 55) }}</a>
+                                                <a href="{{ route('skill.show', $other->id) }}" style="color: var(--color-heading); text-decoration: none;">{{ Str::limit($other->data1, 55) }}</a>
                                             </h6>
                                         </div>
                                     </li>

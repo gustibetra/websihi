@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\NewsService;
 use App\Helpers\CommonHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // ✅ TAMBAHAN: Untuk menghapus file fisik
 
 class NewsController extends Controller
 {
@@ -47,7 +48,9 @@ class NewsController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required',
             'excerpt' => 'nullable|string|max:500',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Fallback single image
+            'images' => 'nullable|array', // ✅ BARU: Multi-image
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // ✅ BARU
             'file' => 'nullable|file|mimes:pdf,doc,docx|max:5120',
             'author' => 'nullable|string|max:100',
             'category_id' => 'nullable|integer',
@@ -61,13 +64,24 @@ class NewsController extends Controller
             'meta_description' => 'nullable|string',
         ]);
 
-        // Add created_by (later from auth)
         $validated['created_by'] = auth()->id() ?? 1;
         if (auth()->user()->isAdminJurusan()) {
             $validated['jurusan_id'] = auth()->user()->jurusan_id;
         }
 
         $this->processTags($validated['tags'] ?? null);
+
+        // ✅ LOGIKA MULTI-FOTO (Sebelum dikirim ke Service)
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $imagePaths[] = $file->store('news', 'public');
+            }
+            $validated['image'] = json_encode($imagePaths);
+        } elseif ($request->hasFile('image')) {
+            // Fallback jika user masih pakai input single image lama
+            $validated['image'] = $request->file('image')->store('news', 'public');
+        }
 
         $result = $this->newsService->create($validated);
 
@@ -134,6 +148,10 @@ class NewsController extends Controller
             'content' => 'required',
             'excerpt' => 'nullable|string|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'nullable|array', // ✅ BARU
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // ✅ BARU
+            'remove_images' => 'nullable|array', // ✅ BARU: Array index foto yang dihapus
+            'remove_images.*' => 'integer',
             'file' => 'nullable|file|mimes:pdf,doc,docx|max:5120',
             'author' => 'nullable|string|max:100',
             'category_id' => 'nullable|integer',
@@ -154,23 +172,53 @@ class NewsController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        // Add updated_by
         $validated['updated_by'] = auth()->id() ?? 1;
         if (auth()->user()->isAdminJurusan()) {
             $validated['jurusan_id'] = auth()->user()->jurusan_id;
         }
 
-        // Handle image deletion flag
-        if ($request->input('delete_image') == '1') {
-            $validated['delete_image'] = true;
+        $this->processTags($validated['tags'] ?? null);
+
+        // ✅ LOGIKA UPDATE MULTI-FOTO
+        $news = $resultGet['data'];
+        $existingPaths = $news->images ?? []; // Mengambil array dari accessor Model
+
+        // 1. Hapus foto yang dicentang "Hapus" di form edit
+        if ($request->has('remove_images')) {
+            foreach ((array) $request->input('remove_images') as $idx) {
+                if (isset($existingPaths[$idx])) {
+                    Storage::disk('public')->delete($existingPaths[$idx]);
+                    unset($existingPaths[$idx]);
+                }
+            }
+            $existingPaths = array_values($existingPaths); // Re-index array
         }
 
-        // Handle file deletion flag
+        // 2. Tambahkan foto baru yang diupload
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $existingPaths[] = $file->store('news', 'public');
+            }
+        } elseif ($request->hasFile('image')) {
+            // Fallback single image
+            $existingPaths[] = $request->file('image')->store('news', 'public');
+        }
+
+        // 3. Handle checkbox "Hapus Semua" (delete_image)
+        if ($request->input('delete_image') == '1') {
+            foreach ($existingPaths as $p) {
+                Storage::disk('public')->delete($p);
+            }
+            $validated['image'] = null;
+        } else {
+            // Simpan kembali sebagai JSON
+            $validated['image'] = !empty($existingPaths) ? json_encode($existingPaths) : null;
+        }
+
+        // Handle file deletion flag (PDF/DOC)
         if ($request->input('delete_file') == '1') {
             $validated['delete_file'] = true;
         }
-
-        $this->processTags($validated['tags'] ?? null);
 
         $result = $this->newsService->update($id, $validated);
 
@@ -187,6 +235,14 @@ class NewsController extends Controller
         $resultGet = $this->newsService->getById($id);
         if ($resultGet['success'] && auth()->user()->isAdminJurusan() && $resultGet['data']->jurusan_id !== auth()->user()->jurusan_id) {
             abort(403, 'Unauthorized action.');
+        }
+
+        // ✅ BONUS: Hapus file fisik saat berita dihapus permanen
+        $news = $resultGet['data'];
+        if (!empty($news->images)) {
+            foreach ($news->images as $path) {
+                Storage::disk('public')->delete($path);
+            }
         }
 
         $result = $this->newsService->delete($id);

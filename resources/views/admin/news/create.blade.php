@@ -211,27 +211,25 @@
                                 </div>
                             </div>
 
-                            <!-- Image -->
+                            <!-- ✅ MULTI IMAGE UPLOAD (BARU) -->
                             <div class="card border mt-3">
                                 <div class="card-header bg-light">
-                                    <h5 class="card-title mb-0">Gambar</h5>
+                                    <h5 class="card-title mb-0">Gambar Kegiatan</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="alert alert-info" role="alert">
-                                        <strong>Info:</strong> Max file size: <b>2 MB</b>. Format: JPG, PNG, GIF.
+                                        <strong>Info:</strong> Bisa upload lebih dari satu foto. Max: <b>5 MB</b> per foto. Foto pertama otomatis menjadi sampul.
                                     </div>
                                     
-                                    <div class="news-form-image-preview-container mb-3">
-                                        <img id="imagePreview" class="news-form-image-preview" src="" alt="Preview">
-                                        <button type="button" class="news-form-remove-image" id="removeImage">
-                                            <i class="ri-close-line"></i>
-                                        </button>
-                                    </div>
+                                    <input type="file" class="form-control @error('images.*') is-invalid @enderror" id="images" name="images[]" accept="image/jpeg,image/png,image/jpg,image/gif" multiple>
+                                    <small class="text-muted">Tahan Ctrl / Cmd untuk memilih beberapa foto sekaligus.</small>
                                     
-                                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/jpeg,image/png,image/jpg,image/gif">
-                                    @error('image')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @error('images.*')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror
+
+                                    {{-- Preview Container --}}
+                                    <div id="imagesPreview" class="d-flex flex-wrap gap-2 mt-3"></div>
                                 </div>
                             </div>
 
@@ -337,4 +335,45 @@
 
 @section('page-scripts')
 <script src="{{ asset('assets/admin/js/pages/news-form.js') }}"></script>
+{{-- ✅ Script Preview Multi-Image --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const imagesInput = document.getElementById('images');
+    const imagesPreview = document.getElementById('imagesPreview');
+    
+    if(imagesInput && imagesPreview) {
+        imagesInput.addEventListener('change', function() {
+            imagesPreview.innerHTML = '';
+            if(this.files && this.files.length > 0) {
+                [...this.files].forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'position-relative border rounded';
+                        wrapper.style.width = '100px';
+                        wrapper.style.height = '100px';
+                        wrapper.style.overflow = 'hidden';
+                        
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                        img.style.objectFit = 'cover';
+                        
+                        const badge = document.createElement('span');
+                        badge.className = 'position-absolute top-0 start-0 badge ' + (index === 0 ? 'bg-primary' : 'bg-secondary');
+                        badge.textContent = index === 0 ? 'Sampul' : (index + 1);
+                        badge.style.fontSize = '10px';
+                        
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(badge);
+                        imagesPreview.appendChild(wrapper);
+                    }
+                    reader.readAsDataURL(file);
+                });
+            }
+        });
+    }
+});
+</script>
 @endsection

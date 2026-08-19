@@ -20,7 +20,7 @@ $getMemberAttributes = function($structureMember, $structure, $page) {
     if ($person instanceof \App\Models\Teacher) {
         $sdmCategory = 'Guru & Tenaga Kependidikan';
         $identitas = $person->nip ? 'NIP: ' . $person->nip : 'Bidang Studi: ' . ($person->bidang_studi ?: '-');
-        $detailTambahan = $person->jabatan ?: '-';
+        $detailTambahan = $person->description ?: '-';
     } elseif ($person instanceof \App\Models\Student) {
         $sdmCategory = 'Siswa';
         $identitas = $person->nisn ? 'NISN: ' . $person->nisn : 'NIS: ' . ($person->nis ?: '-');
@@ -82,7 +82,10 @@ $getMemberAttributes = function($structureMember, $structure, $page) {
             @if($membersInSection->isNotEmpty())
                 @php $hasMembers = true; @endphp
                 <div class="col-12 mt-3 mb-2">
-                    <h6 class="fw-bold text-muted border-bottom pb-1" style="font-size: 14px; letter-spacing: 0.5px;">{{ strtoupper($section->name) }}</h6>
+                    <h6 class="fw-bold" style="font-size: 14px; letter-spacing: 0.5px; background: linear-gradient(90deg, #2F57EF 0%, #13294B 100%); color: #ffffff; padding: 10px 18px; border-radius: 8px; display: flex; align-items: center; gap: 8px; text-transform: uppercase;">
+    <i class="ri-team-line" style="font-size: 16px;"></i>
+    {{ strtoupper($section->name) }}
+</h6>
                 </div>
                 @foreach($membersInSection as $structureMember)
                     @php $person = $structureMember->getPerson(); @endphp
@@ -109,7 +112,10 @@ $getMemberAttributes = function($structureMember, $structure, $page) {
         @if($unassignedMembers->isNotEmpty())
             @php $hasMembers = true; @endphp
             <div class="col-12 mt-3 mb-2">
-                <h6 class="fw-bold text-muted border-bottom pb-1" style="font-size: 14px; letter-spacing: 0.5px;">ANGGOTA</h6>
+                <h6 class="fw-bold" style="font-size: 14px; letter-spacing: 0.5px; background: linear-gradient(90deg, #2F57EF 0%, #13294B 100%); color: #ffffff; padding: 10px 18px; border-radius: 8px; display: flex; align-items: center; gap: 8px; text-transform: uppercase;">
+    <i class="ri-group-line" style="font-size: 16px;"></i>
+    ANGGOTA
+</h6>
             </div>
             @foreach($unassignedMembers as $structureMember)
                 @php $person = $structureMember->getPerson(); @endphp
@@ -159,7 +165,7 @@ $getMemberAttributes = function($structureMember, $structure, $page) {
         <div class="modal-content member-detail-modal-content">
             <div class="modal-header member-detail-modal-header">
                 <h5 class="modal-title member-detail-modal-title" id="memberDetailModalLabel">
-                    <i class="ri-user-star-line"></i> Detail Anggota
+                    <i class="ri-user-star-line"></i> 
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

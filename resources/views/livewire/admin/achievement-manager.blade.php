@@ -15,8 +15,8 @@
         <div class="col-md-2">
             <select class="form-select" wire:model.live="typeFilter">
                 <option value="all">Semua Tipe</option>
-                <option value="siswa">Siswa</option>
-                <option value="sekolah">Sekolah</option>
+                <option value="siswa">Mahasiswa/i</option>
+                <option value="sekolah">Institute</option>
             </select>
         </div>
         <div class="col-md-2">

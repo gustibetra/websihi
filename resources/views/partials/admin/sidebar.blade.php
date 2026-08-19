@@ -47,8 +47,15 @@
                         </li>
 
                         <!-- ── Konten ────────────────────────────────────────────── -->
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span>Konten</span></li>
+                    
                         
+
+<li class="nav-item">
+    <a href="{{ route('admin.elearning.users') }}" class="nav-link {{ request()->routeIs('admin.elearning.*') ? 'active' : '' }}">
+        <i class="ri-graduation-cap-line"></i> <span>E-Learning</span>
+    </a>
+</li>
+
                         <li class="nav-item">
                             <a class="nav-link menu-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}" href="{{ route('admin.news.index') }}">
                                 <i class="ri-newspaper-line"></i> <span>Berita</span>
@@ -108,7 +115,7 @@
                                         @endif
                                         <li class="nav-item">
                                             <a href="{{ route('admin.teachers.index') }}" class="nav-link {{ request()->routeIs('admin.teachers.*') ? 'active' : '' }}">
-                                                <i class="ri-team-line"></i> <span>Guru & Tendik</span>
+                                                <i class="ri-team-line"></i> <span>Instruktur SIHI</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">

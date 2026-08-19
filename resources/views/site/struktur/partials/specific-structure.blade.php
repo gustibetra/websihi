@@ -19,7 +19,7 @@ $getMemberAttributes = function($structureMember) use ($structure, $page) {
     if ($person instanceof \App\Models\Teacher) {
         $sdmCategory = 'Guru & Tenaga Kependidikan';
         $identitas = $person->nip ? 'NIP: ' . $person->nip : 'Bidang Studi: ' . ($person->bidang_studi ?: '-');
-        $detailTambahan = $person->jabatan ?: '-';
+        $detailTambahan = $person->description ?: '-';
     } elseif ($person instanceof \App\Models\Student) {
         $sdmCategory = 'Siswa';
         $identitas = $person->nisn ? 'NISN: ' . $person->nisn : 'NIS: ' . ($person->nis ?: '-');
@@ -156,7 +156,7 @@ $getMemberAttributes = function($structureMember) use ($structure, $page) {
         <div class="modal-content member-detail-modal-content">
             <div class="modal-header member-detail-modal-header">
                 <h5 class="modal-title member-detail-modal-title" id="memberDetailModalLabel">
-                    <i class="ri-user-star-line"></i> Detail Anggota
+                    <i class="ri-user-star-line"></i> 
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

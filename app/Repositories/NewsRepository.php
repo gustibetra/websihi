@@ -11,6 +11,46 @@ class NewsRepository extends BaseRepository
         parent::__construct($model);
     }
 
+    // ═══════════════════════════════════════════════════════
+    // ✅ OVERRIDE CREATE & UPDATE (Mencegah Error "Unknown column")
+    // ═══════════════════════════════════════════════════════
+
+    /**
+     * Create a new news record
+     */
+    public function create(array $data)
+    {
+        // Buang key bawaan form yang bukan kolom database
+        unset(
+            $data['images'], 
+            $data['remove_images'], 
+            $data['delete_image'], 
+            $data['delete_file']
+        );
+        
+        return parent::create($data);
+    }
+
+    /**
+     * Update an existing news record
+     */
+    public function update($id, array $data)
+    {
+        // Buang key bawaan form yang bukan kolom database
+        unset(
+            $data['images'], 
+            $data['remove_images'], 
+            $data['delete_image'], 
+            $data['delete_file']
+        );
+        
+        return parent::update($id, $data);
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // METHOD BAWAAN (TETAP SAMA)
+    // ═══════════════════════════════════════════════════════
+
     /**
      * Get published news
      */
@@ -83,4 +123,3 @@ class NewsRepository extends BaseRepository
             ->paginate($perPage);
     }
 }
-

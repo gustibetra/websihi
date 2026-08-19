@@ -195,6 +195,11 @@
                                     </div>
 
                                     <div class="col-md-4">
+                                        <label class="form-label">Tiktok URL</label>
+                                        <input type="url" class="form-control" wire:model="tiktok" placeholder="https://tiktok.com/...">
+                                    </div>
+
+                                    <div class="col-md-4">
                                         <label class="form-label">WhatsApp Number</label>
                                         <input type="text" class="form-control" wire:model="whatsapp" placeholder="628123456789">
                                         <small class="text-muted">Format: 628xxx (tanpa +)</small>
@@ -1323,6 +1328,26 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- WhatsApp Card -->
+<div class="col-md-6">
+    <div class="card border h-100 shadow-none">
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h6 class="card-title mb-0 d-flex align-items-center gap-2">
+                    <i class="ri-whatsapp-line text-success fs-20"></i> WhatsApp
+                </h6>
+            </div>
+            <div class="mb-3">
+                <label class="form-label text-muted" style="font-size: 12px; font-weight: 500;">Nomor / Link WhatsApp</label>
+                <input type="text" class="form-control form-control-sm"
+                       placeholder="628123456789  atau  https://wa.me/628123456789"
+                       wire:model="whatsapp">
+                <small class="text-muted">Boleh isi nomor (628xx) atau link lengkap — icon WA di website akan otomatis mengarah ke wa.me sehingga tidak akan 404.</small>
+            </div>
+        </div>
+    </div>
+</div>
 
                                             <div class="mt-4 border-top pt-3 text-end">
                                                 <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:target="saveSocialMediaSettings">

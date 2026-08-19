@@ -40,6 +40,7 @@ class SettingsManager extends Component
     public $twitter = '';
     public $youtube = '';
     public $whatsapp = '';
+    public $tiktok = '';
     public $ppdb_link = '';
 
     // Security settings
@@ -173,6 +174,7 @@ class SettingsManager extends Component
             $this->twitter = $this->setting->twitter ?? '';
             $this->youtube = $this->setting->youtube ?? '';
             $this->whatsapp = $this->setting->whatsapp ?? '';
+            $this->tiktok   = $this->setting->tiktok ?? '';
             $this->ppdb_link = $this->setting->ppdb_link ?? '';
         }
     }
@@ -203,6 +205,7 @@ class SettingsManager extends Component
                 'twitter' => $this->twitter,
                 'youtube' => $this->youtube,
                 'whatsapp' => $this->whatsapp,
+                'tiktok' => $this->tiktok,
                 'ppdb_link' => $this->ppdb_link,
                 'updated_by' => auth()->id(),
             ];
@@ -368,6 +371,21 @@ class SettingsManager extends Component
             session()->flash('error', 'Gagal menyimpan Social Media settings: ' . $e->getMessage());
         }
     }
+
+    public function saveWhatsapp()
+{
+    try {
+        $setting = \App\Models\Setting::first();
+        if ($setting) {
+            $setting->whatsapp = $this->whatsapp;
+            $setting->save();
+        }
+        $this->loadSettings();
+        session()->flash('success', 'Nomor WhatsApp berhasil disimpan');
+    } catch (\Exception $e) {
+        session()->flash('error', 'Gagal menyimpan WhatsApp: ' . $e->getMessage());
+    }
+}
 
     public function loadSecuritySettings()
     {

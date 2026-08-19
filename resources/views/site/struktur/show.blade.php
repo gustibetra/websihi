@@ -325,21 +325,32 @@
 
 @section('content')
 <!-- Start breadcrumb Area -->
-<div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1">
-    <div class="container">
+<div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30" 
+     @if($page->image)
+         style="background-image: url('{{ asset('storage/' . $page->image) }}') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; position: relative;"
+     @else
+         style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);"
+     @endif>
+    
+    @if($page->image)
+    <!-- Overlay untuk membuat background lebih gelap -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5);"></div>
+    @endif
+    
+    <div class="container" style="position: relative; z-index: 2;">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-inner text-center">
-                    <h2 class="title">{{ $page->title }}</h2>
+                    <h2 class="title" style="color: #ffffff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">{{ $page->title }}</h2>
                     @if($page->subtitle)
-                        <p class="mb--20" style="color: var(--color-body); font-size: 16px;">{{ $page->subtitle }}</p>
+                        <p class="mb--20" style="color: #ffffff; font-size: 16px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">{{ $page->subtitle }}</p>
                     @endif
                     <ul class="page-list">
-                        <li class="rbt-breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="rbt-breadcrumb-item"><a href="{{ route('home') }}" style="color: #ffffff;">Home</a></li>
                         <li>
-                            <div class="icon-right"><i class="feather-chevron-right"></i></div>
+                            <div class="icon-right"><i class="feather-chevron-right" style="color: #ffffff;"></i></div>
                         </li>
-                        <li class="rbt-breadcrumb-item active">{{ Str::limit($page->title, 40) }}</li>
+                        <li class="rbt-breadcrumb-item active" style="color: #ffffff;">{{ Str::limit($page->title, 40) }}</li>
                     </ul>
                 </div>
             </div>

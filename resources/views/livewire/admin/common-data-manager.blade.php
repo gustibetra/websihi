@@ -61,7 +61,7 @@
                                href="#structureMenu" 
                                class="nav-link fs-13 {{ in_array($selectedData, ['structure-sekolah', 'structure-organisasi', 'structure-ekskul', 'structure-kepanitiaan', 'jabatan_organisasi', 'divisi']) ? 'active' : '' }}">
                                 <i class="ri-organization-chart align-middle me-2"></i>
-                                Struktur Organisasi
+                                Struktur Institusi
                             </a>
                             <div class="collapse {{ in_array($selectedData, ['structure-sekolah', 'structure-organisasi', 'structure-ekskul', 'structure-kepanitiaan', 'jabatan_organisasi', 'divisi']) ? 'show' : '' }}" 
                                  id="structureMenu">
@@ -75,7 +75,7 @@
                                     <li>
                                         <a href="#" wire:click.prevent="selectData('structure-organisasi')"
                                            class="{{ $selectedData === 'structure-organisasi' ? 'text-primary fw-semibold' : '' }}">
-                                            <i class="ri-group-line align-middle fs-15 text-danger"></i> Organisasi Siswa
+                                            <i class="ri-group-line align-middle fs-15 text-danger"></i> Struktural Institute
                                         </a>
                                     </li>
                                     <li>

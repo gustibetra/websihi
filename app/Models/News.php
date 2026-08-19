@@ -12,7 +12,6 @@ class News extends Model
 
     /**
      * Indicates if the model should use database timestamps.
-     * Override the default behavior to use database time instead of application time.
      */
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -53,6 +52,58 @@ class News extends Model
         ];
     }
 
+    // ═══════════════════════════════════════════════════════
+    // ✅ MULTI-FOTO ACCESSORS (Menyimpan banyak foto di kolom `image` sebagai JSON)
+    // ═══════════════════════════════════════════════════════
+
+    /**
+     * Accessor agar $news->image tetap mengembalikan foto PERTAMA.
+     * Ini menjaga kompatibilitas dengan semua view/kode lama yang hanya butuh 1 sampul.
+     */
+    public function getImageAttribute($value)
+    {
+        $images = $this->parseImages($value);
+        return $images[0] ?? null;
+    }
+
+    /**
+     * Accessor $news->images untuk mengembalikan SEMUA path foto (array).
+     */
+    public function getImagesAttribute(): array
+    {
+        return $this->parseImages($this->attributes['image'] ?? null);
+    }
+
+    /**
+     * Accessor $news->image_urls untuk mengembalikan semua foto dalam URL lengkap (asset).
+     */
+    public function getImageUrlsAttribute(): array
+    {
+        return collect($this->images)
+            ->map(fn($p) => $p ? asset('storage/' . $p) : null)
+            ->filter()
+            ->values()
+            ->all();
+    }
+
+    /**
+     * Helper: deteksi data lama (string path tunggal) vs data baru (JSON array).
+     */
+    private function parseImages($raw): array
+    {
+        if (!$raw) return [];
+        if (is_array($raw)) return array_values($raw);
+        
+        $decoded = json_decode($raw, true);
+        if (is_array($decoded)) return array_values($decoded);
+        
+        return [$raw]; // data lama: satu path string biasa
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // RELASI
+    // ═══════════════════════════════════════════════════════
+
     /**
      * Get the user who created this news.
      */
@@ -76,6 +127,4 @@ class News extends Model
     {
         return $this->belongsTo(Program::class, 'jurusan_id');
     }
-
-
 }

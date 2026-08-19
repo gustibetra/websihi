@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-inner text-center">
-                    <h2 class="title">Program Keahlian</h2>
-                    <p class="mb--20">Pilih program keahlian yang sesuai dengan minat dan bakat Anda</p>
+                    <h2 class="title">Program Diploma</h2>
+                    <p class="mb--20">Pilih program diploma yang sesuai dengan minat dan bakat Anda</p>
                     <ul class="page-list">
                         <li class="rbt-breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li><div class="icon-right"><i class="feather-chevron-right"></i></div></li>

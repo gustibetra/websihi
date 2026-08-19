@@ -207,41 +207,47 @@
                                 </div>
                             </div>
 
-                            <!-- Image -->
+                            <!-- ✅ MULTI IMAGE UPLOAD (EDIT MODE) -->
                             <div class="card border mt-3">
                                 <div class="card-header bg-light">
-                                    <h5 class="card-title mb-0">Gambar</h5>
+                                    <h5 class="card-title mb-0">Gambar Kegiatan</h5>
                                 </div>
                                 <div class="card-body">
-                                    @if($news->image)
-                                        <div class="mb-3 text-center" id="existingImageContainer">
-                                            <img src="{{ asset('storage/' . $news->image) }}" alt="Current Image" class="img-thumbnail" style="max-width: 100%; max-height: 200px;">
-                                            <p class="text-muted small mt-2">Gambar saat ini</p>
-                                            <button type="button" class="btn btn-sm btn-danger mt-2" id="deleteExistingImage" data-news-id="{{ $news->id }}">
-                                                <i class="ri-delete-bin-line"></i> Hapus Gambar
-                                            </button>
+                                    {{-- Tampilkan Foto Lama (Galeri) --}}
+                                    @if(count($news->images) > 0)
+                                        <label class="form-label fw-medium">Foto Terupload ({{ count($news->images) }})</label>
+                                        <div class="d-flex flex-wrap gap-2 mb-3">
+                                            @foreach($news->images as $i => $path)
+                                                <div class="text-center position-relative" style="width: 110px;">
+                                                    <img src="{{ asset('storage/' . $path) }}" class="img-thumbnail" style="width: 110px; height: 90px; object-fit: cover;">
+                                                    @if($i === 0)
+                                                        <span class="position-absolute top-0 start-0 badge bg-primary">Sampul</span>
+                                                    @endif
+                                                    <div class="form-check mt-1">
+                                                        <input class="form-check-input" type="checkbox" name="remove_images[]" value="{{ $i }}" id="removeImg{{ $i }}">
+                                                        <label class="form-check-label small text-danger" for="removeImg{{ $i }}">
+                                                            Hapus
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
+                                        <small class="text-muted d-block mb-3">Centang "Hapus" pada foto yang ingin dibuang, lalu klik Update Berita.</small>
                                     @endif
-                                    
+
                                     <div class="alert alert-info" role="alert">
-                                        <strong>Info:</strong> Max file size: <b>2 MB</b>. Format: JPG, PNG, GIF.
+                                        <strong>Info:</strong> Tambah foto baru. Max: <b>5 MB</b> per foto. Format: JPG, PNG, GIF.
                                     </div>
                                     
-                                    <div class="news-form-image-preview-container mb-3">
-                                        <img id="imagePreview" class="news-form-image-preview" src="" alt="Preview">
-                                        <button type="button" class="news-form-remove-image" id="removeImage">
-                                            <i class="ri-close-line"></i>
-                                        </button>
-                                    </div>
+                                    <input type="file" class="form-control @error('images.*') is-invalid @enderror" id="images" name="images[]" accept="image/jpeg,image/png,image/jpg,image/gif" multiple>
+                                    <small class="text-muted">Tahan Ctrl / Cmd untuk memilih beberapa foto sekaligus.</small>
                                     
-                                    <div id="imageInputContainer" style="display: {{ $news->image ? 'none' : 'block' }};">
-                                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/jpeg,image/png,image/jpg,image/gif">
-                                        @error('image')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    
-                                    <input type="hidden" id="deleteImageFlag" name="delete_image" value="0">
+                                    @error('images.*')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+
+                                    {{-- Preview Container --}}
+                                    <div id="imagesPreview" class="d-flex flex-wrap gap-2 mt-3"></div>
                                 </div>
                             </div>
 
@@ -374,4 +380,45 @@
 
 @section('page-scripts')
 <script src="{{ asset('assets/admin/js/pages/news-form.js') }}"></script>
+{{-- ✅ Script Preview Multi-Image --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const imagesInput = document.getElementById('images');
+    const imagesPreview = document.getElementById('imagesPreview');
+    
+    if(imagesInput && imagesPreview) {
+        imagesInput.addEventListener('change', function() {
+            imagesPreview.innerHTML = '';
+            if(this.files && this.files.length > 0) {
+                [...this.files].forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'position-relative border rounded';
+                        wrapper.style.width = '100px';
+                        wrapper.style.height = '100px';
+                        wrapper.style.overflow = 'hidden';
+                        
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                        img.style.objectFit = 'cover';
+                        
+                        const badge = document.createElement('span');
+                        badge.className = 'position-absolute top-0 start-0 badge bg-success';
+                        badge.textContent = 'Baru ' + (index + 1);
+                        badge.style.fontSize = '10px';
+                        
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(badge);
+                        imagesPreview.appendChild(wrapper);
+                    }
+                    reader.readAsDataURL(file);
+                });
+            }
+        });
+    }
+});
+</script>
 @endsection

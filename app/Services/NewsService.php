@@ -32,10 +32,13 @@ class NewsService extends BaseService
                 $data['published_at'] = \DB::raw('NOW()');
             }
 
-            // Upload image if exists
+            // ✅ LOGIKA BARU: Controller sudah memproses upload dan mengirim string JSON.
+            // Kita hanya perlu fallback jika ada yang mengirim UploadedFile secara langsung (Legacy).
             if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
-                $data['image'] = $this->fileService->uploadAndResize($data['image'], 'news', 1600, 900);
+                $path = $this->fileService->uploadAndResize($data['image'], 'news', 1600, 900);
+                $data['image'] = json_encode([$path]); // Bungkus dalam JSON array agar konsisten
             }
+            // Jika $data['image'] sudah berupa string (JSON dari Controller), biarkan masuk ke repository.
 
             // Upload file if exists
             if (isset($data['file']) && $data['file'] instanceof \Illuminate\Http\UploadedFile) {
@@ -46,7 +49,7 @@ class NewsService extends BaseService
             $news = $this->repository->create($data);
             return $this->success($news, 'Berita berhasil dibuat');
         } catch (\Exception $e) {
-            return $this->error('Gagal membuat berita', $e->getMessage());
+            return $this->error('Gagal membuat berita: ' . $e->getMessage(), $e->getMessage());
         }
     }
 
@@ -63,14 +66,12 @@ class NewsService extends BaseService
 
             // Handle slug: use provided slug or generate from title if changed
             if (isset($data['slug']) && !empty($data['slug'])) {
-                // User provided slug, ensure it's unique
                 $data['slug'] = $this->generateUniqueSlug($data['slug'], $id);
             } elseif (isset($data['title']) && $data['title'] !== $news->title) {
-                // Title changed, generate new slug
                 $data['slug'] = $this->generateUniqueSlug($data['title'], $id);
             }
 
-            // Handle is_featured checkbox (if not checked, it won't be in request)
+            // Handle is_featured checkbox
             if (!isset($data['is_featured'])) {
                 $data['is_featured'] = false;
             }
@@ -80,21 +81,23 @@ class NewsService extends BaseService
                 $data['published_at'] = \DB::raw('NOW()');
             }
 
-            // Handle image deletion flag
+            // ✅ Handle image deletion flag (Hapus semua foto lama jika dicentang)
             if (isset($data['delete_image']) && $data['delete_image'] === true) {
-                if ($news->image) {
-                    $this->fileService->delete($news->image);
-                }
+                $this->deleteImagePaths($news->image);
                 $data['image'] = null;
                 unset($data['delete_image']);
             }
 
-            // Handle image upload
+            // ✅ Handle image replacement (Jika Controller mengirim string JSON/path baru)
+            if (isset($data['image']) && is_string($data['image']) && $data['image'] !== $news->image) {
+                $this->deleteImagePaths($news->image); // Hapus foto-foto lama dari storage
+            }
+
+            // Fallback: Handle image upload jika ada UploadedFile (Legacy)
             if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
-                if ($news->image) {
-                    $this->fileService->delete($news->image);
-                }
-                $data['image'] = $this->fileService->uploadAndResize($data['image'], 'news', 1600, 900);
+                $this->deleteImagePaths($news->image);
+                $path = $this->fileService->uploadAndResize($data['image'], 'news', 1600, 900);
+                $data['image'] = json_encode([$path]);
             }
 
             // Handle file deletion flag
@@ -116,14 +119,14 @@ class NewsService extends BaseService
                 $data['is_have_file'] = true;
             }
 
-            // Remove delete flags before update (they are not database columns)
+            // Remove delete flags before update
             unset($data['delete_image']);
             unset($data['delete_file']);
 
             $news = $this->repository->update($id, $data);
             return $this->success($news, 'Berita berhasil diupdate');
         } catch (\Exception $e) {
-            return $this->error('Gagal mengupdate berita', $e->getMessage());
+            return $this->error('Gagal mengupdate berita: ' . $e->getMessage(), $e->getMessage());
         }
     }
 
@@ -178,26 +181,16 @@ class NewsService extends BaseService
 
     /**
      * Get all news with filter (for admin)
-     * 
-     * @param string|null $search Search keyword
-     * @param string $status Filter by status
-     * @param int $perPage Items per page (0 for all)
-     * @param int $start Offset for pagination
-     * @param string $orderBy Column to order by
-     * @param string $orderDir Order direction (asc/desc)
-     * @return array
      */
     public function getAll(string $search = null, string $status = 'all', int $perPage = 15, int $start = 0, string $orderBy = 'created_at', string $orderDir = 'desc')
     {
         try {
             $baseQuery = $this->repository->query()->with('category');
 
-            // Filter by status
             if ($status !== 'all') {
                 $baseQuery->where('status', $status);
             }
 
-            // Search
             if ($search) {
                 $baseQuery->where(function ($q) use ($search) {
                     $q->where('title', 'like', "%{$search}%")
@@ -206,17 +199,14 @@ class NewsService extends BaseService
                 });
             }
 
-            // Calculate total filtered records (before ordering and pagination)
             $total = (clone $baseQuery)->count();
 
-            // Order by
             $validOrderBy = ['id', 'title', 'category_id', 'period', 'status', 'is_featured', 'view_count', 'published_at', 'created_at'];
             if (!in_array($orderBy, $validOrderBy)) {
                 $orderBy = 'created_at';
             }
             $baseQuery->orderBy($orderBy, $orderDir);
 
-            // Apply pagination
             if ($perPage > 0) {
                 if ($start > 0) {
                     $baseQuery->offset($start)->limit($perPage);
@@ -225,10 +215,8 @@ class NewsService extends BaseService
                 }
             }
 
-            // Get data
             $items = $baseQuery->get();
 
-            // Create paginator for consistency
             $currentPage = $start > 0 && $perPage > 0 ? ceil(($start / $perPage) + 1) : 1;
             $news = new \Illuminate\Pagination\LengthAwarePaginator(
                 $items,
@@ -271,10 +259,10 @@ class NewsService extends BaseService
                 return $this->error('Berita tidak ditemukan');
             }
 
-            // Delete associated files
-            if ($news->image) {
-                $this->fileService->delete($news->image);
-            }
+            // ✅ Hapus semua file gambar (mendukung single path maupun JSON array)
+            $this->deleteImagePaths($news->image);
+
+            // Hapus file lampiran
             if ($news->file) {
                 $this->fileService->delete($news->file);
             }
@@ -288,5 +276,27 @@ class NewsService extends BaseService
             return $this->error('Gagal menghapus berita', $e->getMessage());
         }
     }
-}
 
+    // ═══════════════════════════════════════════════════════
+    // ✅ HELPER BARU: Menghapus file fisik (Mendukung JSON Array & String Biasa)
+    // ═══════════════════════════════════════════════════════
+    private function deleteImagePaths($imageValue): void
+    {
+        if (!$imageValue) return;
+
+        $paths = [];
+        if (is_string($imageValue)) {
+            $decoded = json_decode($imageValue, true);
+            // Jika valid JSON array, gunakan. Jika bukan (data lama/single path), bungkus dalam array.
+            $paths = is_array($decoded) ? $decoded : [$imageValue];
+        } elseif (is_array($imageValue)) {
+            $paths = $imageValue;
+        }
+
+        foreach ($paths as $path) {
+            if ($path) {
+                $this->fileService->delete($path);
+            }
+        }
+    }
+}
